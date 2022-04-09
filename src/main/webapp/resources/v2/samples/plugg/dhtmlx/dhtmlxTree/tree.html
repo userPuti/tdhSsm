@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../../../../static/plugg/dhtmlx/dhtmlxTree/codebase/dhtmlxtree.css" />
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxAjax/codebase/dhtmlxcommon.js" ></script>
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxTree/codebase/dhtmlxtree.js" ></script>
+	<script type="text/javascript" src="../../../../static/lib/jquery.min.js" ></script>
+	<style>
+		*{ margin: 0 ; padding: 0;}
+		body{ overflow: hidden; overflow-y: auto;}
+	</style>
+</head>
+<body>
+	<div id="tree" style="width:250px; height:100%;"></div>
+	<script>
+		tree = new dhtmlXTreeObject("tree", "100%", "100%", 0);
+		tree.setSkin('dhx_skyblue');
+		tree.setImagePath("../../../../static/plugg/dhtmlx/dhtmlxTree/codebase/imgs/csh_bluefolders/");
+		tree.enableHighlighting(true);
+		tree.loadXML("tree.xml");
+		function hide() {
+		    tree.showItemSign(tree.getSelectedItemId(), false);
+		};
+		function show() {
+		    tree.showItemSign(tree.getSelectedItemId(), true);
+		};
+	
+	</script>
+</body>
+</html>

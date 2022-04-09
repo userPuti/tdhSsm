@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<title></title>
+	<link rel="stylesheet" href="../../../static/plugg/ztree/css/metroStyle/metroStyle.css" />
+	<link rel="stylesheet" href="../../../static/plugg/ztree/css/metroStyle/diy.css" />
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../static/plugg/ztree/js/jquery.ztree.core.js" ></script>
+</head>
+<body>
+	<ul id="treeCourt" class="ztree"></ul>
+	<script>
+		var setting = {
+			data: {
+				simpleData: {
+					enable: true
+				}
+			}
+		};
+
+		var zNodes =[
+			{ id:1, pId:0, name:"南京中级人民法院", open:true, iconSkin:"courtIcon"},
+			{ id:2, pId:1, name:"民一庭", open:true, iconSkin:"crowdIcon"},
+			{ id:21, pId:2, name:"张三", iconSkin:"personIcon"},
+			{ id:22, pId:2, name:"李四", iconSkin:"personIcon"},
+			{ id:23, pId:2, name:"王五", iconSkin:"personIcon"},
+			{ id:24, pId:2, name:"朱六", iconSkin:"personIcon"},
+			{ id:25, pId:2, name:"贾七", iconSkin:"personIcon"},
+			{ id:3, pId:1, name:"执行局", iconSkin:"crowdIcon"},
+			{ id:31, pId:3, name:"张三三", iconSkin:"personIcon"},
+			{ id:31, pId:3, name:"李思思", iconSkin:"personIcon"},
+			{ id:31, pId:3, name:"王五五", iconSkin:"personIcon"},
+			{ id:4, pId:1, name:"民二庭", iconSkin:"crowdIcon"}
+		];
+		
+		$(function(){
+			$.fn.zTree.init($("#treeCourt"), setting, zNodes);
+		});
+	</script>
+</body>
+</html>

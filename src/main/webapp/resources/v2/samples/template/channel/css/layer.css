@@ -1,0 +1,67 @@
+.layui-layer{
+	background: #FFFFFF;
+	border: 1px solid #707070;
+	box-sizing: border-box;
+	border-radius: 4px;
+}
+.layui-layer-msg {
+	border: 1px solid #eee;
+	box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+	color: #333;
+}
+.layui-layer-title{
+	height: 40px;
+	background: #2C3A52;
+	border-radius: 4px 4px 0px 0px;
+	padding-left: 16px;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 40px;
+}
+.layui-layer-setwin .layui-layer-close1{
+	background: url(../images/layer/closed.png) no-repeat center;
+}
+.layui-layer-btn{
+	height: 66px;
+	padding: 0 16px;
+	border-top: 1px solid #DDDDDD;
+	text-align: right;
+}
+.layui-layer-btn a{
+	margin: 0;
+	margin-left: 8px;
+	margin-top: 16px;
+	border-color: #CCCCCC;
+	height: 34px;
+	padding: 0 24px;
+	border-radius: 4px;
+	font-size: 15px;
+	line-height: 32px;
+}
+.layui-layer-btn .layui-layer-btn0 {
+	background-color: #4163D9;
+	border-color: #4163D9;
+	color: #fff;
+}
+.layui-layer-btn a:hover{
+	opacity: 1;
+	border-color: #666;
+}
+.layui-layer-btn .layui-layer-btn0:hover {
+	background-color: #5E7CE0;
+	border-color: #5E7CE0;
+}
+.layui-layer-tips .layui-layer-content{
+	font-size: 13px;
+	line-height: 20px;
+}
+.layui_msg_loading{
+	border: 0;
+	background: none;
+	box-shadow: none;
+}
+.layui_msg_loading .layui-layer-content{
+	font-size: 0;
+	background: url(../images/layer/loading.gif) no-repeat center;
+	padding: 0;
+}

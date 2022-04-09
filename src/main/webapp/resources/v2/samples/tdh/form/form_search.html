@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../static/plugg/DatePicker/WdatePicker.js" ></script>
+	<link rel="stylesheet" href="../../../static/tdh/btn/css/btn.css" />
+	<script type="text/javascript" src="../../../static/tdh/btn/js/tdh.btn.js" ></script>
+	<link rel="stylesheet" href="../../../static/tdh/form/css/form.css" />
+	<script type="text/javascript" src="../../../static/tdh/form/js/tdh.form.js" ></script>
+</head>
+<body>
+	<div class="tdh_form_search">
+		<table>
+			<colgroup>
+				<col width="100" />
+				<col width="150" />
+				<col width="100" />
+				<col width="280" />
+				<col width="*" />
+			</colgroup>
+			<tr>
+				<td class="tdTitle">我的角色：</td>
+				<td class="tdCont">
+					<input class="inputText" type="text" />
+				</td>
+				<td class="tdTitle">案号：</td>
+				<td class="tdCont">
+					<table>
+						<tr>
+							<td width="80"><select class="inputSel"><option value=""></option></select></td>
+							<td width="40" align="center">代字</td>
+							<td width="80"><select class="inputSel" data-edit="true"><option value=""></option></select></td>
+							<td width="40" align="center">序号</td>
+							<td width="40"><input class="inputText" type="text" /></td>
+						</tr>
+					</table>
+				</td>
+				<td align="right"></td>
+			</tr>
+			<tr>
+				<td class="tdTitle">当事人：</td>
+				<td class="tdCont">
+					<div class="tdh_iconInput tdh_iconNum2">
+						<input class="inputText" type="text" readonly="readonly" />
+						<a class="tdh_icon icon_search tdh_icon1"></a>
+						<a class="tdh_icon icon_del"></a>
+					</div>
+				</td>
+				<td class="tdTitle">状态：</td>
+				<td class="tdCont">
+					<label><input name="ajzt" class="inputCheck" type="checkbox" />在办</label>
+					<label><input name="ajzt" class="inputCheck" type="checkbox" />已结</label>
+				</td>
+				<td align="right">
+					<a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_search"></i>查询</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>子页面</title>
+	<link rel="stylesheet" href="../../../static/tdh/btn/css/btn.css" />
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../static/tdh/btn/js/tdh.btn.js" ></script>
+</head>
+<body>
+	<input id="txt" type="text" />
+	<a class="tdh_btn" onclick="doClose()">关闭窗口</a>
+	<br />
+	<script>
+		$(function(){
+			var value=window.parent.setVal();//调用父页面的方法
+			$('#txt').val(value);
+			
+		});
+		function getVal(){
+			alert($('#txt').val());
+		}
+		function doClose(){
+			var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+			parent.layer.close(index);//关闭iframe页面
+		}
+	</script>
+	<xmp><input id="txt" type="text" /></xmp><br />
+	<xmp><a onclick="doClose()">关闭窗口</a></xmp><br />
+	<xmp><script></xmp><br />
+	<xmp>	$(function(){</xmp><br />
+	<xmp>		var value=window.parent.setVal();//调用父页面的方法</xmp><br />
+	<xmp>		$('#txt').val(value);</xmp><br />
+	<xmp>	});</xmp><br />
+	<xmp>	function getVal(){</xmp><br />
+	<xmp>		alert($('#txt').val());</xmp><br />
+	<xmp>	}</xmp><br />
+	<xmp>	function doClose(){</xmp><br />
+	<xmp>		var index = parent.layer.getFrameIndex(window.name); //获取窗口索引</xmp><br />
+	<xmp>		parent.layer.close(index);//关闭iframe页面</xmp><br />
+	<xmp>	}</xmp><br />
+	<xmp></script></xmp><br />
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="../../../../static/lib/jquery.min.js" ></script>
+	<link rel="stylesheet" href="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.css" />
+	<link rel="stylesheet" href="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/ext/dhtmlxgrid_pgn_bricks.css" />
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxAjax/codebase/dhtmlxcommon.js" ></script>
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.js" ></script>
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/ext/dhtmlxgrid_filter.js" ></script>
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgridcell.js" ></script>
+	<link rel="stylesheet" href="../../../../static/tdh/btn/css/btn.css" />
+	<script type="text/javascript" src="../../../../static/tdh/btn/js/tdh.btn.js" ></script>
+	<script type="text/javascript" src="../../../../static/plugg/DatePicker/WdatePicker.js" ></script>
+	<link rel="stylesheet" href="../../../../static/tdh/form/css/form.css" />
+	<script type="text/javascript" src="../../../../static/tdh/form/js/tdh.form.js" ></script>
+	<link rel="stylesheet" href="../../../../static/tdh/reset.css" />
+	<!--
+    	
+    -->
+	<link rel="stylesheet" href="../../../../static/tdh/layout/css/fixed_layout.css" />
+	<script type="text/javascript" src="../../../../static/tdh/layout/js/tdh.divresize.js" ></script>
+	<script type="text/javascript" src="../../../../static/tdh/layout/js/tdh.fixedlayout.js" ></script>
+</head>
+<body>
+	<div class="fixed_layout" id="fixedlayout">
+		<div class="fixed_layout_c">
+			<!--内容开始-->
+			<div id="grid" style="width:100%; height:100%;"></div>
+			<!--内容结束-->
+		</div>
+		<div class="fixed_layout_c">
+			<!--内容开始-->
+			<div class="tdh_btn_list">
+				<ul>
+					<li><a class="tdh_btn"><i class="tdh_icon icon_add"></i>新增</a></li>
+					<li><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_del"></i>删除</a></li>
+					<li style="display: none;"><a id="showGrid" class="tdh_btn" onclick="doShowGrid('fixed')"><i class="tdh_icon icon_show"></i>显示列表</a></li>
+					<li><a id="hideGrid" class="tdh_btn" onclick="doHideGrid('fixed')"><i class="tdh_icon icon_hide"></i>隐藏列表</a></li>
+				</ul>
+			</div>
+			<!--内容结束-->
+		</div>
+		<div class="fixed_layout_c">
+			<div class="fixed_layout_form">
+				<!--内容开始-->
+				<iframe data-id="fixedlayout_iframe" src="frameTest2.html" frameborder="0" scrolling="no" style="width: 100%; height: 100%;"></iframe>
+				<!--内容结束-->
+			</div>
+		</div>
+		<div class="fixed_layout_c tc">
+			<!--内容开始-->
+			<a class="tdh_btn tdh_btn_blue">文书生成</a>
+			<a class="tdh_btn tdh_btn_blue">保存</a>
+			<a class="tdh_btn tdh_btn_blue">呈批</a>
+			<!--内容结束-->
+		</div>
+	</div>
+	<script>
+		$(function(){
+			fixedlayout('fixedlayout','227,45,*,45','fixed');
+			mygrid = new dhtmlXGridObject('grid');
+		    mygrid.setImagePath("../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/imgs/");
+		    mygrid.setHeader("<input type='checkbox' />,序号,案号,承办部门,承办人,详情");
+		    mygrid.setInitWidths("40,100,*,200,200,*");
+		    mygrid.setColTypes("ch,ro,ro,ro,ed,ro");
+		    mygrid.setColAlign("center,center,center,center,center,center");
+			mygrid.setSkin("tdh_colour");
+			mygrid.init();
+			mygrid.loadXML("grid.xml");
+		});
+	</script>
+</body>
+</html>

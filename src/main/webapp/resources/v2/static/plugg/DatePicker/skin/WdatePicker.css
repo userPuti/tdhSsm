@@ -1,0 +1,31 @@
+.wdate_wrap{
+	position: relative;
+}
+.wdate_wrap #startDate,.wdate_wrap #endDate{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.Wdate{
+	width: 200px;
+	font-family: "微软雅黑";
+	border:#d1d1d1 1px solid;
+	font-size: 14px;
+	height:24px;
+	background:#fff url(date_icon.png) no-repeat right;
+}
+
+.WdateSala{
+	border:0;
+	background:url(date_icon.png) no-repeat right;
+}
+
+.Wdate::-ms-clear{display:none;}
+
+.WdateFmtErr{
+	font-weight:bold;
+	color:red;
+}

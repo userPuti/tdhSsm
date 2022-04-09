@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../static/tdh/scroll/tdh.scroll.js" ></script>
+	<style>
+		* { margin: 0; padding: 0;}
+		.myscroll { width: 300px; height: 260px; margin: 0 auto; border: 1px solid #ccc; line-height: 26px; font-size: 12px; overflow: hidden;}
+		.myscroll li { height: 26px; margin-left: 25px;}
+		.myscroll a { color: #333; text-decoration: none;}
+		.myscroll a:hover { color: #ED5565; text-decoration: underline;}
+	</style>
+</head>
+<body>
+	<div class="myscroll">
+		<ul>
+			<li>12333213123</li>
+			<li>12333213123</li>
+			<li>12333213123</li>
+			<li>12333213123</li>
+			<li>12333213123</li>
+			<li>12333213123</li>
+			<li>12333213123</li>
+			<li>12333213123</li>
+			<li>12333213123</li>
+			<li>12333213123</li>
+			<li>12333213123</li>
+			<li>12333213123</li>
+			<li>12333213123</li>
+			<li>12333213123</li>
+		</ul>
+	</div>
+	<script>
+		$(function(){
+			$('.myscroll').myScroll({
+				speed: 40, //数值越大，速度越慢
+				rowHeight: 26 //li的高度
+			});
+		});
+	</script>
+</body>
+</html>

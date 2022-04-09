@@ -1,0 +1,204 @@
+*{ margin: 0; padding: 0;}
+body{ font-family: "微软雅黑"; font-size: 14px; line-height: 24px; color: #222;}
+.form-search table .inputText{
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+.comm_icon_static{
+	background-image: url(../tjbb/images/1.png);
+}
+.comm_icon_excel{
+	background-image: url(../tjbb/images/3.png);
+}
+
+.comm_icon_sz {
+	background-image: url("../tjbb/images/4.png");
+}
+
+.statis_tc{
+	text-align: center;
+}
+
+.statis_tc_left{
+	text-align: left;
+}
+.statis_tr{
+	text-align: right;
+}
+.statis_tr_left{
+	text-align: left;
+}
+.statis_caption{
+	padding: 15px 0;
+}
+.statis_tit{
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+.statis_subTit{
+	margin: 5px 0;
+}
+
+.statis_explain{
+	display: inline-block;
+	color: #226de1;
+	margin-right: 15px;
+	cursor: pointer;
+}
+.comm_icon_tip{
+	background-image: url(../tjbb/images/ts.gif);
+}
+/*表格样式*/
+.statis_table{
+	overflow: hidden;
+	position: relative;
+}
+.statis_table_header{
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+.statis_table_body{
+	width: 100%;
+	overflow: auto;
+	position: relative;
+}
+.statis_table table{
+	table-layout: fixed;
+	border-collapse: collapse;
+	text-align: center;
+	border-bottom: 1px solid #d1d1d1;
+}
+.statis_table_header table.statis_mpr{
+	margin-right: 17px;
+	padding-right: 17px;
+}
+
+.statis_table table th,.statis_table table td{
+	height: 36px;
+	font-size: 14px;
+	padding: 0 5px;
+	border: 1px solid #d1d1d1;
+	background-color: #fff;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+.statis_table table th{
+	background-color: #fafafa;
+	font-weight: normal;
+	border-bottom: 0;
+}
+.statis_table table .statis_setWidth th{
+	border: 0;
+	height: 0;
+}
+.statis_table table td{
+	border-top: 0;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+/*表格打印样式*/
+.statis_table_dy{
+	overflow: hidden;
+	position: relative;
+}
+.statis_table_header_dy{
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+.statis_table_body_dy{
+	overflow: auto;
+	position: relative;
+}
+.statis_table_dy table{
+	table-layout: fixed;
+	border-collapse: collapse;
+	text-align: center;
+	border-bottom: 1px solid #d1d1d1;
+}
+.statis_table_header_dy table.statis_mpr{
+	margin-right: 17px;
+	padding-right: 17px;
+}
+
+.statis_table_dy table th{
+	height: 36px;
+	font-size: 14px;
+	padding: 0 5px;
+	border: 1px solid #d1d1d1;
+	overflow: hidden;
+}
+.statis_table_dy table td{
+	height: 36px;
+	font-size: 14px;
+	padding: 0 5px;
+	border: 1px solid #d1d1d1;
+	overflow: hidden;
+}
+.statis_table_dy table th{
+	font-weight: normal;
+}
+.statis_table_dy table .statis_setWidth th{
+	border: 0;
+	height: 0;
+}
+.statis_table_dy table td{
+	border-top: 0;
+	white-space: nowrap;
+	border: 1px solid #d1d1d1;
+	text-overflow: ellipsis;
+}
+
+/*表格打印样式结束*/
+
+.statis_arrow{
+	background: url(../tjbb/images/jt.png) no-repeat 95% center;
+}
+.statis_arrow_up{
+	background-image: url(../tjbb/images/jt1.png);
+}
+.statis_table table .statis_odd td{
+	background-color: #f8f8f8;
+}
+.statis_table_fixed{
+	position: absolute;
+	top: 0;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
+	overflow: hidden;
+}
+.statis_table_fixed_l {
+	left: 0;
+}
+.statis_table_fixed_r {
+	right: 0;
+}
+.statis_table_fixed .statis_table_body{
+	overflow: hidden;
+}
+.statis_sort{
+	background: no-repeat right bottom;
+}
+.statis_sort_asc{
+	background-image: url(../images/sort_asc.png);
+}
+.statis_sort_desc{
+	background-image: url(../images/sort_desc.png);
+}
+
+.fh {
+	background: url(../tjbb/images/fh.gif) no-repeat;
+}
+
+.colorR {
+	color: #666666;
+}
+
+.state_tips{
+	font-weight: bold;
+	padding: 0 10px;
+}
+.statis_table table .statis_active td{
+	background-color: #ffefae;
+}

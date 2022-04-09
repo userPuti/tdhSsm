@@ -4,38 +4,34 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-    <properties resource="jdbc.properties"/>
+<!--    <properties resource="jdbc.properties"/>-->
 
-    <settings>
-        <setting name="lazyLoadingEnabled" value="true"/>
-        <setting name="aggressiveLazyLoading" value="false"/>
-    </settings>
+<!--    <settings>-->
+<!--        <setting name="lazyLoadingEnabled" value="true"/>-->
+<!--        <setting name="aggressiveLazyLoading" value="false"/>-->
+<!--    </settings>-->
 
-    <typeAliases>
-        <package name="com.tdh.pojo"/>
-    </typeAliases>
+<!--    <plugins>-->
+<!--        &lt;!&ndash; com.github.pagehelper为PageHelper类所在包名 &ndash;&gt;-->
+<!--        <plugin interceptor="com.github.pagehelper.PageInterceptor">-->
+<!--            &lt;!&ndash; 使用下面的方式配置参数，后面会有所有的参数介绍 &ndash;&gt;-->
+<!--            <property name="param1" value="value1"/>-->
+<!--        </plugin>-->
+<!--    </plugins>-->
 
-    <plugins>
-        <!-- com.github.pagehelper为PageHelper类所在包名 -->
-        <plugin interceptor="com.github.pagehelper.PageInterceptor">
-            <!-- 使用下面的方式配置参数，后面会有所有的参数介绍 -->
-            <property name="param1" value="value1"/>
-        </plugin>
-    </plugins>
+<!--    <environments default="development">-->
+<!--        <environment id="development">-->
+<!--            <transactionManager type="JDBC"/>-->
+<!--            <dataSource type="POOLED">-->
+<!--                <property name="driver" value="${jdbc.driver}"/>-->
+<!--                <property name="url" value="${jdbc.url}"/>-->
+<!--                <property name="username" value="${jdbc.username}"/>-->
+<!--                <property name="password" value="${jdbc.password}"/>-->
+<!--            </dataSource>-->
+<!--        </environment>-->
+<!--    </environments>-->
 
-    <environments default="development">
-        <environment id="development">
-            <transactionManager type="JDBC"/>
-            <dataSource type="POOLED">
-                <property name="driver" value="${jdbc.driver}"/>
-                <property name="url" value="${jdbc.url}"/>
-                <property name="username" value="${jdbc.username}"/>
-                <property name="password" value="${jdbc.password}"/>
-            </dataSource>
-        </environment>
-    </environments>
-
-    <mappers>
-        <package name="com.tdh.mapper"/>
-    </mappers>
+<!--    <mappers>-->
+<!--        <package name="com.tdh.mapper"/>-->
+<!--    </mappers>-->
 </configuration>

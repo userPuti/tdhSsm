@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../../../static/tdh/reset.css" />
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../static/tdh/commonjs/jquery.mousewheel.min.js" ></script>
+	<script type="text/javascript" src="../../../static/tdh/commonjs/tdh.nicescroll.js" ></script>
+	<script type="text/javascript" src="../../../static/tdh/commonjs/tdh.event.js" ></script>
+	<link rel="stylesheet" href="../../../static/tdh/form/css/form.css" />
+	<script type="text/javascript" src="../../../static/tdh/form/js/tdh.form.js" ></script>
+	<link rel="stylesheet" href="../../../static/tdh/table/css/table.css" />
+	<script type="text/javascript" src="../../../static/tdh/table/js/tdh.table.js" ></script>
+</head>
+<body>
+	<div id="table" class="tdh_grid" style="height: 200px;">
+		<div class="tdh_grid_header">
+			<table>
+				<tr class="tdh_grid_setWidth">
+					<th width="50"></th>
+					<th width="50"></th>
+					<th width="*"></th>
+					<th width="300"></th>
+					<th width="300"></th>
+					<th width="*"></th>
+				</tr>
+				<tr>
+					<th data-fixed="left"><label><input class="inputCheck" type="checkbox" /></label></th>
+					<th data-fixed="left" class="tdh_grid_sort">序号</th>
+					<th>案号</th>
+					<th class="tdh_grid_sort">承办部门</th>
+					<th>承办人</th>
+					<th data-fixed="right">详情</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<script>
+		tableData=[{
+			"xh":"1",
+			"ah":"案号",
+			"cbbm":"承办部门2",
+			"cbr":"承办人"
+		},{
+			"xh":"2",
+			"ah":"案号",
+			"cbbm":"承办部门12",
+			"cbr":"承办人"
+		},{
+			"xh":"3",
+			"ah":"案号",
+			"cbbm":"承办部门3",
+			"cbr":"承办人"
+		},{
+			"xh":"4",
+			"ah":"案号",
+			"cbbm":"承办部门34",
+			"cbr":"承办人"
+		},{
+			"xh":"5",
+			"ah":"案号",
+			"cbbm":"承办部门324",
+			"cbr":"承办人"
+		}]
+		$(function(){
+			//var myTable=new table('table','autosize');//基础表格
+			var myTable=new table('table');//表头固定
+			//myTable.setSkin('stripe');//设置表格样式
+			myTable.loadBody(tableData);
+			myTable.setColType('2','link');//设置列类型
+			myTable.addCol('1','<label><input class="inputCheck" type="checkbox" /></label>');//新增列
+			myTable.addCol('6','<a>查看</a>');
+		});
+	</script>
+</body>
+</html>

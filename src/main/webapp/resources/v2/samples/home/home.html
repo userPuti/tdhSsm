@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../../static/home/css/home.css" />
+	<script type="text/javascript" src="../../static/lib/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../static/tdh/commonjs/tdh.nicescroll.js" ></script>
+	<script type="text/javascript" src="../../static/tdh/commonjs/tdh.event.js" ></script>
+	<script type="text/javascript" src="../../static/home/js/home.nav.js" ></script>
+	<script type="text/javascript" src="../../static/home/js/home.js" ></script>
+</head>
+<body>
+	<div class="container">
+		<!--侧边栏开始-->
+		<div class="sideBar">
+			<span class="sideBar_btn" title="隐藏导航" onclick="hideSideBar(this)"></span>
+			<div id="homenav"></div>
+		</div>
+		<!--侧边栏结束-->
+		<!--头部开始-->
+		<div class="main">
+			<!--标签开始-->
+			<div class="cap">
+				<div id="capnav" class="capnav">
+					<ul></ul>
+				</div>
+				<a title="左移一位" class="cap_prev"></a>
+				<a title="右移一位" class="cap_next"></a>
+				<a title="关闭操作" class="cap_tool" onclick="showToollist()"></a>
+			</div>
+			<div class="cap_toollist">
+				<span class="cap_arrow"></span>
+				<ul>
+					<li onclick="delTool('all')">关闭所有选项卡</li>
+					<li onclick="delTool('cur')">关闭当前选项卡</li>
+					<li onclick="delTool('sib')">关闭除当前之外选项卡</li>
+				</ul>
+			</div>
+			<!--标签结束-->
+			<!--主体内容开始-->
+			<div class="content" id="capNav_cont">
+				<!--<iframe id="contFrame" src="" frameborder="0" scrolling="no" style="width: 100%; height: 100%;"></iframe>-->
+			</div>	
+			<!--主体内容结束-->
+		</div>
+	</div>	
+</body>
+</html>

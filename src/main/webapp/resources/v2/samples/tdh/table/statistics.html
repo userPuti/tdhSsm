@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../../../static/tdh/reset.css" />
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../static/tdh/commonjs/jquery.mousewheel.min.js" ></script>
+	<script type="text/javascript" src="../../../static/tdh/commonjs/tdh.nicescroll.js" ></script>
+	<link rel="stylesheet" href="../../../static/tdh/form/css/form.css" />
+	<script type="text/javascript" src="../../../static/tdh/form/js/tdh.form.js" ></script>
+	<link rel="stylesheet" href="../../../static/tdh/table/css/statistics.css" />
+	<script type="text/javascript" src="../../../static/tdh/table/js/tdh.statistics.js" ></script>
+</head>
+<body>
+	<div class="statis_table">
+		<div class="statis_table_header">
+			<table>
+				<tr class="statis_setWidth">
+					<th width="50"></th>
+					<th width="300"></th>
+					<th width="300"></th>
+					<th width="300"></th>
+					<th width="1000"></th>
+				</tr>
+				<tr>
+					<th>序号</th>
+					<th>案号</th>
+					<th data-index="2" class="statis_sort">承办部门</th>
+					<th>承办人</th>
+					<th>详情</th>
+				</tr>
+			</table>
+		</div>
+		<div id="statistics" class="statis_table_body"></div>
+	</div>
+	<script>
+		tableData=[{
+			"xh":"1",
+			"ah":"案号",
+			"cbbm":"2",
+			"cbr":"承办人",
+			"xq":"详情详情详情"
+		},{
+			"xh":"2",
+			"ah":"案号",
+			"cbbm":"12",
+			"cbr":"承办人",
+			"xq":"详情详情详情"
+		},{
+			"xh":"3",
+			"ah":"案号",
+			"cbbm":"3",
+			"cbr":"承办人",
+			"xq":"详情详情详情"
+		},{
+			"xh":"4",
+			"ah":"案号",
+			"cbbm":"34",
+			"cbr":"承办人",
+			"xq":"详情详情详情"
+		},{
+			"xh":"5",
+			"ah":"案号",
+			"cbbm":"324",
+			"cbr":"承办人",
+			"xq":"详情详情详情"
+		},{
+			"xh":"6",
+			"ah":"案号",
+			"cbbm":"324",
+			"cbr":"承办人",
+			"xq":"详情详情详情"
+		},{
+			"xh":"7",
+			"ah":"案号",
+			"cbbm":"324",
+			"cbr":"承办人",
+			"xq":"详情详情详情"
+		},{
+			"xh":"8",
+			"ah":"案号",
+			"cbbm":"324",
+			"cbr":"承办人",
+			"xq":"详情详情详情"
+		}]
+		$(function(){
+			$('#statistics').statistics({
+				data: tableData,
+				sort:true,
+				height:200,
+				fixed:true,
+				fixedAlign:'left',
+				fixedNumber:'1'
+			});
+		});
+	</script>
+</body>
+</html>

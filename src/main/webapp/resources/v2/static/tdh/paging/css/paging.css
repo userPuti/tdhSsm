@@ -1,0 +1,107 @@
+*{ margin: 0; padding: 0;}
+a{ text-decoration: none; cursor: pointer; color: #222;}
+.page{
+	height: 46px;
+	text-align: right;
+	font-size: 0;
+	position: relative;
+}
+.page_first,.page_last,.page_prev,.page_next,.page_num,.page_page,.page_limit,.page_span,.page_eclips,.page_toggle,.page_to,.page_btn,.page_refresh{
+	display: inline-block;
+	width: 26px;
+	height: 26px;
+	background-color: #f1f6f9;
+	margin: 10px 2px 0;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 26px;
+	text-align: center;
+	vertical-align: top;
+}
+.page_eclips{
+	background: none;
+	width: 20px;
+	line-height: 18px;
+}
+.page_page,.page_limit,.page_span,.page_toggle{
+	width: auto;
+	background: none;
+	font-size: 12px;
+	color: #888;
+}
+.page_btn{
+	width: 40px;
+	background-color: #2d71da;
+	color: #fff;
+	font-size: 12px;
+	margin-left: 6px;
+}
+.page_toggle{
+	margin: 10px 14px 0 6px;
+	cursor: pointer;
+}
+.page_to{
+	width: 40px;
+	font-family: "微软雅黑";
+	line-height: 24px;
+	border: 1px solid #e5e5e5;
+	box-sizing: border-box;
+	background: none;
+	outline: none;
+	font-size: 12px;
+}
+.page_first,.page_last,.page_prev,.page_next{
+	background: no-repeat center #f1f6f9;
+}
+.page_first{
+	background-image: url(../images/first.png);
+}
+.page_last{
+	background-image: url(../images/last.png);
+}
+.page_prev{
+	background-image: url(../images/prev.png);
+}
+.page_next{
+	background-image: url(../images/next.png);
+}
+.page_first_dis{
+	background-image: url(../images/first_dis.png);
+	cursor: not-allowed;
+}
+.page_last_dis{
+	background-image: url(../images/last_dis.png);
+	cursor: not-allowed;
+}
+.page_prev_dis{
+	background-image: url(../images/prev_dis.png);
+	cursor: not-allowed;
+}
+.page_next_dis{
+	background-image: url(../images/next_dis.png);
+	cursor: not-allowed;
+}
+.page_num:hover,.page_hover{
+	border: 1px solid #2d71da;
+	box-sizing: border-box;
+	line-height: 24px;
+	background-color: #fff;
+	color: #2d71da;
+}
+.page_now,.page_hover.page_now{
+	background-color: #2d71da;
+	color: #fff;
+}
+.page_refresh{
+	background: url(../images/fresh.png) no-repeat center;
+}
+.page .select_box{
+	display: inline-block;
+	width: 90px;
+	border: 1px solid #e5e5e5;
+    vertical-align: top;
+    font-family: "微软雅黑";
+    font-size: 12px;
+    color: #888;
+    text-align: left;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="../../../../static/lib/jquery.min.js" ></script>
+	<link rel="stylesheet" type="text/css" href="../../../../static/plugg/dhtmlx/dhtmlxTabbar/codebase/dhtmlxtabbar.css">
+	<script src="../../../../static/plugg/dhtmlx/dhtmlxAjax/codebase/dhtmlxcommon.js"></script>
+	<script src="../../../../static/plugg/dhtmlx/dhtmlxTabbar/codebase/dhtmlxtabbar.js"></script>
+	<style>
+		*{ margin: 0 ; padding: 0;}
+		body{ overflow: hidden; overflow-y: auto;}
+	</style>
+</head>
+<body>
+	<!--注释开始-->
+	<div style="background: #f0f0f0; border-top: 2px dashed #ddd; margin: 20px 0;">
+		<h3>-->用例</h3>
+		<xmp><script type="text/javascript" src="../../../../static/lib/jquery.min.js" ></script></xmp><br />
+		<xmp><link rel="stylesheet" type="text/css" href="../../../../static/plugg/dhtmlx/dhtmlxTabbar/codebase/dhtmlxtabbar.css"></xmp><br />
+		<xmp><script src="../../../../static/plugg/dhtmlx/dhtmlxAjax/codebase/dhtmlxcommon.js"></script></xmp><br />
+		<xmp><script src="../../../../static/plugg/dhtmlx/dhtmlxTabbar/codebase/dhtmlxtabbar.js"></script></xmp><br />
+		<xmp><div id="a_tabbar" style="width:100%; height:200px;"></div></xmp><br />
+		<xmp><div id='html_1'>1</div></xmp><br />
+		<xmp><div id='html_2'>2</div></xmp><br />
+		<xmp><script></xmp><br />
+		<xmp>	var tabbar = new dhtmlXTabBar("a_tabbar", "top");</xmp><br />
+		<xmp>	tabbar.setHrefMode("iframes-on-demand"); /*加载iframe页面内容方式*///tab切换时不自动刷新 </xmp><br />
+		<xmp>	//tabbar.setHrefMode("iframe");//tab切换时自动刷新 </xmp><br />
+		<xmp>	tabbar.setSkin('tdh_blue');</xmp><br />
+		<xmp>	tabbar.setImagePath("../../../../static/plugg/dhtmlx/dhtmlxTabbar/codebase/imgs/");</xmp><br />
+		<xmp>	tabbar.addTab("a1", "Tab 1-111111111111");/*默认自适应宽度，也可通过最后一个参数设置标签宽度*/</xmp><br />
+		<xmp>	tabbar.addTab("a2", "Tab 1-2", "110");</xmp><br />
+		<xmp>	tabbar.addTab("a3", "Tab 1-3");</xmp><br />
+		<xmp>	tabbar.setContent("a1", "html_1"); /*标签id*/</xmp><br />
+		<xmp>	tabbar.setContentHTML("a2", "<br/>The content can be set as <b>HTML</b> node or as <b>HTML</b> text."); /*自定义内容*/</xmp><br />
+		<xmp>	tabbar.setContentHref("a3", "../dhtmlxGrid/grid.html"); /*iframe页面*/</xmp><br />
+		<xmp>	tabbar.setTabActive("a1");</xmp><br />
+		<xmp>	tabbar.enableAutoReSize();/*窗口大小变化时，tabbar能自适应*/</xmp><br />
+		<xmp>	//tabbar.setLabel("a1","Tab 1-1");/*动态修改标签文字*/</xmp><br />
+		<xmp></script></xmp><br />
+	</div>
+	<div style="background: #f0f0f0; border-top: 2px dashed #ddd; margin: 20px 0;">
+		<h3>-->风格体现</h3>
+		<p><span style="margin: 0 10px;">tdh_blue</span>、<span style="margin: 0 10px;">tdh_default</span></p>
+	</div>
+	<!--注释结束-->
+	<div id="a_tabbar" style="width:100%; height:200px;"></div>
+	<div id='html_1'>1</div>
+	<!--注释开始-->
+	<div style="background: #f0f0f0; border-top: 2px dashed #ddd; margin: 20px 0;">
+		<xmp>	tabbar.setSkin("tdh_blue");</xmp>
+	</div>
+	<!--注释结束-->
+	<div id="a_tabbar2" style="width:100%; height:200px;"></div>
+	<div id='html_12'>1</div>
+	<div id='html_22'>2</div>
+	<!--注释开始-->
+	<div style="background: #f0f0f0; border-top: 2px dashed #ddd; margin: 20px 0;">
+		<xmp>	tabbar.setSkin("tdh_default");</xmp>
+	</div>
+	<!--注释结束-->
+	<script>
+		var tabbar = new dhtmlXTabBar("a_tabbar", "top");
+		tabbar.setHrefMode("iframes-on-demand");//tab切换时不自动刷新
+		//tabbar.setHrefMode("iframe");//tab切换时自动刷新
+		tabbar.setSkin('tdh_blue');
+		tabbar.setImagePath("../../../../static/plugg/dhtmlx/dhtmlxTabbar/codebase/imgs/");
+		tabbar.addTab("a1", "Tab 1-111111111111","*");
+		tabbar.addTab("a2", "Tab 1-2", "110");
+		tabbar.addTab("a3", "Tab 1-3");
+		tabbar.setContent("a1", "html_1");
+		tabbar.setContentHTML("a2", "<br/>The content can be set as <b>HTML</b> node or as <b>HTML</b> text.");
+		tabbar.setContentHref("a3", "../dhtmlxGrid/grid.html");
+		tabbar.setTabActive("a1");
+		tabbar.enableAutoReSize();
+		//tabbar.setLabel("a1","Tab 1-1");
+		
+		var tabbar2 = new dhtmlXTabBar("a_tabbar2", "top");
+		tabbar2.setSkin('tdh_default');
+		tabbar2.setImagePath("../../../../static/plugg/dhtmlx/dhtmlxTabbar/codebase/imgs/");
+		tabbar2.addTab("a12", "Tab 1-1");
+		tabbar2.addTab("a22", "Tab 1-2");
+		tabbar2.addTab("a32", "Tab 1-3");
+		tabbar2.setContent("a12", "html_12");
+		tabbar2.setContent("a22", "html_22");
+		tabbar2.setContentHTML("a32", "<br/>The content can be set as <b>HTML</b> node or as <b>HTML</b> text.");
+		tabbar2.setTabActive("a12");
+		
+	</script>
+</body>
+</html>

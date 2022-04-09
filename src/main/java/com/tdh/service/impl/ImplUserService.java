@@ -4,14 +4,9 @@ import com.tdh.domain.User;
 import com.tdh.domain.UserExample;
 import com.tdh.mapper.UserMapper;
 import com.tdh.service.UserService;
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -20,22 +15,17 @@ import java.util.List;
  */
 @Service("userService")
 public class ImplUserService implements UserService {
+
+    @Autowired
+    private UserMapper mapper;
+
+
     @Override
     public List<User> selectAllUser() {
         List<User> users = null;
-        try {
-            InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
-            SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
-            SqlSession sqlSession = sessionFactory.openSession();
-            UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-            UserExample userExample = new UserExample();
-            userExample.createCriteria();
-            users = mapper.selectByExample(userExample);
-            sqlSession.commit();
-            sqlSession.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        UserExample userExample = new UserExample();
+        userExample.createCriteria();
+        users = mapper.selectByExample(userExample);
 
         return users;
     }
