@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdh.mapper.BzdmMapper">
+  <resultMap id="BaseResultMap" type="com.tdh.domain.Bzdm">
+    <constructor>
+      <idArg column="KIND" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="BT" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="MC" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SFJY" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PXH" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    KIND, CODE, BT, MC, SFJY, PXH
+  </sql>
+  <select id="selectByExample" parameterType="com.tdh.domain.BzdmExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ts_bzdm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.tdh.domain.BzdmKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ts_bzdm
+    where KIND = #{kind,jdbcType=VARCHAR}
+      and CODE = #{code,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.tdh.domain.BzdmKey">
+    delete from ts_bzdm
+    where KIND = #{kind,jdbcType=VARCHAR}
+      and CODE = #{code,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tdh.domain.BzdmExample">
+    delete from ts_bzdm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tdh.domain.Bzdm">
+    insert into ts_bzdm (KIND, CODE, BT, 
+      MC, SFJY, PXH)
+    values (#{kind,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{bt,jdbcType=VARCHAR}, 
+      #{mc,jdbcType=VARCHAR}, #{sfjy,jdbcType=VARCHAR}, #{pxh,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tdh.domain.Bzdm">
+    insert into ts_bzdm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="kind != null">
+        KIND,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="bt != null">
+        BT,
+      </if>
+      <if test="mc != null">
+        MC,
+      </if>
+      <if test="sfjy != null">
+        SFJY,
+      </if>
+      <if test="pxh != null">
+        PXH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="kind != null">
+        #{kind,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="bt != null">
+        #{bt,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="sfjy != null">
+        #{sfjy,jdbcType=VARCHAR},
+      </if>
+      <if test="pxh != null">
+        #{pxh,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tdh.domain.BzdmExample" resultType="java.lang.Long">
+    select count(*) from ts_bzdm
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ts_bzdm
+    <set>
+      <if test="record.kind != null">
+        KIND = #{record.kind,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        CODE = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bt != null">
+        BT = #{record.bt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mc != null">
+        MC = #{record.mc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfjy != null">
+        SFJY = #{record.sfjy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pxh != null">
+        PXH = #{record.pxh,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ts_bzdm
+    set KIND = #{record.kind,jdbcType=VARCHAR},
+      CODE = #{record.code,jdbcType=VARCHAR},
+      BT = #{record.bt,jdbcType=VARCHAR},
+      MC = #{record.mc,jdbcType=VARCHAR},
+      SFJY = #{record.sfjy,jdbcType=VARCHAR},
+      PXH = #{record.pxh,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdh.domain.Bzdm">
+    update ts_bzdm
+    <set>
+      <if test="bt != null">
+        BT = #{bt,jdbcType=VARCHAR},
+      </if>
+      <if test="mc != null">
+        MC = #{mc,jdbcType=VARCHAR},
+      </if>
+      <if test="sfjy != null">
+        SFJY = #{sfjy,jdbcType=VARCHAR},
+      </if>
+      <if test="pxh != null">
+        PXH = #{pxh,jdbcType=INTEGER},
+      </if>
+    </set>
+    where KIND = #{kind,jdbcType=VARCHAR}
+      and CODE = #{code,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tdh.domain.Bzdm">
+    update ts_bzdm
+    set BT = #{bt,jdbcType=VARCHAR},
+      MC = #{mc,jdbcType=VARCHAR},
+      SFJY = #{sfjy,jdbcType=VARCHAR},
+      PXH = #{pxh,jdbcType=INTEGER}
+    where KIND = #{kind,jdbcType=VARCHAR}
+      and CODE = #{code,jdbcType=VARCHAR}
+  </update>
+</mapper>
