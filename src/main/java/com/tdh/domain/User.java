@@ -1,5 +1,7 @@
 package com.tdh.domain;
 
+import org.springframework.stereotype.Component;
+
 public class User {
     private String yhid;
 

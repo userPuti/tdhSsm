@@ -9,11 +9,11 @@
 <html>
 <head>
     <title>修改</title>
-    <jsp:include page="resources/v2/webui.jsp">
+    <jsp:include page="../../resources/v2/webui.jsp">
         <jsp:param name="UIS" value="FORM_DGRID_BTN"/>
     </jsp:include>
-    <script src="js/modify.js" type="application/javascript"></script>
-    <script src="resources/js/jquery.serialize.js" type="application/javascript"></script>
+    <script src="../../js/modify.js" type="application/javascript"></script>
+    <script src="../../resources/js/jquery.serialize.js" type="application/javascript"></script>
 
 </head>
 <body>

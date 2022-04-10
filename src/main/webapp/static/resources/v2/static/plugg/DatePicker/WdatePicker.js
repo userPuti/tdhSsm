@@ -441,9 +441,9 @@ autoShowQS:false,
 							+ "/datepicker.css\" charset=\"" + C[I].charset
 							+ "\"/>");
 			G
-					.push("<script type=\"text/javascript\" src=\""
+					.push("<script type=\"text/javascript\" src="
 							+ A
-							+ "calendar.js?\"+Math.random()+\" charset=\"gb2312\"></script>");
+							+ "\"calendar.js?\"+Math.random()+\" charset=\"gb2312\"></script>");
 			G
 					.push("</head><body leftmargin=\"0\" topmargin=\"0\" tabindex=0></body></html>");
 			G

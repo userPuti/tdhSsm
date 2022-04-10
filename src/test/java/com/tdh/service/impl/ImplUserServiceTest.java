@@ -10,8 +10,5 @@ public class ImplUserServiceTest {
 
     @Test
     public void selectAllUser() {
-        UserService userService = new ImplUserService();
-        List<User> users = userService.selectAllUser();
-        System.out.println(users);
     }
 }

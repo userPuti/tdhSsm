@@ -9,11 +9,11 @@
 <html>
 <head>
     <title>添加用户</title>
-    <jsp:include page="resources/v2/webui.jsp">
+    <jsp:include page="../static/resources/v2/webui.jsp">
         <jsp:param name="UIS" value="FORM_BTN"/>
     </jsp:include>
-    <script src="js/addUser.js" type="application/javascript"></script>
-    <script src="resources/js/jquery.serialize.js" type="application/javascript"></script>
+    <script src="../static/js/addUser.js" type="application/javascript"></script>
+    <script src="../static/resources/js/jquery.serialize.js" type="application/javascript"></script>
 </head>
 <body>
 <div class="tdh_form_title">添加用户信息</div>

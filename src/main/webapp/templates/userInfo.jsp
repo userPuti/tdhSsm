@@ -9,10 +9,10 @@
 <html>
 <head>
     <title>用户信息展示</title>
-    <jsp:include page="resources/v2/webui.jsp">
+    <jsp:include page="../static/resources/v2/webui.jsp">
         <jsp:param name="UIS" value="FORM_LAYER_BTN"/>
     </jsp:include>
-    <script src="js/userInfo.js" type="application/javascript"></script>
+    <script src="../static/js/userInfo.js" type="application/javascript"></script>
 </head>
 <body>
 <div class="tdh_form_title">用户信息</div>

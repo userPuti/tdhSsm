@@ -1,7 +1,10 @@
 package com.tdh.domain;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class UserExample {
     protected String orderByClause;

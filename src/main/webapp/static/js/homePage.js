@@ -3,7 +3,7 @@ $(function () {
     //构建dgrid表格
     initGrid();
 
-    $.getJSON(_path + "/loadSelection", function (departs) {
+    $.getJSON(_path + "/user/loadSelection", function (departs) {
         $.each(departs, function (index, item) {
             $('#yhbm').append(new Option(item.bmmc, item.bmdm));//往下拉菜单里添加元素
         })
@@ -21,14 +21,14 @@ $(function () {
 
     $('#queryAll').click(
         function () {
-            mygrid.loadXML(CONTEXT_PATH + "/displayUserInfoServlet");
+            mygrid.loadXML(CONTEXT_PATH + "/user/displayUserInfo");
         }
     )
 });
 
 function initGrid() {
     mygrid = new dhtmlXGridObject('grid');
-    mygrid.setImagePath(CONTEXT_PATH + "/resources/v2/static/plugg/dhtmlx/dhtmlxGrid/codebase/imgs/");
+    mygrid.setImagePath(CONTEXT_PATH + "/static/resources/v2/static/plugg/dhtmlx/dhtmlxGrid/codebase/imgs/");
     mygrid.setHeader("#master_checkbox,账户,姓名,性别,部门,出生日期,登记日期,是否禁用,排序号,查看,修改,删除");
     mygrid.setInitWidths("40,130,130,80,80,150,150,80,80,60,60,60");
     mygrid.setColTypes("ch,ro,ro,ro,ro,ro,ro,ro,ro,img,img,img");
@@ -39,7 +39,7 @@ function initGrid() {
     mygrid.pagingLimits("10,20,50");
     mygrid.enablePagingon(true, 20);
     mygrid.init();
-    mygrid.loadXML(CONTEXT_PATH + "/displayUserInfoServlet");
+    mygrid.loadXML(CONTEXT_PATH + "/user/displayUserInfo");
 }
 
 function addForm() {
@@ -48,7 +48,7 @@ function addForm() {
 
 function addFormCallback(rtn) {
     if (rtn === '1') {
-        return mygrid.loadXML(CONTEXT_PATH + "/displayUserInfoServlet");
+        return mygrid.loadXML(CONTEXT_PATH + "/user/displayUserInfo");
     }
 }
 
@@ -57,7 +57,7 @@ function queryInfo() {
     let yhbm = $("#yhbm").val();
 
     if ((yhzh != null && yhzh !== "") || (yhbm != null && yhbm !== "")) {
-        mygrid.loadXML(CONTEXT_PATH + "/displayUserInfoServlet?yhzh=" + yhzh + "&yhbm=" + yhbm);
+        mygrid.loadXML(CONTEXT_PATH + "/user/displayUserInfo?yhzh=" + yhzh + "&yhbm=" + yhbm);
     } else {
         layer.msg("还未填写用户账号或选择部门！", {
             icon: 7,
@@ -74,7 +74,7 @@ function view(yhid) {
         title: "用户详细信息",
         area: ['700px', '400px'],
         shadeClose: true, //点击遮罩关闭
-        content: CONTEXT_PATH + "/userInfo.jsp?yhid=" + encodeURIComponent(yhid),
+        content: CONTEXT_PATH + "/templates/userInfo.jsp?yhid=" + encodeURIComponent(yhid),
     });
 }
 
@@ -83,7 +83,7 @@ function modify(yhid) {
     console.log(yhid);
     $.getJSON("viewUserInfoServlet", {"yhid": yhid}, function (user) {
         let params = "yhid=" + encodeURIComponent(user.yhid);
-        openLayerModal(CONTEXT_PATH + "/modify.jsp?" + params, "修改用户", "700", "400", "modifyCallBack");
+        openLayerModal(CONTEXT_PATH + "/templates/modify.jsp?" + params, "修改用户", "700", "400", "modifyCallBack");
     })
 }
 

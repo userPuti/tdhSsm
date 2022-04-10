@@ -10,10 +10,10 @@
 <html>
 <head>
     <title>用户信息</title>
-    <jsp:include page="resources/v2/webui.jsp">
+    <jsp:include page="/static/resources/v2/webui.jsp">
         <jsp:param name="UIS" value="FORM_DGRID_LAYER_BTN_PAGE_LAYOUT"/>
     </jsp:include>
-    <script src="./js/homePage.js" type="application/javascript"></script>
+    <script src="${pageContext.request.contextPath}/static/js/homePage.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="tdh_layout" style="padding-top: 60px;">
@@ -65,7 +65,7 @@
         <div id="grid" style="width: 100%;height: 100%"></div>
     </div>
 </div>
-<script>
+<script type="text/javascript">
     let _path = "${pageContext.request.contextPath}";
 </script>
 </body>

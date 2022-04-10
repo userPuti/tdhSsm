@@ -1,32 +1,310 @@
 package com.tdh.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.tdh.domain.User;
 import com.tdh.domain.UserExample;
+import com.tdh.dto.YhxxDto;
 import com.tdh.mapper.UserMapper;
 import com.tdh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
 import java.util.List;
+import java.util.Objects;
 
 /**
- * @author Puti
- * @date 2022/4/9 10:44
+ * @author puti
+ * @date 2022/3/18
  */
 @Service("userService")
 public class ImplUserService implements UserService {
 
     @Autowired
-    private UserMapper mapper;
+    private UserMapper userMapper;
 
 
-    @Override
-    public List<User> selectAllUser() {
-        List<User> users = null;
-        UserExample userExample = new UserExample();
-        userExample.createCriteria();
-        users = mapper.selectByExample(userExample);
+    private String userListXml(List<User> list, int count) {
+        StringBuilder allUserxml = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
+        if (list != null && count > 0) {
+            allUserxml.append("<rows>");
+            allUserxml.append("<userdata name='totalnumber'>").append(count).append("</userdata>");
+            for (User user : list) {
+                transferToRealInfo(user);
 
-        return users;
+                allUserxml.append("<row id=\"" + user.getYhid() + "\">");
+                allUserxml.append("<cell>0</cell>");
+                allUserxml.append("<cell>").append(user.getYhid()).append("</cell>");
+                allUserxml.append("<cell>").append(user.getYhxm()).append("</cell>");
+                allUserxml.append("<cell>").append(user.getYhxb()).append("</cell>");
+                allUserxml.append("<cell>").append(user.getYhbm()).append("</cell>");
+
+                String csrq = user.getCsrq();
+                if ("".equals(csrq)) {
+                    allUserxml.append("<cell>").append("-").append("</cell>");
+                } else {
+                    allUserxml.append("<cell>").append(csrq).append("</cell>");
+                }
+                allUserxml.append("<cell>").append(user.getDjrq()).append("</cell>");
+                allUserxml.append("<cell>").append(user.getSfjy()).append("</cell>");
+
+
+                Integer pxh = user.getPxh();
+                if (null == pxh) {
+                    allUserxml.append("<cell>").append("-").append("</cell>");
+                } else {
+                    allUserxml.append("<cell>").append(pxh).append("</cell>");
+                }
+
+                allUserxml.append("<cell>").append("/ssm/static/images/search.png^查看^javascript:view(\"").append(user.getYhid()).append("\")^_self").append("</cell>");
+                allUserxml.append("<cell>").append("/ssm/static/images/modify.png^修改^javascript:modify(\"").append(user.getYhid()).append("\")^_self").append("</cell>");
+                allUserxml.append("<cell>").append("/ssm/static/images/delete.png^删除^javascript:delInfo(\"").append(user.getYhid()).append("\")^_self").append("</cell>");
+                allUserxml.append("</row>");
+            }
+            allUserxml.append("</rows>");
+        } else {
+            //没数据
+            allUserxml.append("<rows><userdata name='totalnumber'>0</userdata></rows>");
+        }
+        return allUserxml.toString();
     }
+
+
+    private User transferToRealInfo(User user) {
+        String yhbm = user.getYhbm();
+
+        if (!"".equals(yhbm)) {
+            if (Objects.equals(yhbm, "32010001")) {
+                user.setYhbm("立案庭");
+            } else if (Objects.equals(yhbm, "32010002")) {
+                user.setYhbm("业务庭");
+            } else if (Objects.equals(yhbm, "32010003")) {
+                user.setYhbm("办公室");
+            }
+        } else {
+            user.setYhbm("-");
+        }
+
+
+        String yhxb = user.getYhxb();
+
+        if (!"".equals(yhxb)) {
+            if (Objects.equals(yhxb, "09_00003-1")) {
+                user.setYhxb("男");
+            } else if (Objects.equals(yhxb, "09_00003-2")) {
+                user.setYhxb("女");
+            } else if (Objects.equals(yhxb, "09_00003-255")) {
+                user.setYhxb("其他");
+            }
+        } else {
+            user.setYhxb("-");
+        }
+
+        String sfjy = user.getSfjy();
+
+        if (Objects.equals(sfjy, "1")) {
+            user.setSfjy("是");
+        } else if (Objects.equals(sfjy, "0")) {
+            user.setSfjy("否");
+        }
+
+        return user;
+    }
+
+    /**
+     * 登录
+     *
+     * @param user 传入User对象
+     * @return 返回User对象, 没有则返回null
+     */
+    @Override
+    public boolean login(User user) {
+        if (user != null) {
+            UserExample userExample = new UserExample();
+            userExample.createCriteria().andYhidEqualTo(user.getYhid()).andYhklEqualTo(user.getYhkl());
+            List<User> users = userMapper.selectByExample(userExample);
+            return users.size() > 0;
+        }
+        return false;
+    }
+
+    /**
+     * 展示用户信息
+     *
+     * @param yhxxDto 用户信息入参对象
+     * @return xml格式
+     */
+    @Override
+    public String userInfoDisplay(YhxxDto yhxxDto) {
+        if (yhxxDto != null) {
+            String yhid = yhxxDto.getYhid();
+            String yhbm = yhxxDto.getYhbm();
+            int count;
+
+            List<User> users = null;
+            if (yhid != null && !Objects.equals("", yhid) && yhbm != null && !Objects.equals("", yhbm)) {
+                UserExample userExample = new UserExample();
+                userExample.createCriteria().andYhidEqualTo(yhid).andYhbmEqualTo(yhbm);
+                users = userMapper.selectByExample(userExample);
+                return userListXml(users, 1);
+            } else if ((yhid == null || Objects.equals("", yhid)) && (yhbm != null && !Objects.equals("", yhbm))) {
+                UserExample userExample = new UserExample();
+                userExample.createCriteria().andYhbmEqualTo(yhbm);
+                PageHelper.offsetPage(yhxxDto.getStart() - 1, yhxxDto.getLimit());
+                users = userMapper.selectByExample(userExample);
+                PageInfo<User> usersPageInfo = new PageInfo<>(users);
+                count = (int) userMapper.countByExample(userExample);
+                return userListXml(users, count);
+            } else if ((yhid != null && !Objects.equals("", yhid)) && (yhbm == null || Objects.equals("", yhbm))) {
+                UserExample userExample = new UserExample();
+                userExample.createCriteria().andYhidEqualTo(yhid);
+                users = userMapper.selectByExample(userExample);
+                return userListXml(users, 1);
+            } else {
+                UserExample userExample = new UserExample();
+                userExample.createCriteria();
+                PageHelper.offsetPage(yhxxDto.getStart() - 1, yhxxDto.getLimit());
+                users = userMapper.selectByExample(userExample);
+                PageInfo<User> usersPageInfo = new PageInfo<>(users);
+                count = (int) userMapper.countByExample(userExample);
+                return userListXml(users, count);
+
+
+            }
+        }
+
+        return "";
+    }
+
+    /**
+     * 新增用户信息
+     *
+     * @param user user对象
+     * @return xml格式
+     */
+    @Override
+    public String insertUser(User user) {
+        if (user != null) {
+            String yhbm = user.getYhbm();
+            String xb = user.getYhxb();
+            String sfjy = user.getSfjy();
+
+            if (Objects.equals(sfjy, "on")) {
+                user.setSfjy("1");
+            } else {
+                user.setSfjy("0");
+            }
+
+            String isSuccess;
+            int rows = userMapper.insertSelective(user);
+            if (rows > 0) {
+                isSuccess = "success";
+            } else {
+                isSuccess = "defeat";
+            }
+
+            return isSuccess;
+        }
+
+        return "";
+    }
+
+    /**
+     * 删除用户信息
+     *
+     * @param yhxxDto 用户信息的入参对象
+     * @return 是否删除成功
+     */
+    @Override
+    public boolean deleteUserInfo(YhxxDto yhxxDto) {
+        if (yhxxDto != null) {
+            int isSucc = userMapper.deleteByPrimaryKey(yhxxDto.getYhid());
+            return 1 == isSucc;
+        }
+        return false;
+    }
+
+    /**
+     * 更新用户信息
+     *
+     * @param user user对象
+     * @return 是否插入成功
+     */
+    @Override
+    public boolean updateUserInfo(User user) {
+        if (user != null) {
+//            String yhbm = user.getYhbm();
+            String sfjy = user.getSfjy();
+            if (Objects.equals(sfjy, "on")) {
+                user.setSfjy("1");
+            } else {
+                user.setSfjy("0");
+            }
+
+            int isSucc = userMapper.updateByPrimaryKeySelective(user);
+            return 1 == isSucc;
+        }
+        return false;
+    }
+
+    /**
+     * 查看用户的详细信息，用于弹窗
+     *
+     * @param yhxxDto 用户信息的入参对象
+     * @return 返回查询到的user对象，否则为null
+     */
+    @Override
+    public User viewUserInfo(YhxxDto yhxxDto) {
+        if (yhxxDto != null) {
+            User user = userMapper.selectByPrimaryKey(yhxxDto.getYhid());
+
+            if (user != null) {
+                if ("".equals(user.getYhxb()) || null == user.getYhxb()) {
+                    user.setYhxb("-");
+                }
+                if ("".equals(user.getCsrq()) || null == user.getCsrq()) {
+                    user.setCsrq("-");
+                }
+                if ("".equals(user.getYhbm()) || null == user.getYhbm()) {
+                    user.setYhbm("-");
+                }
+                if (null == user.getPxh()) {
+                    user.setPxh(0);
+                }
+                return transferToRealInfo(user);
+            } else {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 批量删除用户信息
+     *
+     * @param dels 用户的信息集合
+     * @return 是否删除成功
+     */
+    @Override
+    public boolean bulkDeletion(String dels) {
+        if (dels != null && !dels.equals("")) {
+            String[] delYhids = dels.trim().split(",");
+            UserExample userExample = new UserExample();
+
+            for (String yhid : delYhids) {
+                UserExample.Criteria criteria = userExample.createCriteria().andYhidEqualTo(yhid);
+                userExample.or(criteria);
+                int isSucc = userMapper.deleteByExample(userExample);
+                if (0 == isSucc) {
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
+
 }
