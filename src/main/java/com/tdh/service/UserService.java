@@ -67,5 +67,10 @@ public interface UserService {
      */
     public boolean bulkDeletion(String del);
 
-
+    /**
+     * 根据用户id查询用户信息
+     * @param yhid 用户id
+     * @return 如果查询到相应的对象，则返回该用户的对象信息，否则返回null
+     */
+    public User selectUserById(String yhid);
 }

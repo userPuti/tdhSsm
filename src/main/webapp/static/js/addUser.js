@@ -1,8 +1,13 @@
 $(function () {
-
-    $.getJSON(_path + "/loadSelection", function (departs) {
+    $.getJSON(CONTEXT_PATH + "loadDepartSel", function (departs) {
         $.each(departs, function (index, item) {
-            $('#iYhbm').append(new Option(item.bmmc, item.bmdm));//往下拉菜单里添加元素
+            $('#iYhbm').append(new Option(item.bmmc, item.bmdm));
+        })
+    });
+
+    $.getJSON(CONTEXT_PATH + "loadGenderSel", function (bzdms) {
+        $.each(bzdms, function (index, item) {
+            $('#iYhxb').append(new Option(item.mc, item.code));
         })
     });
 
@@ -18,7 +23,7 @@ $(function () {
                 return reqInfo;
             }
             let params = serializeTwo("#fAddUser");
-            $.post("addUserServlet", params, function (isSucc) {
+            $.post(CONTEXT_PATH + "addUser", params, function (isSucc) {
                 isSucc = $.trim(isSucc);
                 console.log(isSucc);
                 if (isSucc === "success") {
@@ -41,31 +46,10 @@ $(function () {
         }
     )
 
-
-
     $("#back").click(function () {
         layerClose(true);
     });
 })
-
-
-function isSuccess() {
-    let isSucc = $("#isSuccess").val();
-
-    if (isSucc === "success") {
-        layer.msg("添加成功", {
-            icon: 1,
-            shade: 0.000001,
-            time: 2000,
-        });
-    } else if (isSucc === "defeat") {
-        layer.msg("添加失败", {
-            icon: 2,
-            shade: 0.000001,
-            time: 2000,
-        });
-    }
-}
 
 function validateForm() {
     let yhzh = $("#iYhzh").val();

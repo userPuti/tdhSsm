@@ -10,9 +10,8 @@ import com.tdh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionContext;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -72,7 +71,6 @@ public class ImplUserService implements UserService {
         return allUserxml.toString();
     }
 
-
     private User transferToRealInfo(User user) {
         String yhbm = user.getYhbm();
 
@@ -87,7 +85,6 @@ public class ImplUserService implements UserService {
         } else {
             user.setYhbm("-");
         }
-
 
         String yhxb = user.getYhxb();
 
@@ -111,8 +108,33 @@ public class ImplUserService implements UserService {
             user.setSfjy("否");
         }
 
+        String csrq = user.getCsrq();
+        if (csrq == null || csrq.equals("")) {
+            user.setCsrq("-");
+        }
+
         return user;
     }
+
+    /**
+     * 根据用户id查询用户信息
+     *
+     * @param yhid 用户id
+     * @return 如果查询到相应的对象，则返回该用户的对象信息，否则返回null
+     */
+    @Override
+    public User selectUserById(String yhid) {
+        if (!Objects.equals(yhid, "")) {
+            UserExample userExample = new UserExample();
+            userExample.createCriteria().andYhidEqualTo(yhid);
+            List<User> users = userMapper.selectByExample(userExample);
+            if (users.size() > 0) {
+                return transferToRealInfo(users.get(0));
+            }
+        }
+        return null;
+    }
+
 
     /**
      * 登录
@@ -147,8 +169,10 @@ public class ImplUserService implements UserService {
             List<User> users = null;
             if (yhid != null && !Objects.equals("", yhid) && yhbm != null && !Objects.equals("", yhbm)) {
                 UserExample userExample = new UserExample();
-                userExample.createCriteria().andYhidEqualTo(yhid).andYhbmEqualTo(yhbm);
+                userExample.createCriteria().andYhidLike("%"+yhid+"%").andYhbmEqualTo(yhbm);
+                PageHelper.offsetPage(yhxxDto.getStart() - 1, yhxxDto.getLimit());
                 users = userMapper.selectByExample(userExample);
+                PageInfo<User> usersPageInfo = new PageInfo<>(users);
                 return userListXml(users, 1);
             } else if ((yhid == null || Objects.equals("", yhid)) && (yhbm != null && !Objects.equals("", yhbm))) {
                 UserExample userExample = new UserExample();
@@ -160,9 +184,12 @@ public class ImplUserService implements UserService {
                 return userListXml(users, count);
             } else if ((yhid != null && !Objects.equals("", yhid)) && (yhbm == null || Objects.equals("", yhbm))) {
                 UserExample userExample = new UserExample();
-                userExample.createCriteria().andYhidEqualTo(yhid);
+                userExample.createCriteria().andYhidLike("%"+yhid+"%");
+                PageHelper.offsetPage(yhxxDto.getStart() - 1, yhxxDto.getLimit());
                 users = userMapper.selectByExample(userExample);
-                return userListXml(users, 1);
+                PageInfo<User> usersPageInfo = new PageInfo<>(users);
+                count= (int) userMapper.countByExample(userExample);
+                return userListXml(users, count);
             } else {
                 UserExample userExample = new UserExample();
                 userExample.createCriteria();
@@ -171,8 +198,6 @@ public class ImplUserService implements UserService {
                 PageInfo<User> usersPageInfo = new PageInfo<>(users);
                 count = (int) userMapper.countByExample(userExample);
                 return userListXml(users, count);
-
-
             }
         }
 
@@ -188,8 +213,6 @@ public class ImplUserService implements UserService {
     @Override
     public String insertUser(User user) {
         if (user != null) {
-            String yhbm = user.getYhbm();
-            String xb = user.getYhxb();
             String sfjy = user.getSfjy();
 
             if (Objects.equals(sfjy, "on")) {
@@ -197,6 +220,10 @@ public class ImplUserService implements UserService {
             } else {
                 user.setSfjy("0");
             }
+
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String djrq = df.format(new Date());
+            user.setDjrq(djrq);
 
             String isSuccess;
             int rows = userMapper.insertSelective(user);

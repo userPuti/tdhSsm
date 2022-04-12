@@ -30,7 +30,9 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
     <mvc:default-servlet-handler/>
+
     <!--    <mvc:resources mapping="/user/static/**" location="/WEB-INF/static/"/>-->
 
 </beans>

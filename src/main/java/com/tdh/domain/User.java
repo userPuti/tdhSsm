@@ -1,7 +1,5 @@
 package com.tdh.domain;
 
-import org.springframework.stereotype.Component;
-
 public class User {
     private String yhid;
 
@@ -107,5 +105,20 @@ public class User {
 
     public void setPxh(Integer pxh) {
         this.pxh = pxh;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "yhid='" + yhid + '\'' +
+                ", yhxm='" + yhxm + '\'' +
+                ", yhkl='" + yhkl + '\'' +
+                ", yhxb='" + yhxb + '\'' +
+                ", yhbm='" + yhbm + '\'' +
+                ", csrq='" + csrq + '\'' +
+                ", djrq='" + djrq + '\'' +
+                ", sfjy='" + sfjy + '\'' +
+                ", pxh=" + pxh +
+                '}';
     }
 }

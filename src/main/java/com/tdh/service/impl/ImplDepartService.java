@@ -15,16 +15,10 @@ import java.util.List;
  */
 @Service("departService")
 public class ImplDepartService implements DepartService {
-//    private SqlSession sqlSession = SqlSessionUtils.getSqlSession();
 
     @Autowired
-//    @Qualifier("departMapper")
     private DepartMapper departMapper;
-    /**
-     * 查询部门信息
-     *
-     * @return 部门对象
-     */
+
     /**
      * 查询部门信息
      *

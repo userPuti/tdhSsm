@@ -5,7 +5,7 @@
   Time: 10:21
 --%>
 <?xml version="1.0" encoding="UTF-8"?>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="utf-8" contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -31,7 +31,7 @@
                 <tr>
                     <td class="tdTitle">用户账号:</td>
                     <td class="tdCont">
-                        <input id="yhzh" name="yhzh" class="inputText" type="text" placeholder="请输入"/>
+                        <input id="yhzh" name="yhid" class="inputText" type="text" placeholder="请输入"/>
                     </td>
                     <td class="tdTitle">用户部门:</td>
                     <td class="tdCont">
@@ -40,20 +40,23 @@
                         </select>
                     </td>
                     <td class="tdTitle">
-                        <a class="tdh_btn tdh_btn_blue" href="javascript:void(0);" id="query">
+                        <a class="tdh_btn tdh_btn_blue" href="javascript:void(0);" id="query" onclick="queryInfo()">
                             <i class="tdh_icon icon_search"></i>查询
                         </a>
                     </td>
                     <td align="right">
-                        <a class="tdh_btn tdh_btn_blue" href="javascript:void(0);" id="queryAll">
+                        <a class="tdh_btn tdh_btn_blue" href="javascript:void(0);" id="queryAll" onclick="queryAll()">
                             <i class="tdh_icon icon_search"></i>全部用户
                         </a>
-                        <a class="tdh_btn tdh_btn_blue" id="addUser">
+                        <a class="tdh_btn tdh_btn_blue" id="addUser" onclick="addForm()">
                             <i class="tdh_icon icon_add"></i>新增
                         </a>
                         <a class="tdh_btn tdh_btn_blue" href="javascript:void(0);" id="delUsers"
                            onclick="bulkDeletion()">
                             <i class="tdh_icon icon_del"></i>批量删除
+                        </a>
+                        <a class="tdh_btn tdh_btn_blue" href="javascript:void(0);" id="logoff" onclick="logoff()">
+                            <i class="tdh_icon icon_reset"></i>注销
                         </a>
                     </td>
                 </tr>
@@ -65,8 +68,5 @@
         <div id="grid" style="width: 100%;height: 100%"></div>
     </div>
 </div>
-<script type="text/javascript">
-    let _path = "${pageContext.request.contextPath}";
-</script>
 </body>
 </html>

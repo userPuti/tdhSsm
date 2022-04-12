@@ -47,4 +47,14 @@ public class YhxxDto {
     public void setYhbm(String yhbm) {
         this.yhbm = yhbm;
     }
+
+    @Override
+    public String toString() {
+        return "YhxxDto{" +
+                "start=" + start +
+                ", limit=" + limit +
+                ", yhid='" + yhid + '\'' +
+                ", yhbm='" + yhbm + '\'' +
+                '}';
+    }
 }

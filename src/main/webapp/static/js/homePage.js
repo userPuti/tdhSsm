@@ -3,27 +3,11 @@ $(function () {
     //构建dgrid表格
     initGrid();
 
-    $.getJSON(_path + "/user/loadSelection", function (departs) {
+    $.getJSON(CONTEXT_PATH + "loadDepartSel", function (departs) {
         $.each(departs, function (index, item) {
             $('#yhbm').append(new Option(item.bmmc, item.bmdm));//往下拉菜单里添加元素
         })
     });
-
-    $("#query").click(function () {
-        queryInfo();
-    });
-
-    $("#addUser").click(
-        function () {
-            addForm();
-        }
-    )
-
-    $('#queryAll').click(
-        function () {
-            mygrid.loadXML(CONTEXT_PATH + "/user/displayUserInfo");
-        }
-    )
 });
 
 function initGrid() {
@@ -39,25 +23,25 @@ function initGrid() {
     mygrid.pagingLimits("10,20,50");
     mygrid.enablePagingon(true, 20);
     mygrid.init();
-    mygrid.loadXML(CONTEXT_PATH + "/user/displayUserInfo");
+    mygrid.loadXML(CONTEXT_PATH + "/displayUserInfo");
 }
 
 function addForm() {
-    openLayerModal(CONTEXT_PATH + "/addUser.jsp", "添加用户", 700, 400, addFormCallback());
+    openLayerModal(CONTEXT_PATH + "/templates/addUser.jsp", "添加用户", 700, 400, addFormCallback());
 }
 
 function addFormCallback(rtn) {
     if (rtn === '1') {
-        return mygrid.loadXML(CONTEXT_PATH + "/user/displayUserInfo");
+        return mygrid.loadXML(CONTEXT_PATH + "/displayUserInfo");
     }
 }
 
 function queryInfo() {
-    let yhzh = $("#yhzh").val();
+    let yhid = $("#yhzh").val();
     let yhbm = $("#yhbm").val();
 
-    if ((yhzh != null && yhzh !== "") || (yhbm != null && yhbm !== "")) {
-        mygrid.loadXML(CONTEXT_PATH + "/user/displayUserInfo?yhzh=" + yhzh + "&yhbm=" + yhbm);
+    if ((yhid != null && yhid !== "") || (yhbm != null && yhbm !== "")) {
+        mygrid.loadXML(CONTEXT_PATH + "/displayUserInfo?yhid=" + yhid + "&yhbm=" + yhbm);
     } else {
         layer.msg("还未填写用户账号或选择部门！", {
             icon: 7,
@@ -67,32 +51,26 @@ function queryInfo() {
     }
 }
 
-
 function view(yhid) {
     layer.open({
         type: 2,
         title: "用户详细信息",
         area: ['700px', '400px'],
         shadeClose: true, //点击遮罩关闭
-        content: CONTEXT_PATH + "/templates/userInfo.jsp?yhid=" + encodeURIComponent(yhid),
+        content: CONTEXT_PATH + "viewUserInfo?yhid=" + yhid+"&func=view",
     });
 }
 
 
 function modify(yhid) {
-    console.log(yhid);
-    $.getJSON("viewUserInfoServlet", {"yhid": yhid}, function (user) {
-        let params = "yhid=" + encodeURIComponent(user.yhid);
-        openLayerModal(CONTEXT_PATH + "/templates/modify.jsp?" + params, "修改用户", "700", "400", "modifyCallBack");
-    })
+    openLayerModal(CONTEXT_PATH + "viewUserInfo?yhid=" + yhid+"&func=modify", "修改用户", "700", "400", "modifyCallBack");
 }
 
 function modifyCallBack(rtn) {
-    if (rtn === "1") {
+    if (rtn === "success") {
         mygrid.loadPage();
     }
 }
-
 
 function bulkDeletion() {
     let gridlist = mygrid.getCheckedRows(0);
@@ -132,9 +110,8 @@ function delInfo(yhid) {
 }
 
 function deleted(yhidInfo) {
-    $.getJSON("bulkDeletionServlet", {del: yhidInfo}, function (isSucc) {
+    $.getJSON(CONTEXT_PATH + "/bulkDel", {del: yhidInfo}, function (isSucc) {
         isSucc = $.trim(isSucc);
-        console.log(isSucc);
         if (isSucc === "1") {
             layer.msg("删除成功！", {
                 icon: 1,
@@ -150,5 +127,15 @@ function deleted(yhidInfo) {
                 time: 1000
             })
         }
+    });
+}
+
+function queryAll() {
+    mygrid.loadXML(CONTEXT_PATH + "/displayUserInfo");
+}
+
+function logoff() {
+    $.get(CONTEXT_PATH+"logoff",function (path) {
+         window.location.href = CONTEXT_PATH + path;
     });
 }
