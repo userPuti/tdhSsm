@@ -85,6 +85,12 @@ public class UserController {
     }
 
 
+    /**
+     * 添加一个用户信息
+     *
+     * @param user 前端传来的user对象
+     * @return ResponseVO对象
+     */
     @RequestMapping("/addUser")
     @ResponseBody
     public ResponseVO addUser(User user) {
@@ -97,6 +103,12 @@ public class UserController {
     }
 
 
+    /**
+     * 批量删除
+     *
+     * @param ids 选中要删除的用户id
+     * @return ResponseVO对象，回传成功的条数，和失败的条数
+     */
     @RequestMapping(value = "/bulkDel", produces = "application/json;charset=utf-8")
     @ResponseBody
     public ResponseVO bulkDel(@RequestParam("del") String ids) {
@@ -111,6 +123,12 @@ public class UserController {
         }
     }
 
+    /**
+     * 更新用户信息
+     *
+     * @param user 新的user对象数据
+     * @return ResponseVO对象
+     */
     @RequestMapping(value = "/update", produces = "application/json;charset=utf-8")
     @ResponseBody
     public ResponseVO updateInfo(User user) {
@@ -122,6 +140,14 @@ public class UserController {
         }
     }
 
+    /**
+     * 查看用户信息
+     *
+     * @param yhid 用户id信息
+     * @param func 功能参数，分为两个，一个是查看功能，一个是修改功能
+     * @return 返回一个mav对象，包含一个功能参数和user对象，回传到userForm页面，
+     *
+     */
     @RequestMapping("/viewUserInfo")
     public ModelAndView viewUserInfo(String yhid, String func) {
         ModelAndView mav = new ModelAndView("userForm");
@@ -131,11 +157,15 @@ public class UserController {
         return mav;
     }
 
+    /**
+     * 用于跳转到添加页面
+     * @param func 功能参数，为添加add
+     * @return 返回一个ModelAndView对象，同时传递func参数到userForm页面
+     */
     @RequestMapping("/jumpToAddPage")
     public ModelAndView jumpToAddPage(String func){
         ModelAndView modelAndView = new ModelAndView("userForm");
         modelAndView.addObject("func",func);
         return modelAndView;
     }
-
 }

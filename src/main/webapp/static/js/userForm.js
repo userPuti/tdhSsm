@@ -46,7 +46,7 @@ $(
     }
 )
 
-
+//添加用户信息
 function doAdd() {
     $('#iSubmit').click(function () {
         let valid = validateForm();
@@ -97,6 +97,7 @@ function doAdd() {
     })
 }
 
+//查看用户信息
 function doView() {
     inputDisable(yhid, true);
     inputDisable(yhkl, true);
@@ -113,6 +114,7 @@ function doView() {
     $('#iSubmit').hide();
 }
 
+//修改用户信息
 function doModify() {
     inputDisable(yhid, true);
     if (sfjy.val() === "是") {
@@ -171,6 +173,8 @@ function doModify() {
     })
 }
 
+
+//加载下拉框
 function loadSel() {
     $.getJSON(CONTEXT_PATH + "loadDepartSel", function (departs) {
         $.each(departs, function (index, item) {
@@ -195,6 +199,7 @@ function loadSel() {
     });
 }
 
+//提交表单验证
 function validateForm() {
     return yhid.val() != null && yhid.val() !== "" && yhxm.val() != null && yhxm.val() !== "" &&
             yhkl.val() != null && yhkl.val() !== "" && cfkl.val() != null && cfkl.val() !== "" &&

@@ -6,7 +6,7 @@ $(function () {
     );
 });
 
-
+//验证是否填写了数据，并给出相应的提示
 function validateForm() {
     let zh = $("#zh").val();
     let kl = $("#kl").val();

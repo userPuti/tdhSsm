@@ -225,7 +225,6 @@ public class ImplUserService implements UserService {
     @Override
     public boolean updateUserInfo(User user) {
         if (user != null) {
-//            String yhbm = user.getYhbm();
             String sfjy = user.getSfjy();
             if (Objects.equals(sfjy, "on")) {
                 user.setSfjy("1");

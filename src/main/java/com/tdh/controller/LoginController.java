@@ -21,6 +21,15 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 登录功能
+     * @param resp response对象
+     * @param yhid 用户id
+     * @param yhkl 用户口令
+     * @param jzzh 记住账号，如果勾选则将id存到cookie里面
+     * @param jzmm 记住密码, 如果勾选则将密码存到cookie里面
+     * @return 成功跳转到homePage，失败则留在login页面
+     */
     @RequestMapping("/login")
     public String login(HttpServletResponse resp, @RequestParam("zh") String yhid, @RequestParam("kl") String yhkl,
                         @Nullable @RequestParam("jzzh") String jzzh, @Nullable @RequestParam("jzmm") String jzmm) {

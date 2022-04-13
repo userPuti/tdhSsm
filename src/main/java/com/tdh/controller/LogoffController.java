@@ -17,6 +17,11 @@ public class LogoffController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 注销
+     * @param session session对象
+     * @return 返回到登录页面
+     */
     @RequestMapping("/logoff")
     @ResponseBody
     public String logoff(HttpSession session) {
