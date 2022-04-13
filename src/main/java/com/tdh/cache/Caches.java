@@ -27,13 +27,13 @@ public class Caches {
     @Autowired
     private BzdmMapper bzdmMapper;
 
-
+    private final String GENDER = "00003";
     public static final Map<String, Depart> departMap = new HashMap<>();
-    public static final Map<String, Bzdm> bzdmMap = new HashMap<>();
+    public static final Map<String, Bzdm> genderMap = new HashMap<>();
 
 
     @PostConstruct
-    public void init() {
+    private void initDepartMap() {
         //查库加载缓存
         DepartExample departExample = new DepartExample();
         departExample.createCriteria();
@@ -42,13 +42,16 @@ public class Caches {
         for (Depart depart : departs) {
             departMap.put(depart.getBmdm(), depart);
         }
+    }
 
+    @PostConstruct
+    private void initGenderMap(){
         BzdmExample bzdmExample = new BzdmExample();
-        bzdmExample.createCriteria();
+        bzdmExample.createCriteria().andKindEqualTo(GENDER);
         List<Bzdm> bzdms = bzdmMapper.selectByExample(bzdmExample);
 
         for (Bzdm bzdm : bzdms) {
-            bzdmMap.put(bzdm.getCode(), bzdm);
+            genderMap.put(bzdm.getCode(), bzdm);
         }
     }
 }

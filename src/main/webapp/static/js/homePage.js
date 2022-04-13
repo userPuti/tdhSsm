@@ -26,16 +26,6 @@ function initGrid() {
     mygrid.loadXML(CONTEXT_PATH + "/displayUserInfo");
 }
 
-function addForm() {
-    openLayerModal(CONTEXT_PATH + "/templates/addUser.jsp", "添加用户", 700, 400, addFormCallback());
-}
-
-function addFormCallback(rtn) {
-    if (rtn === '1') {
-        return mygrid.loadXML(CONTEXT_PATH + "/displayUserInfo");
-    }
-}
-
 function queryInfo() {
     let yhid = $("#yhzh").val();
     let yhbm = $("#yhbm").val();
@@ -45,9 +35,20 @@ function queryInfo() {
     } else {
         layer.msg("还未填写用户账号或选择部门！", {
             icon: 7,
-            shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+            shade: 0.000001,
             time: 2000
         });
+    }
+}
+
+
+function addForm() {
+    openLayerModal(CONTEXT_PATH + "jumpToAddPage?func=add", "添加用户", 700, 400, addFormCallback());
+}
+
+function addFormCallback(rtn) {
+    if (rtn === "success") {
+        return mygrid.loadXML(CONTEXT_PATH + "/displayUserInfo");
     }
 }
 
@@ -57,14 +58,15 @@ function view(yhid) {
         title: "用户详细信息",
         area: ['700px', '400px'],
         shadeClose: true, //点击遮罩关闭
-        content: CONTEXT_PATH + "viewUserInfo?yhid=" + yhid+"&func=view",
+        content: CONTEXT_PATH + "viewUserInfo?yhid=" + yhid + "&func=view",
     });
 }
 
 
 function modify(yhid) {
-    openLayerModal(CONTEXT_PATH + "viewUserInfo?yhid=" + yhid+"&func=modify", "修改用户", "700", "400", "modifyCallBack");
+    openLayerModal(CONTEXT_PATH + "viewUserInfo?yhid=" + yhid + "&func=modify", "修改用户", "700", "400", "modifyCallBack");
 }
+
 
 function modifyCallBack(rtn) {
     if (rtn === "success") {
@@ -78,7 +80,7 @@ function bulkDeletion() {
     if (gridlist == null || gridlist.length === 0) {
         layer.msg("还没选择任何信息", {
             icon: 7,
-            shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+            shade: 0.000001,
             time: 1000
         })
     } else {
@@ -89,11 +91,10 @@ function bulkDeletion() {
                 deleted(gridlist);
             },
             btn2: function () {
-                layer.close();
+                layerClose(true);
             }
         })
     }
-
 }
 
 function delInfo(yhid) {
@@ -104,30 +105,44 @@ function delInfo(yhid) {
             deleted(yhid);
         },
         btn2: function () {
-            layer.close();
+            layerClose(true);
         }
     });
 }
 
 function deleted(yhidInfo) {
-    $.getJSON(CONTEXT_PATH + "/bulkDel", {del: yhidInfo}, function (isSucc) {
-        isSucc = $.trim(isSucc);
-        if (isSucc === "1") {
-            layer.msg("删除成功！", {
-                icon: 1,
-                shade: 0.000001, //不展示遮罩，但是要有遮罩效果
-                time: 1000
-            }, function () {
-                mygrid.loadPage();
-            })
-        } else {
-            layer.msg("删除失败！", {
+    let index = layer.msg('正在删除中...请稍等', {icon: 16, shade: 0.4, time: false});
+    $.ajax({
+        url: CONTEXT_PATH + "/bulkDel",
+        data: {del: yhidInfo},
+        dataType: "JSON",
+        success: function (data) {
+            layer.close(index);
+            if(data.code === 0) {
+                layer.msg(data.data, {
+                    icon: 1,
+                    shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+                    time: 2000
+                }, function () {
+                    mygrid.loadPage();
+                })
+            } else if(data.code === 1) {
+                layer.msg("删除失败，请联系管理员！", {
+                    icon: 2,
+                    shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+                    time: 2000
+                })
+            }
+        },
+        error: function () {
+            layer.close(index);
+            layer.msg("请求出现了错误，请联系管理员解决！", {
                 icon: 2,
                 shade: 0.000001, //不展示遮罩，但是要有遮罩效果
-                time: 1000
+                time: 2000
             })
         }
-    });
+    })
 }
 
 function queryAll() {
@@ -135,7 +150,7 @@ function queryAll() {
 }
 
 function logoff() {
-    $.get(CONTEXT_PATH+"logoff",function (path) {
-         window.location.href = CONTEXT_PATH + path;
+    $.get(CONTEXT_PATH + "logoff", function (path) {
+        window.location.href = CONTEXT_PATH + path;
     });
 }

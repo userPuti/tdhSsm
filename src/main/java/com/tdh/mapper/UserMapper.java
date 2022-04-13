@@ -3,6 +3,8 @@ package com.tdh.mapper;
 import com.tdh.domain.User;
 import com.tdh.domain.UserExample;
 import java.util.List;
+
+import com.tdh.dto.YhxxDto;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
@@ -27,4 +29,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    List<User> selectUser(YhxxDto yhxxDto);
 }

@@ -30,7 +30,7 @@ public interface UserService {
      * @param user user对象
      * @return xml格式
      */
-    public String insertUser(User user);
+    public boolean insertUser(User user);
 
 
     /**
@@ -65,7 +65,7 @@ public interface UserService {
      * @param del 用户的信息集合
      * @return 是否删除成功
      */
-    public boolean bulkDeletion(String del);
+    public int bulkDeletion(String del);
 
     /**
      * 根据用户id查询用户信息

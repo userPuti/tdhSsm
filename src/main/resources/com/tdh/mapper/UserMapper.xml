@@ -75,6 +75,22 @@
   <sql id="Base_Column_List">
     YHID, YHXM, YHKL, YHXB, YHBM, CSRQ, DJRQ, SFJY, PXH
   </sql>
+
+  <select id="selectUser" parameterType="com.tdh.dto.YhxxDto" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    <where>
+      <if test="yhid != null and yhid != ''">
+        <bind name="yhid" value="'%' + yhid + '%'"/>
+        and YHID like #{yhid}
+      </if>
+      <if test="yhbm != null and yhbm != ''">
+        and YHBM = #{yhbm}
+      </if>
+    </where>
+  </select>
+
   <select id="selectByExample" parameterType="com.tdh.domain.UserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

@@ -162,43 +162,11 @@ public class ImplUserService implements UserService {
     @Override
     public String userInfoDisplay(YhxxDto yhxxDto) {
         if (yhxxDto != null) {
-            String yhid = yhxxDto.getYhid();
-            String yhbm = yhxxDto.getYhbm();
-            int count;
-
-            List<User> users = null;
-            if (yhid != null && !Objects.equals("", yhid) && yhbm != null && !Objects.equals("", yhbm)) {
-                UserExample userExample = new UserExample();
-                userExample.createCriteria().andYhidLike("%"+yhid+"%").andYhbmEqualTo(yhbm);
-                PageHelper.offsetPage(yhxxDto.getStart() - 1, yhxxDto.getLimit());
-                users = userMapper.selectByExample(userExample);
-                PageInfo<User> usersPageInfo = new PageInfo<>(users);
-                return userListXml(users, 1);
-            } else if ((yhid == null || Objects.equals("", yhid)) && (yhbm != null && !Objects.equals("", yhbm))) {
-                UserExample userExample = new UserExample();
-                userExample.createCriteria().andYhbmEqualTo(yhbm);
-                PageHelper.offsetPage(yhxxDto.getStart() - 1, yhxxDto.getLimit());
-                users = userMapper.selectByExample(userExample);
-                PageInfo<User> usersPageInfo = new PageInfo<>(users);
-                count = (int) userMapper.countByExample(userExample);
-                return userListXml(users, count);
-            } else if ((yhid != null && !Objects.equals("", yhid)) && (yhbm == null || Objects.equals("", yhbm))) {
-                UserExample userExample = new UserExample();
-                userExample.createCriteria().andYhidLike("%"+yhid+"%");
-                PageHelper.offsetPage(yhxxDto.getStart() - 1, yhxxDto.getLimit());
-                users = userMapper.selectByExample(userExample);
-                PageInfo<User> usersPageInfo = new PageInfo<>(users);
-                count= (int) userMapper.countByExample(userExample);
-                return userListXml(users, count);
-            } else {
-                UserExample userExample = new UserExample();
-                userExample.createCriteria();
-                PageHelper.offsetPage(yhxxDto.getStart() - 1, yhxxDto.getLimit());
-                users = userMapper.selectByExample(userExample);
-                PageInfo<User> usersPageInfo = new PageInfo<>(users);
-                count = (int) userMapper.countByExample(userExample);
-                return userListXml(users, count);
-            }
+            PageHelper.offsetPage(yhxxDto.getStart() - 1, yhxxDto.getLimit());
+            List<User> users = userMapper.selectUser(yhxxDto);
+            PageInfo<User> usersPageInfo = new PageInfo<>(users);
+            int total = (int) usersPageInfo.getTotal();
+            return userListXml(users, total);
         }
 
         return "";
@@ -211,7 +179,7 @@ public class ImplUserService implements UserService {
      * @return xml格式
      */
     @Override
-    public String insertUser(User user) {
+    public boolean insertUser(User user) {
         if (user != null) {
             String sfjy = user.getSfjy();
 
@@ -225,18 +193,12 @@ public class ImplUserService implements UserService {
             String djrq = df.format(new Date());
             user.setDjrq(djrq);
 
-            String isSuccess;
             int rows = userMapper.insertSelective(user);
-            if (rows > 0) {
-                isSuccess = "success";
-            } else {
-                isSuccess = "defeat";
-            }
 
-            return isSuccess;
+            return rows > 0;
         }
 
-        return "";
+        return false;
     }
 
     /**
@@ -316,22 +278,24 @@ public class ImplUserService implements UserService {
      * @return 是否删除成功
      */
     @Override
-    public boolean bulkDeletion(String dels) {
+    public int bulkDeletion(String dels) {
         if (dels != null && !dels.equals("")) {
             String[] delYhids = dels.trim().split(",");
             UserExample userExample = new UserExample();
-
+            int count = 0;
             for (String yhid : delYhids) {
                 UserExample.Criteria criteria = userExample.createCriteria().andYhidEqualTo(yhid);
                 userExample.or(criteria);
                 int isSucc = userMapper.deleteByExample(userExample);
-                if (0 == isSucc) {
-                    return false;
+                if (1 == isSucc) {
+                    count++;
+                } else {
+                    return count;
                 }
             }
-
+            return count;
         }
-        return true;
+        return 0;
     }
 
 }
