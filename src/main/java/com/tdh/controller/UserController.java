@@ -1,5 +1,7 @@
 package com.tdh.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tdh.cache.Caches;
 import com.tdh.domain.Bzdm;
 import com.tdh.domain.Depart;
@@ -10,6 +12,7 @@ import com.tdh.service.UserService;
 import com.tdh.utils.response.ResResult;
 import com.tdh.utils.response.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,56 +37,16 @@ public class UserController {
     private DepartService departService;
 
     /**
-     * 展示主页全部用户信息
-     *
-     * @param yhxxDto 用户信息的入参对象
-     * @return grid需要加载的xml String
+     * 加载用户信息
+     * @param yhxxDto 用户信息入参对象
+     * @return 用户信息的xml格式字符串
      */
-    @RequestMapping(value = "/displayUserInfo", produces = "application/xml;charset=utf-8")
+    @RequestMapping(value = "/loadUserXml",produces = "application/xml;charset=utf-8")
     @ResponseBody
-    public String displayUserInfo(YhxxDto yhxxDto) {
-        String xml = userService.userInfoDisplay(yhxxDto);
-        if (!"".equals(xml)) {
-            return xml;
-        } else {
-            return "";
-        }
+    public String loadUserXml(YhxxDto yhxxDto) {
+        String userInfo = userService.userInfoDisplay(yhxxDto);
+        return userInfo;
     }
-
-    /**
-     * 加载部门下拉框
-     *
-     * @return 部门对象集合
-     */
-    @RequestMapping("/loadDepartSel")
-    @ResponseBody
-    public List<Depart> loadSelection() {
-        List<Depart> departs = new ArrayList<>();
-        if (!Caches.departMap.isEmpty()) {
-            for (Map.Entry<String, Depart> departEntry : Caches.departMap.entrySet()) {
-                departs.add(departEntry.getValue());
-            }
-        }
-        return departs;
-    }
-
-    /**
-     * 加载性别下拉框
-     *
-     * @return 性别对象集合
-     */
-    @RequestMapping("/loadGenderSel")
-    @ResponseBody
-    public List<Bzdm> loadGenderSel() {
-        List<Bzdm> bzdms = new ArrayList<>();
-        if (!Caches.genderMap.isEmpty()) {
-            for (Map.Entry<String, Bzdm> departEntry : Caches.genderMap.entrySet()) {
-                bzdms.add(departEntry.getValue());
-            }
-        }
-        return bzdms;
-    }
-
 
     /**
      * 添加一个用户信息
@@ -146,26 +109,56 @@ public class UserController {
      * @param yhid 用户id信息
      * @param func 功能参数，分为两个，一个是查看功能，一个是修改功能
      * @return 返回一个mav对象，包含一个功能参数和user对象，回传到userForm页面，
-     *
      */
     @RequestMapping("/viewUserInfo")
-    public ModelAndView viewUserInfo(String yhid, String func) {
-        ModelAndView mav = new ModelAndView("userForm");
-        mav.addObject("func", func);
+    public ModelAndView viewUserInfo(String yhid, String func, @Nullable String kind) {
+        ModelAndView modelAndView = new ModelAndView("userForm");
+        modelAndView.addObject("func", func);
         User user = userService.selectUserById(yhid);
-        mav.addObject("user", user);
-        return mav;
+        modelAndView.addObject("user", user);
+
+
+        List<Depart> departs = new ArrayList<>();
+        if (!Caches.departMap.isEmpty()) {
+            for (Map.Entry<String, Depart> departEntry : Caches.departMap.entrySet()) {
+                departs.add(departEntry.getValue());
+            }
+        }
+
+        List<Bzdm> gender = Caches.bzdm_kind_Map.get(kind);
+        try {
+            modelAndView.addObject("departs", new ObjectMapper().writeValueAsString(departs).replaceAll("\"", "&quot;"));
+            modelAndView.addObject("gender", new ObjectMapper().writeValueAsString(gender).replaceAll("\"", "&quot;"));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return modelAndView;
     }
 
     /**
      * 用于跳转到添加页面
+     *
      * @param func 功能参数，为添加add
      * @return 返回一个ModelAndView对象，同时传递func参数到userForm页面
      */
     @RequestMapping("/jumpToAddPage")
-    public ModelAndView jumpToAddPage(String func){
+    public ModelAndView jumpToAddPage(String func, String kind) {
         ModelAndView modelAndView = new ModelAndView("userForm");
-        modelAndView.addObject("func",func);
+        List<Depart> departs = new ArrayList<>();
+        if (!Caches.departMap.isEmpty()) {
+            for (Map.Entry<String, Depart> departEntry : Caches.departMap.entrySet()) {
+                departs.add(departEntry.getValue());
+            }
+        }
+        List<Bzdm> gender = Caches.bzdm_kind_Map.get(kind);
+        try {
+            modelAndView.addObject("departs", new ObjectMapper().writeValueAsString(departs).replaceAll("\"", "&quot;"));
+            modelAndView.addObject("gender", new ObjectMapper().writeValueAsString(gender).replaceAll("\"", "&quot;"));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        modelAndView.addObject("func", func);
         return modelAndView;
     }
 }

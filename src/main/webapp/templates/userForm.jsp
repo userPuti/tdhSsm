@@ -12,7 +12,7 @@
     <jsp:include page="/static/resources/v2/webui.jsp">
         <jsp:param name="UIS" value="FORM_LAYER_BTN_LAYOUT"/>
     </jsp:include>
-    <script src="${pageContext.request.contextPath}/static/js/userForm.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/templates/js/userForm.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/static/resources/js/jquery.serialize.js" type="text/javascript"></script>
 </head>
 <body>
@@ -56,6 +56,7 @@
             <td class="tdTitle">用户部门</td>
             <td class="tdCont">
                 <input type="hidden" id="iYhbm" value="${user.yhbm}"/>
+                <input type="hidden" id="iDeparts" value="${departs}"/>
                 <select class="inputSel" id="sYhbm" name="yhbm">
                     <option value="" selected></option>
                 </select>
@@ -63,6 +64,7 @@
             <td class="tdTitle">用户性别</td>
             <td class="tdCont">
                 <input type="hidden" id="iYhxb" value="${user.yhxb}"/>
+                <input type="hidden" id="iGender" value="${gender}"/>
                 <select class="inputSel" id="sYhxb" name="yhxb">
                     <option value="" selected></option>
                 </select>

@@ -50,7 +50,7 @@ $(
 function doAdd() {
     $('#iSubmit').click(function () {
         let valid = validateForm();
-        if(valid === false) {
+        if (valid === false) {
             layer.msg("请检查必填项！", {
                 icon: 7,
                 shade: 0.000001, //不展示遮罩，但是要有遮罩效果
@@ -124,7 +124,7 @@ function doModify() {
     $('#iSubmit').click(function () {
         let valid = validateForm();
 
-        if(valid === false) {
+        if (valid === false) {
             layer.msg("请检查必填项！", {
                 icon: 7,
                 shade: 0.000001, //不展示遮罩，但是要有遮罩效果
@@ -176,33 +176,35 @@ function doModify() {
 
 //加载下拉框
 function loadSel() {
-    $.getJSON(CONTEXT_PATH + "loadDepartSel", function (departs) {
-        $.each(departs, function (index, item) {
-            if (item.bmmc === iYhbm.val()) {
-                sYhbm.append(new Option(item.bmmc, item.bmdm, true, true));
-                setSelVal(sYhbm, item.bmdm);
-            } else {
-                sYhbm.append(new Option(item.bmmc, item.bmdm));
-            }
-        });
+    let departs = $('#iDeparts');
+    let gender = $('#iGender');
+
+    let jDeparts = JSON.parse(departs.val());
+    let jGender = JSON.parse(gender.val());
+
+    $.each(jDeparts, function (index, item) {
+        if (item.bmmc === iYhbm.val()) {
+            sYhbm.append(new Option(item.bmmc, item.bmdm, true, true));
+            setSelVal(sYhbm, item.bmdm);
+        } else {
+            sYhbm.append(new Option(item.bmmc, item.bmdm));
+        }
     });
 
-    $.getJSON(CONTEXT_PATH + "loadGenderSel", function (bzdms) {
-        $.each(bzdms, function (index, item) {
-            if (item.mc === iYhxb.val()) {
-                sYhxb.append(new Option(item.mc, item.code, true, true));
-                setSelVal(sYhxb, item.code);
-            } else {
-                sYhxb.append(new Option(item.mc, item.code));
-            }
-        })
+    $.each(jGender, function (index, item) {
+        if (item.mc === iYhxb.val()) {
+            sYhxb.append(new Option(item.mc, item.code, true, true));
+            setSelVal(sYhxb, item.code);
+        } else {
+            sYhxb.append(new Option(item.mc, item.code));
+        }
     });
 }
 
 //提交表单验证
 function validateForm() {
     return yhid.val() != null && yhid.val() !== "" && yhxm.val() != null && yhxm.val() !== "" &&
-            yhkl.val() != null && yhkl.val() !== "" && cfkl.val() != null && cfkl.val() !== "" &&
-            cfkl.val() === yhkl.val();
+        yhkl.val() != null && yhkl.val() !== "" && cfkl.val() != null && cfkl.val() !== "" &&
+        cfkl.val() === yhkl.val();
 }
 

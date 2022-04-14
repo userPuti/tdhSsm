@@ -8,8 +8,8 @@ import com.tdh.mapper.BzdmMapper;
 import com.tdh.mapper.DepartMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,9 +27,10 @@ public class Caches {
     @Autowired
     private BzdmMapper bzdmMapper;
 
-    private final String GENDER = "00003";
+    private final String KIND_GENDER = "00003";
     public static final Map<String, Depart> departMap = new HashMap<>();
-    public static final Map<String, Bzdm> genderMap = new HashMap<>();
+//    public static final Map<String, Bzdm> genderMap = new HashMap<>();
+    public static final Map<String, List<Bzdm>> bzdm_kind_Map = new HashMap<>();
 
 
     @PostConstruct
@@ -47,11 +48,17 @@ public class Caches {
     @PostConstruct
     private void initGenderMap(){
         BzdmExample bzdmExample = new BzdmExample();
-        bzdmExample.createCriteria().andKindEqualTo(GENDER);
+        bzdmExample.createCriteria().andKindEqualTo(KIND_GENDER);
         List<Bzdm> bzdms = bzdmMapper.selectByExample(bzdmExample);
 
         for (Bzdm bzdm : bzdms) {
-            genderMap.put(bzdm.getCode(), bzdm);
+            if(bzdm_kind_Map.containsKey(bzdm.getKind())){
+                bzdm_kind_Map.get(bzdm.getKind()).add(bzdm);
+            }else{
+                List<Bzdm> list = new ArrayList<>();
+                list.add(bzdm);
+                bzdm_kind_Map.put(bzdm.getKind(), list);
+            }
         }
     }
 }

@@ -2,6 +2,9 @@ package com.tdh.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.tdh.cache.Caches;
+import com.tdh.domain.Bzdm;
+import com.tdh.domain.Depart;
 import com.tdh.domain.User;
 import com.tdh.domain.UserExample;
 import com.tdh.dto.YhxxDto;
@@ -10,9 +13,12 @@ import com.tdh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -30,37 +36,36 @@ public class ImplUserService implements UserService {
         StringBuilder allUserxml = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
         if (list != null && count > 0) {
             allUserxml.append("<rows>");
-            allUserxml.append("<userdata name='totalnumber'>").append(count).append("</userdata>");
+            allUserxml.append("<userdata name='totalnumber'><![CDATA[").append(count).append("]]></userdata>");
             for (User user : list) {
                 transferToRealInfo(user);
 
-                allUserxml.append("<row id=\"" + user.getYhid() + "\">");
+                allUserxml.append("<row id=\"").append(user.getYhid()).append("\">");
                 allUserxml.append("<cell>0</cell>");
-                allUserxml.append("<cell>").append(user.getYhid()).append("</cell>");
-                allUserxml.append("<cell>").append(user.getYhxm()).append("</cell>");
-                allUserxml.append("<cell>").append(user.getYhxb()).append("</cell>");
-                allUserxml.append("<cell>").append(user.getYhbm()).append("</cell>");
+                allUserxml.append("<cell><![CDATA[").append(user.getYhid()).append("]]></cell>");
+                allUserxml.append("<cell><![CDATA[").append(user.getYhxm()).append("]]></cell>");
+                allUserxml.append("<cell><![CDATA[").append(user.getYhxb()).append("]]></cell>");
+                allUserxml.append("<cell><![CDATA[").append(user.getYhbm()).append("]]></cell>");
 
                 String csrq = user.getCsrq();
                 if ("".equals(csrq)) {
-                    allUserxml.append("<cell>").append("-").append("</cell>");
+                    allUserxml.append("<cell><![CDATA[").append("-").append("]]></cell>");
                 } else {
-                    allUserxml.append("<cell>").append(csrq).append("</cell>");
+                    allUserxml.append("<cell><![CDATA[").append(csrq).append("]]></cell>");
                 }
-                allUserxml.append("<cell>").append(user.getDjrq()).append("</cell>");
-                allUserxml.append("<cell>").append(user.getSfjy()).append("</cell>");
-
+                allUserxml.append("<cell><![CDATA[").append(user.getDjrq()).append("]]></cell>");
+                allUserxml.append("<cell><![CDATA[").append(user.getSfjy()).append("]]></cell>");
 
                 Integer pxh = user.getPxh();
                 if (null == pxh) {
-                    allUserxml.append("<cell>").append("-").append("</cell>");
+                    allUserxml.append("<cell><![CDATA[").append("-").append("]]></cell>");
                 } else {
-                    allUserxml.append("<cell>").append(pxh).append("</cell>");
+                    allUserxml.append("<cell><![CDATA[").append(pxh).append("]]></cell>");
                 }
 
-                allUserxml.append("<cell>").append("/ssm/static/images/search.png^查看^javascript:view(\"").append(user.getYhid()).append("\")^_self").append("</cell>");
-                allUserxml.append("<cell>").append("/ssm/static/images/modify.png^修改^javascript:modify(\"").append(user.getYhid()).append("\")^_self").append("</cell>");
-                allUserxml.append("<cell>").append("/ssm/static/images/delete.png^删除^javascript:delInfo(\"").append(user.getYhid()).append("\")^_self").append("</cell>");
+                allUserxml.append("<cell><![CDATA[").append("/ssm/static/images/search.png^查看^javascript:view(\"").append(user.getYhid()).append("\")^_self").append("]]></cell>");
+                allUserxml.append("<cell><![CDATA[").append("/ssm/static/images/modify.png^修改^javascript:modify(\"").append(user.getYhid()).append("\")^_self").append("]]></cell>");
+                allUserxml.append("<cell><![CDATA[").append("/ssm/static/images/delete.png^删除^javascript:delInfo(\"").append(user.getYhid()).append("\")^_self").append("]]></cell>");
                 allUserxml.append("</row>");
             }
             allUserxml.append("</rows>");
@@ -73,28 +78,23 @@ public class ImplUserService implements UserService {
 
     private User transferToRealInfo(User user) {
         String yhbm = user.getYhbm();
-
-        if (!"".equals(yhbm)) {
-            if (Objects.equals(yhbm, "32010001")) {
-                user.setYhbm("立案庭");
-            } else if (Objects.equals(yhbm, "32010002")) {
-                user.setYhbm("业务庭");
-            } else if (Objects.equals(yhbm, "32010003")) {
-                user.setYhbm("办公室");
+        if (yhbm != null && !yhbm.equals("")) {
+            for (Map.Entry<String, Depart> departEntry : Caches.departMap.entrySet()) {
+                if (departEntry.getKey().equals(yhbm)) {
+                    user.setYhbm(departEntry.getValue().getBmmc());
+                }
             }
         } else {
             user.setYhbm("-");
         }
 
         String yhxb = user.getYhxb();
-
-        if (!"".equals(yhxb)) {
-            if (Objects.equals(yhxb, "09_00003-1")) {
-                user.setYhxb("男");
-            } else if (Objects.equals(yhxb, "09_00003-2")) {
-                user.setYhxb("女");
-            } else if (Objects.equals(yhxb, "09_00003-255")) {
-                user.setYhxb("其他");
+        List<Bzdm> gender = Caches.bzdm_kind_Map.get("00003");
+        if (yhxb != null && !yhxb.equals("")) {
+            for (Bzdm gen : gender) {
+                if (Objects.equals(yhxb, gen.getCode())) {
+                    user.setYhxb(gen.getMc());
+                }
             }
         } else {
             user.setYhxb("-");
@@ -181,6 +181,15 @@ public class ImplUserService implements UserService {
     @Override
     public boolean insertUser(User user) {
         if (user != null) {
+            try {
+                String yhid = URLDecoder.decode(URLDecoder.decode(user.getYhid(), "utf-8"),"utf-8");
+                String yhxm = URLDecoder.decode(URLDecoder.decode(user.getYhxm(), "utf-8"),"utf-8");
+                user.setYhid(yhid);
+                user.setYhxm(yhxm);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
             String sfjy = user.getSfjy();
 
             if (Objects.equals(sfjy, "on")) {

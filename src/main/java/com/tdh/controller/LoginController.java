@@ -1,5 +1,9 @@
 package com.tdh.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tdh.cache.Caches;
+import com.tdh.domain.Depart;
 import com.tdh.domain.User;
 import com.tdh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +11,13 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Puti
@@ -23,6 +31,7 @@ public class LoginController {
 
     /**
      * 登录功能
+     *
      * @param resp response对象
      * @param yhid 用户id
      * @param yhkl 用户口令
@@ -31,8 +40,9 @@ public class LoginController {
      * @return 成功跳转到homePage，失败则留在login页面
      */
     @RequestMapping("/login")
-    public String login(HttpServletResponse resp, @RequestParam("zh") String yhid, @RequestParam("kl") String yhkl,
-                        @Nullable @RequestParam("jzzh") String jzzh, @Nullable @RequestParam("jzmm") String jzmm) {
+    public ModelAndView login(HttpServletResponse resp, @RequestParam("zh") String yhid, @RequestParam("kl") String yhkl,
+                              @Nullable @RequestParam("jzzh") String jzzh, @Nullable @RequestParam("jzmm") String jzmm) {
+        ModelAndView modelAndView = new ModelAndView();
         User user = new User();
         user.setYhid(yhid);
         user.setYhkl(yhkl);
@@ -50,10 +60,23 @@ public class LoginController {
                 kouling.setMaxAge(60 * 60 * 24 * 7);
                 resp.addCookie(kouling);
             }
-            return "homePage";
+            modelAndView.setViewName("homePage");
+            List<Depart> departs = new ArrayList<>();
+            if (!Caches.departMap.isEmpty()) {
+                for (Map.Entry<String, Depart> departEntry : Caches.departMap.entrySet()) {
+                    departs.add(departEntry.getValue());
+                }
+            }
+            try {
+                modelAndView.addObject("departs", new ObjectMapper().writeValueAsString(departs).replaceAll("\"", "&quot;"));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+            return modelAndView;
+        } else {
+            modelAndView.setViewName("login");
+            return modelAndView;
         }
-
-        return "login";
     }
 
 }

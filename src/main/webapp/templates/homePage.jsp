@@ -13,7 +13,7 @@
     <jsp:include page="/static/resources/v2/webui.jsp">
         <jsp:param name="UIS" value="FORM_DGRID_LAYER_BTN_PAGE_LAYOUT"/>
     </jsp:include>
-    <script src="${pageContext.request.contextPath}/static/js/homePage.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/templates/js/homePage.js" type="application/javascript"></script>
 </head>
 <body>
 <div class="tdh_layout" style="padding-top: 60px;">
@@ -33,9 +33,10 @@
                     <td class="tdCont">
                         <input id="yhzh" name="yhid" class="inputText" type="text" placeholder="请输入"/>
                     </td>
-                    <td class="tdTitle">用户部门:</td>
+                    <td class="tdTitle">用户部门</td>
                     <td class="tdCont">
-                        <select id="yhbm" name="yhbm" class="inputSel">
+                        <input type="hidden" id="iDeparts" value="${departs}"/>
+                        <select class="inputSel" id="sYhbm" name="yhbm">
                             <option value="" selected></option>
                         </select>
                     </td>
@@ -45,9 +46,6 @@
                         </a>
                     </td>
                     <td align="right">
-                        <a class="tdh_btn tdh_btn_blue" href="javascript:void(0);" id="queryAll" onclick="queryAll()">
-                            <i class="tdh_icon icon_search"></i>全部用户
-                        </a>
                         <a class="tdh_btn tdh_btn_blue" id="addUser" onclick="addForm()">
                             <i class="tdh_icon icon_add"></i>新增
                         </a>
@@ -65,7 +63,8 @@
     </div>
     <!--列表查询-->
     <div class="tdh_layout_c">
-        <div id="grid" style="width: 100%;height: 100%"></div>
+        <div id="grid" style="width: 100%;height: 100%">
+        </div>
     </div>
 </div>
 </body>
