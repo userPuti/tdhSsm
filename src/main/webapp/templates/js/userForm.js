@@ -59,7 +59,7 @@ function doAdd() {
             return valid;
         }
 
-        let params = serializeTwo('#userForm');
+        let params = serializeOne('#userForm');
         $.ajax({
             url: CONTEXT_PATH + "addUser",
             type: "post",
@@ -133,7 +133,7 @@ function doModify() {
             return valid;
         }
 
-        let params = serializeTwo('#userForm');
+        let params = serializeOne('#userForm');
         console.log(params);
         $.ajax({
             url: CONTEXT_PATH + "update",
