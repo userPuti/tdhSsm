@@ -1,8 +1,5 @@
 package com.tdh.domain;
 
-import org.springframework.stereotype.Component;
-
-
 public class Depart {
     private String bmdm;
 

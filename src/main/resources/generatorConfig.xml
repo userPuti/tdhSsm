@@ -6,8 +6,6 @@
     <!-- 若想单独配置属性，可将其配入properties后 通过此方式导入属性 ${userId} -->
     <properties resource="jdbc.properties"/>
 
-
-
     <!-- targetRuntime 默认为MyBatis3DynamicSql，该值不会生成xml文件， 可选择Mybatis3 -->
     <context id="default" targetRuntime="Mybatis3">
 

@@ -3,6 +3,8 @@ package com.tdh.service;
 import com.tdh.domain.User;
 import com.tdh.dto.YhxxDto;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author puti
  * @date 2022/3/18
@@ -30,7 +32,7 @@ public interface UserService {
      * @param user user对象
      * @return xml格式
      */
-    public boolean insertUser(User user);
+    public boolean insertUser(User user, HttpSession httpSession);
 
 
     /**
@@ -48,7 +50,7 @@ public interface UserService {
      * @param user user对象
      * @return 是否插入成功
      */
-    public boolean updateUserInfo(User user);
+    public boolean updateUserInfo(User user,HttpSession httpSession);
 
     /**
      * 查看用户的详细信息，用于弹窗
@@ -73,4 +75,11 @@ public interface UserService {
      * @return 如果查询到相应的对象，则返回该用户的对象信息，否则返回null
      */
     public User selectUserById(String yhid);
+
+    /**
+     * 根据用户id查询图片名称
+     * @param yhid 用户id
+     * @return 返回头像的图片名称
+     */
+    String selectPhotonameById(String yhid);
 }

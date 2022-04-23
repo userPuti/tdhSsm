@@ -13,8 +13,13 @@ import com.tdh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
+import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -78,7 +83,7 @@ public class ImplUserService implements UserService {
 
     private User transferToRealInfo(User user) {
         String yhbm = user.getYhbm();
-        if (yhbm != null && !yhbm.equals("")) {
+        if (yhbm != null && !"".equals(yhbm)) {
             for (Map.Entry<String, Depart> departEntry : Caches.departMap.entrySet()) {
                 if (departEntry.getKey().equals(yhbm)) {
                     user.setYhbm(departEntry.getValue().getBmmc());
@@ -90,7 +95,7 @@ public class ImplUserService implements UserService {
 
         String yhxb = user.getYhxb();
         List<Bzdm> gender = Caches.bzdm_kind_Map.get("00003");
-        if (yhxb != null && !yhxb.equals("")) {
+        if (yhxb != null && !"".equals(yhxb)) {
             for (Bzdm gen : gender) {
                 if (Objects.equals(yhxb, gen.getCode())) {
                     user.setYhxb(gen.getMc());
@@ -109,7 +114,7 @@ public class ImplUserService implements UserService {
         }
 
         String csrq = user.getCsrq();
-        if (csrq == null || csrq.equals("")) {
+        if (csrq == null || "".equals(csrq)) {
             user.setCsrq("-");
         }
 
@@ -127,7 +132,7 @@ public class ImplUserService implements UserService {
         if (!Objects.equals(yhid, "")) {
             UserExample userExample = new UserExample();
             userExample.createCriteria().andYhidEqualTo(yhid);
-            List<User> users = userMapper.selectByExample(userExample);
+            List<User> users = userMapper.selectByExampleWithBLOBs(userExample);
             if (users.size() > 0) {
                 return transferToRealInfo(users.get(0));
             }
@@ -179,17 +184,8 @@ public class ImplUserService implements UserService {
      * @return xml格式
      */
     @Override
-    public boolean insertUser(User user) {
+    public boolean insertUser(User user, HttpSession httpSession) {
         if (user != null) {
-            try {
-                String yhid = URLDecoder.decode(URLDecoder.decode(user.getYhid(), "utf-8"),"utf-8");
-                String yhxm = URLDecoder.decode(URLDecoder.decode(user.getYhxm(), "utf-8"),"utf-8");
-                user.setYhid(yhid);
-                user.setYhxm(yhxm);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
             String sfjy = user.getSfjy();
 
             if (Objects.equals(sfjy, "on")) {
@@ -202,6 +198,18 @@ public class ImplUserService implements UserService {
             String djrq = df.format(new Date());
             user.setDjrq(djrq);
 
+            String photoname = user.getPhotoname();
+            if (photoname != null && !"".equals(photoname)) {
+                String phototype = photoname.substring(photoname.lastIndexOf(".") + 1);
+                user.setPhototype(phototype);
+
+                ServletContext servletContext = httpSession.getServletContext();
+                String photoPath = servletContext.getRealPath("photo");
+                String finalPath = photoPath + File.separator + photoname;
+
+                byte[] imageBinary = getImageBinary(finalPath, phototype);
+                user.setPhoto(imageBinary);
+            }
             int rows = userMapper.insertSelective(user);
 
             return rows > 0;
@@ -209,6 +217,23 @@ public class ImplUserService implements UserService {
 
         return false;
     }
+
+
+    private byte[] getImageBinary(String path, String phototype) {
+        File f = new File(path);
+        BufferedImage bi;
+        try {
+            bi = ImageIO.read(f);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(bi, phototype, baos);
+            byte[] bytes = baos.toByteArray();
+            return bytes;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     /**
      * 删除用户信息
@@ -232,13 +257,26 @@ public class ImplUserService implements UserService {
      * @return 是否插入成功
      */
     @Override
-    public boolean updateUserInfo(User user) {
+    public boolean updateUserInfo(User user, HttpSession httpSession) {
         if (user != null) {
             String sfjy = user.getSfjy();
             if (Objects.equals(sfjy, "on")) {
                 user.setSfjy("1");
             } else {
                 user.setSfjy("0");
+            }
+
+            String photoname = user.getPhotoname();
+            if (photoname != null && !"".equals(photoname)) {
+                String phototype = photoname.substring(photoname.lastIndexOf(".") + 1);
+                user.setPhototype(phototype);
+
+                ServletContext servletContext = httpSession.getServletContext();
+                String photoPath = servletContext.getRealPath("photo");
+                String finalPath = photoPath + File.separator + photoname;
+
+                byte[] imageBinary = getImageBinary(finalPath, phototype);
+                user.setPhoto(imageBinary);
             }
 
             int isSucc = userMapper.updateByPrimaryKeySelective(user);
@@ -248,7 +286,7 @@ public class ImplUserService implements UserService {
     }
 
     /**
-     * 查看用户的详细信息，用于弹窗
+     * 查看用户的详细信息
      *
      * @param yhxxDto 用户信息的入参对象
      * @return 返回查询到的user对象，否则为null
@@ -271,6 +309,7 @@ public class ImplUserService implements UserService {
                 if (null == user.getPxh()) {
                     user.setPxh(0);
                 }
+
                 return transferToRealInfo(user);
             } else {
                 return null;
@@ -287,7 +326,7 @@ public class ImplUserService implements UserService {
      */
     @Override
     public int bulkDeletion(String dels) {
-        if (dels != null && !dels.equals("")) {
+        if (dels != null && !"".equals(dels)) {
             String[] delYhids = dels.trim().split(",");
             UserExample userExample = new UserExample();
             int count = 0;
@@ -306,4 +345,15 @@ public class ImplUserService implements UserService {
         return 0;
     }
 
+
+    /**
+     * 根据用户id查询图片名称
+     *
+     * @param yhid 用户id
+     * @return 返回头像的图片名称
+     */
+    @Override
+    public String selectPhotonameById(String yhid) {
+        return userMapper.selectPhotonameByYhid(yhid);
+    }
 }

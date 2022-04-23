@@ -1,7 +1,5 @@
 package com.tdh.domain;
 
-import org.springframework.stereotype.Component;
-
 public class Bzdm extends BzdmKey {
     private String bt;
 

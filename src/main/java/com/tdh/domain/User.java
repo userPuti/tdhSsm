@@ -19,7 +19,13 @@ public class User {
 
     private Integer pxh;
 
-    public User(String yhid, String yhxm, String yhkl, String yhxb, String yhbm, String csrq, String djrq, String sfjy, Integer pxh) {
+    private String photoname;
+
+    private String phototype;
+
+    private byte[] photo;
+
+    public User(String yhid, String yhxm, String yhkl, String yhxb, String yhbm, String csrq, String djrq, String sfjy, Integer pxh, String photoname, String phototype) {
         this.yhid = yhid;
         this.yhxm = yhxm;
         this.yhkl = yhkl;
@@ -29,6 +35,23 @@ public class User {
         this.djrq = djrq;
         this.sfjy = sfjy;
         this.pxh = pxh;
+        this.photoname = photoname;
+        this.phototype = phototype;
+    }
+
+    public User(String yhid, String yhxm, String yhkl, String yhxb, String yhbm, String csrq, String djrq, String sfjy, Integer pxh, String photoname, String phototype, byte[] photo) {
+        this.yhid = yhid;
+        this.yhxm = yhxm;
+        this.yhkl = yhkl;
+        this.yhxb = yhxb;
+        this.yhbm = yhbm;
+        this.csrq = csrq;
+        this.djrq = djrq;
+        this.sfjy = sfjy;
+        this.pxh = pxh;
+        this.photoname = photoname;
+        this.phototype = phototype;
+        this.photo = photo;
     }
 
     public User() {
@@ -107,18 +130,27 @@ public class User {
         this.pxh = pxh;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "yhid='" + yhid + '\'' +
-                ", yhxm='" + yhxm + '\'' +
-                ", yhkl='" + yhkl + '\'' +
-                ", yhxb='" + yhxb + '\'' +
-                ", yhbm='" + yhbm + '\'' +
-                ", csrq='" + csrq + '\'' +
-                ", djrq='" + djrq + '\'' +
-                ", sfjy='" + sfjy + '\'' +
-                ", pxh=" + pxh +
-                '}';
+    public String getPhotoname() {
+        return photoname;
+    }
+
+    public void setPhotoname(String photoname) {
+        this.photoname = photoname;
+    }
+
+    public String getPhototype() {
+        return phototype;
+    }
+
+    public void setPhototype(String phototype) {
+        this.phototype = phototype;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 }

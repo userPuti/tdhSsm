@@ -13,12 +13,15 @@
         <jsp:param name="UIS" value="FORM_LAYER_BTN_LAYOUT"/>
     </jsp:include>
     <script src="${pageContext.request.contextPath}/templates/js/userForm.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/static/resources/js/jquery.serialize.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/static/resources/js/jquery.serialize.js"
+            type="text/javascript"></script>
+    <script type="application/javascript"
+            src="${pageContext.request.contextPath}/static/resources/js/plupload.full.min.js"></script>
 </head>
 <body>
 <div class="tdh_form_title">用户信息</div>
 <div class="tdh_form_caption"><i class="tdh_form_tag"></i>基本信息</div>
-<form action="" method="post" id="userForm">
+<form id="userForm" method="post" enctype="multipart/form-data">
     <table class="tdh_form">
         <colgroup>
             <col width="14%"/>
@@ -28,23 +31,46 @@
         </colgroup>
         <tr>
             <td class="tdTitle"><i class="required">*</i>用户账号</td>
-            <td class="tdCont"><input id="iYhid" name="yhid" class="inputText" type="text" placeholder="请输入" value="${user.yhid}"
+            <td class="tdCont"><input id="iYhid" name="yhid" class="inputText" type="text" placeholder="请输入"
+                                      value="${user.yhid}"
                                       maxlength="14"/></td>
+            <td class="tdTitle" rowspan="4">用户头像</td>
+            <td class="tdCont" rowspan="3">
+                <div>
+                    <img id="photo" src="${imgSrc}"
+                         style="width: 80px;height:80px;border-radius: 25px;display: inline-block;background-position: center center;">
+                    <input type="hidden" id="photoname" name="photoname" value=""/>
+                </div>
+            </td>
+        </tr>
+        <tr>
             <td class="tdTitle"><i class="required">*</i>用户姓名</td>
-            <td class="tdCont"><input id="iYhxm" name="yhxm" class="inputText" type="text" placeholder="请输入" value="${user.yhxm}"
+            <td class="tdCont"><input id="iYhxm" name="yhxm" class="inputText" type="text" placeholder="请输入"
+                                      value="${user.yhxm}"
                                       maxlength="40"/></td>
         </tr>
         <tr>
             <td class="tdTitle"><i class="required">*</i>用户口令</td>
-            <td class="tdCont"><input id="iYhkl" name="yhkl" class="inputText" type="text" placeholder="请输入" value="${user.yhkl}"
-                                      maxlength="20"/></td>
-            <td class="tdTitle" id="tCfkl"><i class="required">*</i>重复口令</td>
-            <td class="tdCont"><input id="iCfkl" name="cfkl" class="inputText" type="text" placeholder="请输入" value="${user.yhkl}"
+            <td class="tdCont"><input id="iYhkl" name="yhkl" class="inputText" type="text" placeholder="请输入"
+                                      value="${user.yhkl}"
                                       maxlength="20"/></td>
         </tr>
         <tr>
+            <td class="tdTitle" id="tCfkl"><i class="required">*</i>重复口令</td>
+            <td class="tdCont"><input id="iCfkl" name="cfkl" class="inputText" type="text" placeholder="请输入"
+                                      value="${user.yhkl}"
+                                      maxlength="20"/></td>
+            <td class="tdCont">
+                <input id="uploadPhoto" type="button" class="tdh_btn tdh_btn_blue" value="上传头像"
+                       onclick="uploadPhoto()"/>
+                <input id="downloadPhoto" type="button" class="tdh_btn tdh_btn_blue" value="下载头像"
+                       onclick="downloadPhoto()"/>
+            </td>
+        </tr>
+        <tr>
             <td class="tdTitle">排序号</td>
-            <td class="tdCont"><input id="iPxh" name="pxh" class="inputText" type="text" placeholder="请输入" value="${user.pxh}"/></td>
+            <td class="tdCont"><input id="iPxh" name="pxh" class="inputText" type="text" placeholder="请输入"
+                                      value="${user.pxh}"/></td>
             <td class="tdTitle">出生日期</td>
             <td class="tdCont">
                 <input id="iCsrq" name="csrq" class="Wdate inputText" type="text"
@@ -74,7 +100,7 @@
             <td class="tdTitle">是否禁用</td>
             <td class="tdCont" colspan="3">
                 <input id="sfjy" value="${user.sfjy}" type="hidden"/>
-                <input id="iSfjy" name="sfjy" class="inputSwitch" type="checkbox" data-text="失效/启用" />
+                <input id="iSfjy" name="sfjy" class="inputSwitch" type="checkbox" data-text="失效/启用"/>
             </td>
         </tr>
     </table>
@@ -86,4 +112,3 @@
 </form>
 </body>
 </html>
-

@@ -46,6 +46,7 @@ $(
     }
 )
 
+
 //添加用户信息
 function doAdd() {
     $('#iSubmit').click(function () {
@@ -63,7 +64,7 @@ function doAdd() {
         $.ajax({
             url: CONTEXT_PATH + "addUser",
             type: "post",
-            dataType: "json",
+            dataType: "JSON",
             data: params,
             success: function (data) {
                 if (data.code === 0) {
@@ -97,6 +98,7 @@ function doAdd() {
     })
 }
 
+
 //查看用户信息
 function doView() {
     inputDisable(yhid, true);
@@ -112,7 +114,9 @@ function doView() {
     }
     inputDisable(sfjy, true);
     $('#iSubmit').hide();
+    $('#uploadPhoto').hide();
 }
+
 
 //修改用户信息
 function doModify() {
@@ -134,14 +138,13 @@ function doModify() {
         }
 
         let params = serializeOne('#userForm');
-        console.log(params);
+
         $.ajax({
             url: CONTEXT_PATH + "update",
             type: "post",
             dataType: "json",
             data: params,
             success: function (data) {
-                console.log(data.code);
                 if (data.code === 0) {
                     layer.msg("修改成功！", {
                         icon: 1,
@@ -201,6 +204,7 @@ function loadSel() {
     });
 }
 
+
 //提交表单验证
 function validateForm() {
     return yhid.val() != null && yhid.val() !== "" && yhxm.val() != null && yhxm.val() !== "" &&
@@ -208,3 +212,49 @@ function validateForm() {
         cfkl.val() === yhkl.val();
 }
 
+
+//头像上传
+function uploadPhoto() {
+    let uploader = new plupload.Uploader({
+        browse_button: 'uploadPhoto',
+        url: CONTEXT_PATH + 'upload?yhid=' + yhid.val(),
+        file_data_name: 'photo',
+        //最大文件限制
+        max_file_size: '10mb',
+        //一次上传数据大小
+        chunk_size: '10mb',
+        unique_names: false,    //是否自动生成唯一名称
+        filters: [                //文件类型限制
+            {title: "图片文件", extensions: "jpg,gif,png"},
+        ],
+    });
+
+    uploader.init();
+
+    uploader.bind('FilesAdded', function (up, files) {
+        uploader.start();
+    });
+
+    uploader.bind('Error', function (up, err) {
+        layer.msg("图片上传出现错误！", {
+            icon: 0,
+            shade: 0.000001, //不展示遮罩，但是要有遮罩效果
+            time: 1500
+        });
+    });
+
+    uploader.bind('FileUploaded', function (up, files, result) {
+        let JResult = JSON.parse(result.response);
+        let path = JResult.data;
+        $('#photo').attr('src', path);
+        console.info(path);
+        console.info(path.indexOf("/") + 1);
+        let photoname = path.substr(path.indexOf("/") + 1);
+        console.info(photoname);
+        $('#photoname').val(photoname);
+    });
+}
+
+function downloadPhoto() {
+    window.location.href = "download?yhid=" + yhid.val();
+}

@@ -1,10 +1,7 @@
 package com.tdh.domain;
 
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class UserExample {
     protected String orderByClause;
@@ -724,6 +721,146 @@ public class UserExample {
 
         public Criteria andPxhNotBetween(Integer value1, Integer value2) {
             addCriterion("PXH not between", value1, value2, "pxh");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotonameIsNull() {
+            addCriterion("PHOTONAME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotonameIsNotNull() {
+            addCriterion("PHOTONAME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotonameEqualTo(String value) {
+            addCriterion("PHOTONAME =", value, "photoname");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotonameNotEqualTo(String value) {
+            addCriterion("PHOTONAME <>", value, "photoname");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotonameGreaterThan(String value) {
+            addCriterion("PHOTONAME >", value, "photoname");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotonameGreaterThanOrEqualTo(String value) {
+            addCriterion("PHOTONAME >=", value, "photoname");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotonameLessThan(String value) {
+            addCriterion("PHOTONAME <", value, "photoname");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotonameLessThanOrEqualTo(String value) {
+            addCriterion("PHOTONAME <=", value, "photoname");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotonameLike(String value) {
+            addCriterion("PHOTONAME like", value, "photoname");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotonameNotLike(String value) {
+            addCriterion("PHOTONAME not like", value, "photoname");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotonameIn(List<String> values) {
+            addCriterion("PHOTONAME in", values, "photoname");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotonameNotIn(List<String> values) {
+            addCriterion("PHOTONAME not in", values, "photoname");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotonameBetween(String value1, String value2) {
+            addCriterion("PHOTONAME between", value1, value2, "photoname");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotonameNotBetween(String value1, String value2) {
+            addCriterion("PHOTONAME not between", value1, value2, "photoname");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhototypeIsNull() {
+            addCriterion("PHOTOTYPE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhototypeIsNotNull() {
+            addCriterion("PHOTOTYPE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhototypeEqualTo(String value) {
+            addCriterion("PHOTOTYPE =", value, "phototype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhototypeNotEqualTo(String value) {
+            addCriterion("PHOTOTYPE <>", value, "phototype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhototypeGreaterThan(String value) {
+            addCriterion("PHOTOTYPE >", value, "phototype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhototypeGreaterThanOrEqualTo(String value) {
+            addCriterion("PHOTOTYPE >=", value, "phototype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhototypeLessThan(String value) {
+            addCriterion("PHOTOTYPE <", value, "phototype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhototypeLessThanOrEqualTo(String value) {
+            addCriterion("PHOTOTYPE <=", value, "phototype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhototypeLike(String value) {
+            addCriterion("PHOTOTYPE like", value, "phototype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhototypeNotLike(String value) {
+            addCriterion("PHOTOTYPE not like", value, "phototype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhototypeIn(List<String> values) {
+            addCriterion("PHOTOTYPE in", values, "phototype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhototypeNotIn(List<String> values) {
+            addCriterion("PHOTOTYPE not in", values, "phototype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhototypeBetween(String value1, String value2) {
+            addCriterion("PHOTOTYPE between", value1, value2, "phototype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhototypeNotBetween(String value1, String value2) {
+            addCriterion("PHOTOTYPE not between", value1, value2, "phototype");
             return (Criteria) this;
         }
     }

@@ -1,7 +1,5 @@
 package com.tdh.dto;
 
-import org.springframework.stereotype.Component;
-
 /**
  * @author Puti
  * @date 2022/4/2 17:56

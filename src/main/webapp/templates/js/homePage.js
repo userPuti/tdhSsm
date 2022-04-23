@@ -33,24 +33,24 @@ function queryInfo() {
 
 //添加用户
 function addForm() {
-    openLayerModal(CONTEXT_PATH + "jumpToAddPage?func=add&kind=00003", "添加用户", 700, 400, addFormCallback());
+    openLayerModal(CONTEXT_PATH + "jumpToAddPage?func=add&kind=00003", "添加用户", 700, 500, "addFormCallback");
 }
 
 //添加用户的回调函数，用于刷新
 function addFormCallback(rtn) {
     if (rtn === "success") {
-        return mygrid.loadXML(CONTEXT_PATH + "/loadUserXml");
+        mygrid.loadXML(CONTEXT_PATH + "/loadUserXml");
     }
 }
 
 //查看用户信息
 function view(yhid) {
-    openLayerModal(CONTEXT_PATH + "viewUserInfo?yhid=" + yhid + "&func=view&kind=00003", "用户详细信息", 700, 400);
+    openLayerModal(CONTEXT_PATH + "viewUserInfo?yhid=" + yhid + "&func=view&kind=00003", "用户详细信息", 700, 500);
 }
 
 //修改用户信息
 function modify(yhid) {
-    openLayerModal(CONTEXT_PATH + "viewUserInfo?yhid=" + yhid + "&func=modify&kind=00003", "修改用户", "700", "400", "modifyCallBack");
+    openLayerModal(CONTEXT_PATH + "viewUserInfo?yhid=" + yhid + "&func=modify&kind=00003", "修改用户", 700, 500, "modifyCallBack");
 }
 
 //修改用户信息的回调函数，用于刷新
@@ -146,7 +146,6 @@ function logoff() {
 function loadSel(){
     let departs = $('#iDeparts');
     let jDeparts = JSON.parse(departs.val());
-    console.log(jDeparts);
     $.each(jDeparts, function (index, item) {
         $('#sYhbm').append(new Option(item.bmmc, item.bmdm));
     });

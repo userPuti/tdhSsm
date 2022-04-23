@@ -8,6 +8,7 @@ import com.tdh.mapper.BzdmMapper;
 import com.tdh.mapper.DepartMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +30,6 @@ public class Caches {
 
     private final String KIND_GENDER = "00003";
     public static final Map<String, Depart> departMap = new HashMap<>();
-//    public static final Map<String, Bzdm> genderMap = new HashMap<>();
     public static final Map<String, List<Bzdm>> bzdm_kind_Map = new HashMap<>();
 
 
