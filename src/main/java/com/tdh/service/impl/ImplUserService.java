@@ -185,7 +185,7 @@ public class ImplUserService implements UserService {
      */
     @Override
 //    @Transactional("")
-    public boolean insertUser(User user, HttpSession httpSession) {
+    public boolean insertUser(User user, String  photoPath) {
         if (user != null) {
             String sfjy = user.getSfjy();
 
@@ -204,8 +204,6 @@ public class ImplUserService implements UserService {
                 String phototype = photoname.substring(photoname.lastIndexOf(".") + 1);
                 user.setPhototype(phototype);
 
-                ServletContext servletContext = httpSession.getServletContext();
-                String photoPath = servletContext.getRealPath("photo");
                 String finalPath = photoPath + File.separator + photoname;
 
                 byte[] imageBinary = getImageBinary(finalPath, phototype);
@@ -258,7 +256,7 @@ public class ImplUserService implements UserService {
      * @return 是否插入成功
      */
     @Override
-    public boolean updateUserInfo(User user, HttpSession httpSession) {
+    public boolean updateUserInfo(User user, String photoPath) {
         if (user != null) {
             String sfjy = user.getSfjy();
             if (Objects.equals(sfjy, "on")) {
@@ -272,8 +270,6 @@ public class ImplUserService implements UserService {
                 String phototype = photoname.substring(photoname.lastIndexOf(".") + 1);
                 user.setPhototype(phototype);
 
-                ServletContext servletContext = httpSession.getServletContext();
-                String photoPath = servletContext.getRealPath("photo");
                 String finalPath = photoPath + File.separator + photoname;
 
                 byte[] imageBinary = getImageBinary(finalPath, phototype);

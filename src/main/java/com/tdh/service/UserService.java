@@ -32,7 +32,7 @@ public interface UserService {
      * @param user user对象
      * @return xml格式
      */
-    public boolean insertUser(User user, HttpSession httpSession);
+    public boolean insertUser(User user, String  photoPath);
 
 
     /**
@@ -50,7 +50,7 @@ public interface UserService {
      * @param user user对象
      * @return 是否插入成功
      */
-    public boolean updateUserInfo(User user,HttpSession httpSession);
+    public boolean updateUserInfo(User user,String photoPath);
 
     /**
      * 查看用户的详细信息，用于弹窗

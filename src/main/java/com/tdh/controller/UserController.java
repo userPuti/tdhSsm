@@ -65,7 +65,8 @@ public class UserController {
     @RequestMapping("/addUser")
     @ResponseBody
     public ResponseVO addUser(User user, HttpSession httpsession) {
-        boolean bInsert = userService.insertUser(user, httpsession);
+        String photoPath = httpsession.getServletContext().getRealPath("photo");
+        boolean bInsert = userService.insertUser(user, photoPath);
         if (bInsert) {
             return ResResult.success();
         } else {
@@ -106,7 +107,9 @@ public class UserController {
     public ResponseVO updateInfo(User user, HttpSession httpSession) {
         String yhid = user.getYhid();
 
-        boolean isSucc = userService.updateUserInfo(user, httpSession);
+        String photoPath = httpSession.getServletContext().getRealPath("photo");
+
+        boolean isSucc = userService.updateUserInfo(user, photoPath);
         if (isSucc) {
             return ResResult.success();
         } else {
@@ -215,6 +218,7 @@ public class UserController {
         ResponseEntity<byte[]> responseEntity = null;
         InputStream is = null;
         try {
+            String photoname = userService.selectPhotonameById(yhid);
             //获取ServletContext对象
             ServletContext servletContext = httpSession.getServletContext();
             String photoPath = servletContext.getRealPath("photo");
@@ -232,7 +236,7 @@ public class UserController {
             //创建HttpHeaders对象设置响应头信息
             MultiValueMap<String, String> headers = new HttpHeaders();
             //设置要下载方式以及下载文件的名字
-            headers.add("Content-Disposition", "attachment;filename=" + photoName);
+            headers.add("Content-Disposition", "attachment;filename=" + photoname);
             //设置响应状态码
             HttpStatus statusCode = HttpStatus.OK;
             //创建ResponseEntity对象
