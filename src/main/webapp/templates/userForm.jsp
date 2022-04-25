@@ -61,8 +61,6 @@
                                       value="${user.yhkl}"
                                       maxlength="20"/></td>
             <td class="tdCont">
-                <input id="uploadPhoto" type="button" class="tdh_btn tdh_btn_blue" value="上传头像"
-                       onclick="uploadPhoto()"/>
                 <input id="downloadPhoto" type="button" class="tdh_btn tdh_btn_blue" value="下载头像"
                        onclick="downloadPhoto()"/>
             </td>

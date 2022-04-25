@@ -32,10 +32,12 @@ $(
 
         if (func.val() === "add") {
             doAdd();
+            uploadPhoto();
         } else if (func.val() === "view") {
             doView();
         } else if (func.val() === "modify") {
             doModify();
+            uploadPhoto();
         } else {
             layer.msg("出现错误，请联系管理员", {
                 icon: 2,
@@ -218,7 +220,7 @@ function validateForm() {
 //头像上传
 function uploadPhoto() {
     let uploader = new plupload.Uploader({
-        browse_button: 'uploadPhoto',
+        browse_button: 'photo',
         url: CONTEXT_PATH + 'upload?yhid=' + yhid.val(),
         file_data_name: 'photo',
         //最大文件限制
