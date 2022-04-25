@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tdh.cache.Caches;
 import com.tdh.domain.Bzdm;
-import com.tdh.domain.Depart;
 import com.tdh.domain.User;
 import com.tdh.domain.UserExample;
 import com.tdh.dto.YhxxDto;
@@ -14,15 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author puti
@@ -82,13 +82,8 @@ public class ImplUserService implements UserService {
     private User transferToRealInfo(User user) {
 
         String yhbm = user.getYhbm();
-//        Caches.departMap.get(yhbm).getBmmc();
         if (yhbm != null && !"".equals(yhbm)) {
-            for (Map.Entry<String, Depart> departEntry : Caches.departMap.entrySet()) {
-                if (departEntry.getKey().equals(yhbm)) {
-                    user.setYhbm(departEntry.getValue().getBmmc());
-                }
-            }
+            user.setYhbm(Caches.departMap.get(yhbm).getBmmc());
         } else {
             user.setYhbm("-");
         }
@@ -185,7 +180,7 @@ public class ImplUserService implements UserService {
      */
     @Override
 //    @Transactional("")
-    public boolean insertUser(User user, String  photoPath) {
+    public boolean insertUser(User user, String photoPath) {
         if (user != null) {
             String sfjy = user.getSfjy();
 
