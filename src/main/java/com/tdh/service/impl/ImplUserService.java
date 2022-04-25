@@ -17,14 +17,12 @@ import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author puti
@@ -82,7 +80,9 @@ public class ImplUserService implements UserService {
     }
 
     private User transferToRealInfo(User user) {
+
         String yhbm = user.getYhbm();
+//        Caches.departMap.get(yhbm).getBmmc();
         if (yhbm != null && !"".equals(yhbm)) {
             for (Map.Entry<String, Depart> departEntry : Caches.departMap.entrySet()) {
                 if (departEntry.getKey().equals(yhbm)) {
@@ -184,6 +184,7 @@ public class ImplUserService implements UserService {
      * @return xml格式
      */
     @Override
+//    @Transactional("")
     public boolean insertUser(User user, HttpSession httpSession) {
         if (user != null) {
             String sfjy = user.getSfjy();
@@ -325,22 +326,10 @@ public class ImplUserService implements UserService {
      * @return 是否删除成功
      */
     @Override
-    public int bulkDeletion(String dels) {
+    public int batchDelete(String dels) {
         if (dels != null && !"".equals(dels)) {
             String[] delYhids = dels.trim().split(",");
-            UserExample userExample = new UserExample();
-            int count = 0;
-            for (String yhid : delYhids) {
-                UserExample.Criteria criteria = userExample.createCriteria().andYhidEqualTo(yhid);
-                userExample.or(criteria);
-                int isSucc = userMapper.deleteByExample(userExample);
-                if (1 == isSucc) {
-                    count++;
-                } else {
-                    return count;
-                }
-            }
-            return count;
+            return userMapper.batchdelete(delYhids);
         }
         return 0;
     }
@@ -355,5 +344,40 @@ public class ImplUserService implements UserService {
     @Override
     public String selectPhotonameById(String yhid) {
         return userMapper.selectPhotonameByYhid(yhid);
+    }
+
+
+    /**
+     * 将图片从数据库下载到服务器，并且返回图片新的名字
+     *
+     * @param yhid 用户id
+     * @return 图片名称
+     */
+    @Override
+    public String getPhotoName(String yhid, String photoPath) {
+        User user = userMapper.selectByPrimaryKey(yhid);
+        String photoname = null;
+
+        try {
+            ByteArrayInputStream bais = new ByteArrayInputStream(user.getPhoto());
+            BufferedImage bi1 = ImageIO.read(bais);
+            photoname = UUID.randomUUID().toString() + "." + user.getPhototype();
+
+            File file = new File(photoPath);
+            if (!file.exists()) {
+                file.mkdir();
+            }
+
+            String finalPath = photoPath + File.separator + photoname;
+
+            File w2 = new File(finalPath);
+            ImageIO.write(bi1, user.getPhototype(), w2);
+
+            userMapper.updatePhotonameByYhid(yhid, photoname);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return photoname;
     }
 }

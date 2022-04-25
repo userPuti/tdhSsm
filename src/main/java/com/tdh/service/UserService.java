@@ -67,7 +67,7 @@ public interface UserService {
      * @param del 用户的信息集合
      * @return 是否删除成功
      */
-    public int bulkDeletion(String del);
+    public int batchDelete(String del);
 
     /**
      * 根据用户id查询用户信息
@@ -82,4 +82,11 @@ public interface UserService {
      * @return 返回头像的图片名称
      */
     String selectPhotonameById(String yhid);
+
+    /**
+     * 将图片从数据库下载到服务器，并且返回图片新的名字
+     * @param yhid 用户id
+     * @return 图片名称
+     */
+    String getPhotoName(String yhid,String photoPath);
 }

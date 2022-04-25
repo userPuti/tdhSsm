@@ -49,6 +49,8 @@ $(
 
 //添加用户信息
 function doAdd() {
+    $('#downloadPhoto').hide();
+
     $('#iSubmit').click(function () {
         let valid = validateForm();
         if (valid === false) {

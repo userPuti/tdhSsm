@@ -8,7 +8,6 @@ import com.tdh.domain.Depart;
 import com.tdh.domain.User;
 import com.tdh.dto.YhxxDto;
 import com.tdh.service.UserService;
-import com.tdh.utils.response.Common;
 import com.tdh.utils.response.ResResult;
 import com.tdh.utils.response.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.imageio.ImageIO;
-import javax.imageio.stream.FileImageOutputStream;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.*;
 
@@ -68,8 +64,8 @@ public class UserController {
      */
     @RequestMapping("/addUser")
     @ResponseBody
-    public ResponseVO addUser(User user,HttpSession httpsession) {
-        boolean bInsert = userService.insertUser(user,httpsession);
+    public ResponseVO addUser(User user, HttpSession httpsession) {
+        boolean bInsert = userService.insertUser(user, httpsession);
         if (bInsert) {
             return ResResult.success();
         } else {
@@ -89,7 +85,7 @@ public class UserController {
     public ResponseVO bulkDel(@RequestParam("del") String ids) {
         String[] idArray = ids.trim().split(",");
         int total = idArray.length;
-        int succCount = userService.bulkDeletion(ids);
+        int succCount = userService.batchDelete(ids);
         int fail = total - succCount;
         if (succCount > 0) {
             return ResResult.successWithData("成功删除了" + succCount + "条数据,失败了" + fail + "条");
@@ -107,10 +103,10 @@ public class UserController {
      */
     @RequestMapping(value = "/update", produces = "application/json;charset=utf-8")
     @ResponseBody
-    public ResponseVO updateInfo(User user,HttpSession httpSession) {
+    public ResponseVO updateInfo(User user, HttpSession httpSession) {
         String yhid = user.getYhid();
 
-        boolean isSucc = userService.updateUserInfo(user,httpSession);
+        boolean isSucc = userService.updateUserInfo(user, httpSession);
         if (isSucc) {
             return ResResult.success();
         } else {
@@ -133,15 +129,11 @@ public class UserController {
         User user = userService.selectUserById(yhid);
         modelAndView.addObject("user", user);
 
-
         if (user.getPhoto() != null) {
             ServletContext servletContext = request.getSession().getServletContext();
             String photoPath = servletContext.getRealPath("photo");
-            String finalPath = photoPath + File.separator + user.getPhotoname();
-
-            Common common = new Common();
-            String imgSrc = common.buildHttplj("/photo/" + user.getPhotoname() , request);
-
+            String photoName = userService.getPhotoName(yhid, photoPath);
+            String imgSrc = "photo/" + photoName;
             modelAndView.addObject("imgSrc", imgSrc);
         }
 
@@ -219,17 +211,20 @@ public class UserController {
 
 
     @RequestMapping("/download")
-    public ResponseEntity<byte[]> testResponseEntity(HttpSession session, @RequestParam("yhid") String yhid) {
-        String photoname = userService.selectPhotonameById(yhid);
+    public ResponseEntity<byte[]> testResponseEntity(HttpSession httpSession, @RequestParam("yhid") String yhid) {
         ResponseEntity<byte[]> responseEntity = null;
         InputStream is = null;
         try {
             //获取ServletContext对象
-            ServletContext servletContext = session.getServletContext();
+            ServletContext servletContext = httpSession.getServletContext();
+            String photoPath = servletContext.getRealPath("photo");
+            String photoName = userService.getPhotoName(yhid, photoPath);
             //获取服务器中文件的真实路径
-            String realPath = servletContext.getRealPath("/photo/" + photoname);
+            String realPath = photoPath + File.separator + photoName;
+
             //创建输入流
             is = new FileInputStream(realPath);
+
             //创建字节数组
             byte[] bytes = new byte[is.available()];
             //将流读到字节数组中
@@ -237,7 +232,7 @@ public class UserController {
             //创建HttpHeaders对象设置响应头信息
             MultiValueMap<String, String> headers = new HttpHeaders();
             //设置要下载方式以及下载文件的名字
-            headers.add("Content-Disposition", "attachment;filename=" + photoname);
+            headers.add("Content-Disposition", "attachment;filename=" + photoName);
             //设置响应状态码
             HttpStatus statusCode = HttpStatus.OK;
             //创建ResponseEntity对象
@@ -258,21 +253,4 @@ public class UserController {
         }
         return responseEntity;
     }
-
-
-    private void byte2image(byte[] data, String path) {
-        if (data.length < 3 || path.equals(""))
-            return;
-        try {
-            FileImageOutputStream imageOutput = new FileImageOutputStream(new File(path));
-            imageOutput.write(data, 0, data.length);
-            imageOutput.close();
-            System.out.println("Make Picture success,Please find image in " + path);
-        } catch (Exception ex) {
-            System.out.println("Exception: " + ex);
-            ex.printStackTrace();
-        }
-    }
-
-
 }

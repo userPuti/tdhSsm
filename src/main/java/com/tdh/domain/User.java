@@ -1,28 +1,64 @@
 package com.tdh.domain;
 
 public class User {
+    /**
+     * 用户id
+     */
     private String yhid;
 
+    /**
+     * 用户姓名
+     */
     private String yhxm;
 
+    /**
+     * 用户口令
+     */
     private String yhkl;
 
+    /**
+     * 用户性别
+     */
     private String yhxb;
 
+    /**
+     * 用户部门
+     */
     private String yhbm;
 
+    /**
+     * 出生日期
+     */
     private String csrq;
 
+    /**
+     * 登记日期
+     */
     private String djrq;
 
+    /**
+     * 是否禁用
+     */
     private String sfjy;
 
+    /**
+     * 排序号
+     */
     private Integer pxh;
 
+    /**
+     * 头像名称
+     */
     private String photoname;
 
+    /**
+     * 头像的格式
+     */
     private String phototype;
 
+    /**
+     * 头像的二进制文件
+     */
     private byte[] photo;
 
     public User(String yhid, String yhxm, String yhkl, String yhxb, String yhbm, String csrq, String djrq, String sfjy, Integer pxh, String photoname, String phototype) {

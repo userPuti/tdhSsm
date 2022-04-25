@@ -2,10 +2,10 @@ package com.tdh.mapper;
 
 import com.tdh.domain.User;
 import com.tdh.domain.UserExample;
-import java.util.List;
-
 import com.tdh.dto.YhxxDto;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserMapper {
     long countByExample(UserExample example);
@@ -46,8 +46,32 @@ public interface UserMapper {
 
     /**
      * 根据用户id查询头像名称
+     *
      * @param Yhid 用户的头像名称
      * @return 头像名称
      */
     String selectPhotonameByYhid(String Yhid);
+
+    /**
+     * 返回图像类型
+     *
+     * @param yhid 用户id
+     * @return 图像类型格式
+     */
+    String selectPhototypeByYhid(String yhid);
+
+    /**
+     * 修改头像名称
+     *
+     * @param yhid 用户id
+     * @return 为1则是修改成功，否则是失败
+     */
+    int updatePhotonameByYhid(@Param("yhid") String yhid, @Param("photoname") String photoname);
+
+    /**
+     * 批量删除用户
+     * @param yhid 用户id
+     * @return 删除的条数
+     */
+    int batchdelete(String[] yhid);
 }

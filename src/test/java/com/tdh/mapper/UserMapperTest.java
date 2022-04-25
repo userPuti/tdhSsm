@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.nio.charset.StandardCharsets;
@@ -31,5 +32,16 @@ public class UserMapperTest {
         System.out.println(users.get(0).getYhid());
     }
 
+    @Test
+    public void selectPhotoname(){
+        String s = userMapper.selectPhotonameByYhid("19");
+        System.out.println(s);
+    }
 
+
+    @Test
+    public void testbatchDelete(){
+        int batchdelete = userMapper.batchdelete(new String[]{"197", "198", "196"});
+        System.out.println(batchdelete);
+    }
 }
