@@ -11,6 +11,7 @@ import com.tdh.mapper.UserMapper;
 import com.tdh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -179,7 +180,7 @@ public class ImplUserService implements UserService {
      * @return xml格式
      */
     @Override
-//    @Transactional("")
+    @Transactional
     public boolean insertUser(User user, String photoPath) {
         if (user != null) {
             String sfjy = user.getSfjy();
@@ -236,6 +237,7 @@ public class ImplUserService implements UserService {
      * @return 是否删除成功
      */
     @Override
+    @Transactional
     public boolean deleteUserInfo(YhxxDto yhxxDto) {
         if (yhxxDto != null) {
             int isSucc = userMapper.deleteByPrimaryKey(yhxxDto.getYhid());
@@ -251,6 +253,7 @@ public class ImplUserService implements UserService {
      * @return 是否插入成功
      */
     @Override
+    @Transactional
     public boolean updateUserInfo(User user, String photoPath) {
         if (user != null) {
             String sfjy = user.getSfjy();
@@ -317,6 +320,7 @@ public class ImplUserService implements UserService {
      * @return 是否删除成功
      */
     @Override
+    @Transactional
     public int batchDelete(String dels) {
         if (dels != null && !"".equals(dels)) {
             String[] delYhids = dels.trim().split(",");
@@ -345,6 +349,7 @@ public class ImplUserService implements UserService {
      * @return 图片名称
      */
     @Override
+    @Transactional
     public String getPhotoName(String yhid, String photoPath) {
         User user = userMapper.selectByPrimaryKey(yhid);
         String photoname = null;
