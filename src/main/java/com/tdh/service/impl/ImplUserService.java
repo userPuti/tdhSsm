@@ -9,6 +9,8 @@ import com.tdh.domain.UserExample;
 import com.tdh.dto.YhxxDto;
 import com.tdh.mapper.UserMapper;
 import com.tdh.service.UserService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +33,8 @@ import java.util.UUID;
  */
 @Service("userService")
 public class ImplUserService implements UserService {
+
+    private static final Log log = LogFactory.getLog(ImplUserService.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -126,13 +130,16 @@ public class ImplUserService implements UserService {
     @Override
     public User selectUserById(String yhid) {
         if (!Objects.equals(yhid, "")) {
+            log.debug("查询 " + yhid + "的信息");
             UserExample userExample = new UserExample();
             userExample.createCriteria().andYhidEqualTo(yhid);
             List<User> users = userMapper.selectByExampleWithBLOBs(userExample);
             if (users.size() > 0) {
+                log.debug("查询到了 " + yhid + "的信息" + users.get(0));
                 return transferToRealInfo(users.get(0));
             }
         }
+        log.info("未找到 " + yhid + " 的信息");
         return null;
     }
 
@@ -146,11 +153,14 @@ public class ImplUserService implements UserService {
     @Override
     public boolean login(User user) {
         if (user != null) {
+            log.debug("查找 " + user.getYhid() + " 的登录信息");
             UserExample userExample = new UserExample();
             userExample.createCriteria().andYhidEqualTo(user.getYhid()).andYhklEqualTo(user.getYhkl());
             List<User> users = userMapper.selectByExample(userExample);
+            log.debug(user.getYhid() + " 的登录信息： " + users.get(0));
             return users.size() > 0;
         }
+        log.info(user.getYhid() + " 登录失败");
         return false;
     }
 
@@ -163,13 +173,15 @@ public class ImplUserService implements UserService {
     @Override
     public String userInfoDisplay(YhxxDto yhxxDto) {
         if (yhxxDto != null) {
+            log.debug("查询主页表格中的用户信息");
             PageHelper.offsetPage(yhxxDto.getStart() - 1, yhxxDto.getLimit());
             List<User> users = userMapper.selectUser(yhxxDto);
             PageInfo<User> usersPageInfo = new PageInfo<>(users);
             int total = (int) usersPageInfo.getTotal();
+            log.debug("主页表格中的用户信息已查询完毕");
             return userListXml(users, total);
         }
-
+        log.info("主页表格信息未找到或为空！");
         return "";
     }
 
@@ -183,6 +195,7 @@ public class ImplUserService implements UserService {
     @Transactional
     public boolean insertUser(User user, String photoPath) {
         if (user != null) {
+            log.debug("插入用户" + user);
             String sfjy = user.getSfjy();
 
             if (Objects.equals(sfjy, "on")) {
@@ -206,10 +219,10 @@ public class ImplUserService implements UserService {
                 user.setPhoto(imageBinary);
             }
             int rows = userMapper.insertSelective(user);
-
+            log.debug(user.getYhid() + " 用户信息添加成功");
             return rows > 0;
         }
-
+        log.info(user.getYhid() + " 用户信息添加失败");
         return false;
     }
 
@@ -240,9 +253,11 @@ public class ImplUserService implements UserService {
     @Transactional
     public boolean deleteUserInfo(YhxxDto yhxxDto) {
         if (yhxxDto != null) {
+            log.warn("正在删除用户信息");
             int isSucc = userMapper.deleteByPrimaryKey(yhxxDto.getYhid());
             return 1 == isSucc;
         }
+        log.info("用户信息删除失败");
         return false;
     }
 
@@ -256,6 +271,7 @@ public class ImplUserService implements UserService {
     @Transactional
     public boolean updateUserInfo(User user, String photoPath) {
         if (user != null) {
+            log.debug(user.getYhid() + " 正在更新用户信息为 " + user);
             String sfjy = user.getSfjy();
             if (Objects.equals(sfjy, "on")) {
                 user.setSfjy("1");
@@ -275,6 +291,7 @@ public class ImplUserService implements UserService {
             }
 
             int isSucc = userMapper.updateByPrimaryKeySelective(user);
+            log.debug(user.getYhid() + " 的用户信息更新成功");
             return 1 == isSucc;
         }
         return false;
@@ -289,6 +306,7 @@ public class ImplUserService implements UserService {
     @Override
     public User viewUserInfo(YhxxDto yhxxDto) {
         if (yhxxDto != null) {
+            log.debug("查看 " + yhxxDto.getYhid() + " 的信息");
             User user = userMapper.selectByPrimaryKey(yhxxDto.getYhid());
 
             if (user != null) {
@@ -307,9 +325,11 @@ public class ImplUserService implements UserService {
 
                 return transferToRealInfo(user);
             } else {
+                log.info("查看用户信息失败");
                 return null;
             }
         }
+        log.info("没有找到用户信息");
         return null;
     }
 
@@ -323,9 +343,11 @@ public class ImplUserService implements UserService {
     @Transactional
     public int batchDelete(String dels) {
         if (dels != null && !"".equals(dels)) {
+            log.warn("正在删除用户信息");
             String[] delYhids = dels.trim().split(",");
             return userMapper.batchdelete(delYhids);
         }
+        log.info("删除用户信息失败");
         return 0;
     }
 
@@ -338,6 +360,7 @@ public class ImplUserService implements UserService {
      */
     @Override
     public String selectPhotonameById(String yhid) {
+        log.debug("正在查询用户" + yhid + "的头像信息");
         return userMapper.selectPhotonameByYhid(yhid);
     }
 
@@ -351,6 +374,7 @@ public class ImplUserService implements UserService {
     @Override
     @Transactional
     public String getPhotoName(String yhid, String photoPath) {
+        log.debug("正在查询用户" + yhid + "的头像信息");
         User user = userMapper.selectByPrimaryKey(yhid);
         String photoname = null;
 
@@ -371,7 +395,7 @@ public class ImplUserService implements UserService {
 
             userMapper.updatePhotonameByYhid(yhid, photoname);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("用户头像获取出现错误", e);
         }
 
         return photoname;

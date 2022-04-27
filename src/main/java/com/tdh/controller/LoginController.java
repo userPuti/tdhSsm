@@ -6,6 +6,8 @@ import com.tdh.cache.Caches;
 import com.tdh.domain.Depart;
 import com.tdh.domain.User;
 import com.tdh.service.UserService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +28,8 @@ import java.util.Map;
  */
 @Controller
 public class LoginController {
+
+    private static final Log log = LogFactory.getLog(LoginController.class);
 
     @Autowired
     private UserService userService;
@@ -40,7 +45,7 @@ public class LoginController {
      * @return 成功跳转到homePage，失败则留在login页面
      */
     @RequestMapping("/login")
-    public ModelAndView login(HttpServletResponse resp, @RequestParam("zh") String yhid, @RequestParam("kl") String yhkl,
+    public ModelAndView login(HttpSession httpSession, HttpServletResponse resp, @RequestParam("zh") String yhid, @RequestParam("kl") String yhkl,
                               @Nullable @RequestParam("jzzh") String jzzh, @Nullable @RequestParam("jzmm") String jzmm) {
         ModelAndView modelAndView = new ModelAndView();
         User user = new User();
@@ -70,11 +75,16 @@ public class LoginController {
             try {
                 modelAndView.addObject("departs", new ObjectMapper().writeValueAsString(departs).replaceAll("\"", "&quot;"));
             } catch (JsonProcessingException e) {
-                e.printStackTrace();
+                log.error("用户部门json对象转换异常", e);
             }
+
+            httpSession.setAttribute("username",yhid);
+
+            log.info(yhid + " 登录成功");
             return modelAndView;
         } else {
             modelAndView.setViewName("login");
+            log.info(yhid + " 登录失败");
             return modelAndView;
         }
     }
