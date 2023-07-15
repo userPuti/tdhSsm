@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tdh.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.tdh.domain.User">
+    <constructor>
+      <idArg column="YHID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="YHXM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="YHKL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="YHXB" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="YHBM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CSRQ" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DJRQ" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SFJY" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PXH" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    YHID, YHXM, YHKL, YHXB, YHBM, CSRQ, DJRQ, SFJY, PXH
+  </sql>
+
+  <select id="selectUser" parameterType="com.tdh.dto.YhxxDto" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    <where>
+      <if test="yhid != null and yhid != ''">
+        <bind name="yhid" value="'%' + yhid + '%'"/>
+        and YHID like #{yhid}
+      </if>
+      <if test="yhbm != null and yhbm != ''">
+        and YHBM = #{yhbm}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectByExample" parameterType="com.tdh.domain.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where YHID = #{yhid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_user
+    where YHID = #{yhid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tdh.domain.UserExample">
+    delete from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tdh.domain.User">
+    insert into t_user (YHID, YHXM, YHKL, 
+      YHXB, YHBM, CSRQ, DJRQ, 
+      SFJY, PXH)
+    values (#{yhid,jdbcType=VARCHAR}, #{yhxm,jdbcType=VARCHAR}, #{yhkl,jdbcType=VARCHAR}, 
+      #{yhxb,jdbcType=VARCHAR}, #{yhbm,jdbcType=VARCHAR}, #{csrq,jdbcType=VARCHAR}, #{djrq,jdbcType=VARCHAR}, 
+      #{sfjy,jdbcType=VARCHAR}, #{pxh,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tdh.domain.User">
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="yhid != null">
+        YHID,
+      </if>
+      <if test="yhxm != null">
+        YHXM,
+      </if>
+      <if test="yhkl != null">
+        YHKL,
+      </if>
+      <if test="yhxb != null">
+        YHXB,
+      </if>
+      <if test="yhbm != null">
+        YHBM,
+      </if>
+      <if test="csrq != null">
+        CSRQ,
+      </if>
+      <if test="djrq != null">
+        DJRQ,
+      </if>
+      <if test="sfjy != null">
+        SFJY,
+      </if>
+      <if test="pxh != null">
+        PXH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="yhid != null">
+        #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="yhxm != null">
+        #{yhxm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhkl != null">
+        #{yhkl,jdbcType=VARCHAR},
+      </if>
+      <if test="yhxb != null">
+        #{yhxb,jdbcType=VARCHAR},
+      </if>
+      <if test="yhbm != null">
+        #{yhbm,jdbcType=VARCHAR},
+      </if>
+      <if test="csrq != null">
+        #{csrq,jdbcType=VARCHAR},
+      </if>
+      <if test="djrq != null">
+        #{djrq,jdbcType=VARCHAR},
+      </if>
+      <if test="sfjy != null">
+        #{sfjy,jdbcType=VARCHAR},
+      </if>
+      <if test="pxh != null">
+        #{pxh,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tdh.domain.UserExample" resultType="java.lang.Long">
+    select count(*) from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_user
+    <set>
+      <if test="record.yhid != null">
+        YHID = #{record.yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yhxm != null">
+        YHXM = #{record.yhxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yhkl != null">
+        YHKL = #{record.yhkl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yhxb != null">
+        YHXB = #{record.yhxb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yhbm != null">
+        YHBM = #{record.yhbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.csrq != null">
+        CSRQ = #{record.csrq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.djrq != null">
+        DJRQ = #{record.djrq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfjy != null">
+        SFJY = #{record.sfjy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pxh != null">
+        PXH = #{record.pxh,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_user
+    set YHID = #{record.yhid,jdbcType=VARCHAR},
+      YHXM = #{record.yhxm,jdbcType=VARCHAR},
+      YHKL = #{record.yhkl,jdbcType=VARCHAR},
+      YHXB = #{record.yhxb,jdbcType=VARCHAR},
+      YHBM = #{record.yhbm,jdbcType=VARCHAR},
+      CSRQ = #{record.csrq,jdbcType=VARCHAR},
+      DJRQ = #{record.djrq,jdbcType=VARCHAR},
+      SFJY = #{record.sfjy,jdbcType=VARCHAR},
+      PXH = #{record.pxh,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tdh.domain.User">
+    update t_user
+    <set>
+      <if test="yhxm != null">
+        YHXM = #{yhxm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhkl != null">
+        YHKL = #{yhkl,jdbcType=VARCHAR},
+      </if>
+      <if test="yhxb != null">
+        YHXB = #{yhxb,jdbcType=VARCHAR},
+      </if>
+      <if test="yhbm != null">
+        YHBM = #{yhbm,jdbcType=VARCHAR},
+      </if>
+      <if test="csrq != null">
+        CSRQ = #{csrq,jdbcType=VARCHAR},
+      </if>
+      <if test="djrq != null">
+        DJRQ = #{djrq,jdbcType=VARCHAR},
+      </if>
+      <if test="sfjy != null">
+        SFJY = #{sfjy,jdbcType=VARCHAR},
+      </if>
+      <if test="pxh != null">
+        PXH = #{pxh,jdbcType=INTEGER},
+      </if>
+    </set>
+    where YHID = #{yhid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tdh.domain.User">
+    update t_user
+    set YHXM = #{yhxm,jdbcType=VARCHAR},
+      YHKL = #{yhkl,jdbcType=VARCHAR},
+      YHXB = #{yhxb,jdbcType=VARCHAR},
+      YHBM = #{yhbm,jdbcType=VARCHAR},
+      CSRQ = #{csrq,jdbcType=VARCHAR},
+      DJRQ = #{djrq,jdbcType=VARCHAR},
+      SFJY = #{sfjy,jdbcType=VARCHAR},
+      PXH = #{pxh,jdbcType=INTEGER}
+    where YHID = #{yhid,jdbcType=VARCHAR}
+  </update>
+</mapper>
