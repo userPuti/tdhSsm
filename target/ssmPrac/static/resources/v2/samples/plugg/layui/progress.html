@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../../../static/plugg/layui/css/layui.css">
+	<script type="text/javascript" src="../../../static/plugg/layui/layui.js" ></script>
+	<link rel="stylesheet" href="../../../static/plugg/layui/css/modules/layer/default/layer.css">
+	<script type="text/javascript" src="../../../static/plugg/layui/lay/modules/layer.js" ></script>
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+	<link rel="stylesheet" href="../../../static/tdh/btn/css/btn.css" />
+	<script type="text/javascript" src="../../../static/tdh/btn/js/tdh.btn.js" ></script>
+</head>
+<body>
+	<a id="test" class="tdh_btn tdh_btn_blue">进度条</a>
+	<script>
+		$('#test').on('click', function(){
+			var progressHtml='<div class="layui-progress layui-progress-big" lay-showPercent="yes" lay-filter="demo">'
+							+'<div class="layui-progress-bar layui-bg-blue" lay-percent="0%"></div>'
+						+'</div>';
+			layer.open({
+				type: 1,
+				title: false,
+				closeBtn: false,
+				skin: 'layui-layer-setmybg',
+				area: ['300px','30px'],
+				resize: false,
+				shadeClose: false,
+				content: progressHtml,
+				success: function(layero, index){
+					layui.use('element', function(){
+						var $ = layui.jquery,element = layui.element;
+						var n = 0, timer = setInterval(function(){
+					        	n = n + Math.random()*10|0;  
+					        	if(n>100){
+					        		n = 100;
+					        		clearInterval(timer);
+					        		layer.close(index);//关闭弹窗
+					        	}
+					        	element.progress('demo', n+'%');//进度条赋值
+				      		}, 300+Math.random()*100);
+				      	
+						element.render('progress');
+					});
+				}
+			});
+		});
+	</script>
+</body>
+</html>

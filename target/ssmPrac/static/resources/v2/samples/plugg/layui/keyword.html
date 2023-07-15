@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+	<link rel="stylesheet" href="../../../static/plugg/layui/css/modules/layer/default/layer.css">
+	<script type="text/javascript" src="../../../static/plugg/layui/lay/modules/layer.js" ></script>
+	<link rel="stylesheet" href="../../../static/tdh/btn/css/btn.css" />
+	<script type="text/javascript" src="../../../static/tdh/btn/js/tdh.btn.js" ></script>
+</head>
+<body>
+	<a id="test" class="tdh_btn tdh_btn_blue">选择关键字</a>
+	<input id="input" type="text" />
+	<script>
+		$('#test').on('click', function(){
+			var data=[{
+				"name":"四风",
+				"pxh":"1"
+			},{
+				"name":"扶贫领域",
+				"pxh":"4"
+			},{
+				"name":"涉黑",
+				"pxh":"2"
+			},{
+				"name":"环保",
+				"pxh":"3"
+			}];
+			layer.open({
+				id: 'selkeyword',
+				type: 2,
+				title: '选择关键字',
+				shadeClose: true,
+				shade: 0.8,
+				area: ['860px', '450px'],
+				content: '../../tdh/keyword/keyword.html?data='+escape(JSON.stringify(data)),
+				btn:['确定'],
+				success: function(index, layero){
+					var frameId=document.getElementById('selkeyword').getElementsByTagName('iframe')[0].id;
+					var val=$('#input').val();
+					if(val){
+						$('#'+frameId)[0].contentWindow.myKeyword.setKeyword(val);
+					}
+				},
+				yes: function(index, layero){
+					var frameId=document.getElementById('selkeyword').getElementsByTagName('iframe')[0].id;
+    				var checkArray=$('#'+frameId)[0].contentWindow.myKeyword.getCheckArray();
+    				$('#input').val(checkArray);
+                    layer.close(index);
+				}
+			}); 
+		});
+	</script>
+</body>
+</html>

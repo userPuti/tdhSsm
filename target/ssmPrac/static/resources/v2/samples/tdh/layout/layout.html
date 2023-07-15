@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../../../static/tdh/reset.css" />
+	<link rel="stylesheet" href="../../../static/tdh/layout/css/layout.css" />
+	<style>
+		body{ overflow-y: auto;}
+	</style>
+</head>
+<body>
+	<!--注释开始-->
+	<div style="background: #f0f0f0; border-top: 2px dashed #ddd; margin: 20px 0;">
+		<h3>-->用例</h3>
+		<xmp><link rel="stylesheet" href="../../../static/tdh/reset.css" /></xmp><br />
+		<xmp><link rel="stylesheet" href="../../../static/tdh/layout/css/layout.css" /></xmp><br />
+	</div>
+	<div style="background: #f0f0f0; border-top: 2px dashed #ddd; margin: 20px 0;">
+		<p>-->上中下</p>
+		<xmp><div class="tdh_layout" style="padding: 80px 0;">      |   需设置上下padding-top/padding-bottom值为上/下固定高度值(用例上80px、下80px)</xmp><br />
+		<xmp>	<div class="tdh_layout_t" style="height: 80px;">上</div>      |   需设置固定高度(用例是80px)</xmp><br />
+		<xmp>	<div class="tdh_layout_c">中</div></xmp><br />
+		<xmp>	<div class="tdh_layout_b" style="height: 80px;">下</div>      |   需设置固定高度(用例是80px)</xmp><br />
+		<xmp></div></xmp><br />
+		<p>若上下高度不固定，请参考 <a href="layout_tcb_js.html" target="_blank" style="color: blue;"> layout_tcb_js.html </a> 通过js实现中间内容自适应。</p>
+	</div>
+	<!--注释结束-->
+	<div class="tdh_layout" style="height: 250px; padding: 80px 0;">
+		<div class="tdh_layout_t" style="height: 80px; background-color: #ccc;">上</div>
+		<div class="tdh_layout_c">中</div>
+		<div class="tdh_layout_b" style="height: 80px;background-color: #ccc;">下</div>
+	</div>
+	<!--注释开始-->
+	<div style="background: #f0f0f0; border-top: 2px dashed #ddd; margin: 20px 0;">
+		<p>-->左右</p>
+		<xmp><div class="tdh_layout"></xmp><br />
+		<xmp>	<div class="tdh_layout_l" style="width: 80px;">左</div>         |   需设置固定宽度(用例是80px)</xmp><br />
+		<xmp>	<div class="tdh_layout_r" style="margin-left: 80px;">右</div>   |   需设置margin-left值为左侧固定宽度值(用例是80px)</xmp><br />
+		<xmp></div></xmp><br />
+	</div>
+	<!--注释结束-->
+	<div class="tdh_layout" style="height: 250px;">
+		<div class="tdh_layout_l" style="background-color: #ccc;">左</div>
+		<div class="tdh_layout_r">右</div>
+	</div>
+</body>
+</html>

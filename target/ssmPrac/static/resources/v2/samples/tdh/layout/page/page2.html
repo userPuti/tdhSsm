@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="../../../../static/lib/jquery.min.js" ></script>
+	<link rel="stylesheet" href="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.css" />
+	<link rel="stylesheet" href="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/ext/dhtmlxgrid_pgn_bricks.css" />
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxAjax/codebase/dhtmlxcommon.js" ></script>
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.js" ></script>
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/ext/dhtmlxgrid_filter.js" ></script>
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgridcell.js" ></script>
+	<link rel="stylesheet" href="../../../../static/tdh/btn/css/btn.css" />
+	<script type="text/javascript" src="../../../../static/tdh/btn/js/tdh.btn.js" ></script>
+	<script type="text/javascript" src="../../../../static/plugg/DatePicker/WdatePicker.js" ></script>
+	<link rel="stylesheet" href="../../../../static/tdh/form/css/form.css" />
+	<script type="text/javascript" src="../../../../static/tdh/form/js/tdh.form.js" ></script>
+	<link rel="stylesheet" href="../../../../static/tdh/reset.css" />
+	<!--
+    	
+    -->
+	<link rel="stylesheet" href="../../../../static/tdh/layout/css/fixed_layout.css" />
+	<script type="text/javascript" src="../../../../static/tdh/layout/js/tdh.divresize.js" ></script>
+	<script type="text/javascript" src="../../../../static/tdh/layout/js/tdh.fixedlayout.js" ></script>
+</head>
+<body>
+	<div class="fixed_layout" id="fixedlayout">
+		<div class="fixed_layout_c">
+			<!--内容开始-->
+			<div class="tdh_form_title">标题</div>
+			<!--内容结束-->
+		</div>
+		<div class="fixed_layout_c">
+			<div class="fixed_layout_form">
+				<!--内容开始-->
+				<table class="tdh_form">
+					<colgroup>
+						<col width="11%" />
+						<col width="22%" />
+						<col width="11%" />
+						<col width="22%" />
+						<col width="11%" />
+						<col width="22%" />
+					</colgroup>
+					<tr>
+						<td class="tdTitle"><i class="required">*</i>输入框</td>
+						<td class="tdCont"><input class="inputText" type="text" readonly="readonly" /></td>
+						<td class="tdTitle">日期框</td>
+						<td class="tdCont"><input class="Wdate inputText" type="text" onClick="WdatePicker()" readonly="readonly" /></td>
+						<td class="tdTitle">只读文本框与按钮组合</td>
+						<td class="tdCont">
+							<table>
+								<tr>
+									<td><input class="inputText" type="text" readonly="readonly" /></td>
+									<td width="20"><a class="iconbtn"><i class="icon icon_search"></i></a></td>
+									<td width="20"><a class="iconbtn"><i class="icon icon_del"></i></a></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td class="tdTitle">下拉框</td>
+						<td class="tdCont">
+							<select class="inputSel">
+								<option value=""></option>
+								<option value="1">1</option>
+							</select>
+						</td>
+						<td class="tdTitle">可输入下拉框</td>
+						<td class="tdCont">
+							<select class="inputSel" data-edit="true">
+								<option value=""></option>
+								<option value="1">1</option>
+							</select>
+						</td>
+						<td class="tdTitle">多选下拉框</td>
+						<td class="tdCont">
+							<select class="inputSel" multiple="multiple">
+								<option value=""></option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="tdTitle"></td>
+						<td class="tdCont"></td>
+						<td class="tdTitle">可随意输入下拉框</td>
+						<td class="tdCont">
+							<select class="inputSel" data-edit="true" data-diy="true">
+								<option value=""></option>
+								<option value="1">1</option>
+							</select>
+						</td>
+						<td class="tdTitle"></td>
+						<td class="tdCont"></td>
+					</tr>
+					<tr>
+						<td class="tdTitle">单选框</td>
+						<td class="tdCont" colspan="5">
+							<label><input name="dxk" class="inputRadio" type="radio" onchange="$('.hideTr').show();" />单选框1</label>
+							<label><input name="dxk" class="inputRadio" type="radio" onchange="$('.hideTr').hide();" />单选框2</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="tdTitle">复选框</td>
+						<td class="tdCont" colspan="5">
+							<label><input name="fxk1" class="inputCheck" type="checkbox" />复选框1</label>
+							<label><input name="fxk2" class="inputCheck" type="checkbox" />复选框2</label>
+						</td>
+					</tr>
+					<tr class="hideTr" style="display: none;">
+						<td class="tdTitle">文本域</td>
+						<td class="tdCont" colspan="5">
+							<textarea class="inputArea"></textarea>
+						</td>
+					</tr>
+					<tr class="hideTr" style="display: none;">
+						<td class="tdTitle">表格</td>
+						<td class="tdCont tdCont_pd" colspan="5">
+							<table class="tdh_table">
+								<tr>
+									<th width="10%">序号</th>
+									<th width="30%">标题</th>
+									<th width="60%">内容</th>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>标题</td>
+									<td>内容</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>	
+				<!--内容结束-->
+			</div>
+		</div>
+		<div class="fixed_layout_c tc">
+			<!--内容开始-->
+			<a class="tdh_btn tdh_btn_blue">文书生成</a>
+			<a class="tdh_btn tdh_btn_blue">保存</a>
+			<a class="tdh_btn tdh_btn_blue">呈批</a>
+			<!--内容结束-->
+		</div>
+	</div>
+	
+	<script>
+		$(function(){
+			fixedlayout('fixedlayout','48,*,45')
+		});
+	</script>
+</body>
+</html>

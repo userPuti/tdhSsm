@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../static/plugg/DatePicker/WdatePicker.js" ></script>
+</head>
+<body>
+	<input class="Wdate inputText" type="text" onClick="WdatePicker()" readonly="readonly" />
+	<br />
+	<br />
+	<div class="wdate_wrap">
+		<input id="rangeDate" class="Wdate inputText" type="text" placeholder="选择时间段" readonly="readonly" onclick="$('#startDate').trigger('click')" />
+		<input id="startDate" class="Wdate inputText" type="text" readonly="readonly" onClick="var end=$dp.$('endDate'),rangeDate=$dp.$('rangeDate');WdatePicker({doubleCalendar:true,el:this,onpicked:function(){end.click();rangeDate.focus();rangeDate.value=this.value+'~';},maxDate:'#F{$dp.$D(\'endDate\')}',oncleared:function(dp){rangeDate.value='';}})" />
+		<input id="endDate" class="Wdate inputText" type="text" readonly="readonly" onClick="var rangeDate=$dp.$('rangeDate');this.value='';WdatePicker({doubleCalendar:true,minDate:'#F{$dp.$D(\'startDate\')}',onpicked:function(){rangeDate.focus();rangeDate.value+=this.value;},oncleared:function(dp){rangeDate.value='';}})" />
+	</div>
+</body>
+</html>

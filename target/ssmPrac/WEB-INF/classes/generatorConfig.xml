@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 若想单独配置属性，可将其配入properties后 通过此方式导入属性 ${userId} -->
+    <properties resource="jdbc.properties"/>
+
+    <!-- targetRuntime 默认为MyBatis3DynamicSql，该值不会生成xml文件， 可选择Mybatis3 -->
+    <context id="default" targetRuntime="Mybatis3">
+
+        <!-- optional，旨在创建class时，对注释进行控制 -->
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 配置数据库连接 -->
+        <jdbcConnection
+                driverClass="${jdbc.driver}"
+                connectionURL="${jdbc.url}"
+                userId="${jdbc.username}"
+                password="${jdbc.password}">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <!--        &lt;!&ndash; 非必需，类型处理器，在数据库类型和java类型之间的转换控制&ndash;&gt;-->
+        <!--        <javaTypeResolver>-->
+        <!--            <property name="forceBigDecimals" value="false"/>-->
+        <!--        </javaTypeResolver>-->
+
+        <!-- Model模型生成器,用来生成含有主键key的类，记录类 以及查询Example类
+           targetPackage   指定生成的model生成所在的包名
+           targetProject   指定在该项目下所在的路径
+        -->
+        <javaModelGenerator targetPackage="com.tdh.domain" targetProject="src/main/java">
+            <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 是否对model添加 构造函数 -->
+            <property name="constructorBased" value="true"/>
+            <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
+            <property name="trimStrings" value="false"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.tdh.mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.tdh.mapper" targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+
+        <table tableName="t_depart" domainObjectName="Depart">
+        </table>
+        <table tableName="ts_bzdm" domainObjectName="Bzdm">
+        </table>
+        <table tableName="t_user" domainObjectName="User">
+        </table>
+
+    </context>
+</generatorConfiguration>

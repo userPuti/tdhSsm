@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<title></title>
+	<link rel="stylesheet" href="../../../static/plugg/ztree/css/metroStyle/metroStyle.css" />
+	<link rel="stylesheet" href="../../../static/plugg/ztree/css/metroStyle/diy.css" />
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../static/plugg/ztree/js/jquery.ztree.core.js" ></script>
+</head>
+<body>
+	<ul id="treeFolder" class="ztree"></ul>
+	<script>
+		var setting = {
+			view: {
+				showIcon: showIconForTree//隐藏子节点图标
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			}
+		};
+
+		var zNodes =[
+			{ id:1, pId:0, name:"Resources", open:true, iconSkin:"folderIcon"},
+			{ id:2, pId:1, name:"css", open:true, iconSkin:"folderIcon"},
+			{ id:21, pId:2, name:"animate.css", iconSkin:"leafIcon"},
+			{ id:22, pId:2, name:"main.css", iconSkin:"leafIcon"},
+			{ id:23, pId:2, name:"reset.css", iconSkin:"leafIcon"},
+			{ id:24, pId:2, name:"style.css", iconSkin:"leafIcon"},
+			{ id:25, pId:2, name:"page.css", iconSkin:"leafIcon"},
+			{ id:3, pId:1, name:"js", iconSkin:"folderIcon"},
+			{ id:31, pId:3, name:"jquery.min.js", iconSkin:"leafIcon"},
+			{ id:4, pId:1, name:"images", iconSkin:"folderIcon"},
+			{ id:41, pId:4, name:"icon1.png", iconSkin:"leafIcon"},
+			{ id:5, pId:1, name:"index.html", iconSkin:"leafIcon"}
+		];
+		
+		function showIconForTree(treeId, treeNode) {
+			return treeNode.isParent;
+		};
+		
+		$(function(){
+			$.fn.zTree.init($("#treeFolder"), setting, zNodes);
+		});
+	</script>
+</body>
+</html>

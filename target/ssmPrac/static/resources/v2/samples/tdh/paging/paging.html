@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+	<link rel="stylesheet" href="../../../static/tdh/form/css/form.css" />
+	<script type="text/javascript" src="../../../static/tdh/form/js/tdh.form.js" ></script>
+	<link rel="stylesheet" href="../../../static/tdh/paging/css/paging.css" />
+	<script type="text/javascript" src="../../../static/tdh/paging/js/tdh.paging.js" ></script>
+</head>
+<body>
+	<div class="page">
+		<a class="page_first page_first_dis"></a>
+		<a class="page_prev page_prev_dis"></a>
+		<a class="page_num page_now">1</a>
+		<a class="page_next page_next_dis"></a>
+		<a class="page_last page_last_dis"></a>
+		<span class="page_toggle">共1页 6条</span>
+	</div>
+	<br /><br /><br /><br />
+	<div class="page">
+		<a class="page_first"></a>
+		<a class="page_prev"></a>
+		<a class="page_num page_now">1</a>
+		<a class="page_num">2</a>
+		<a class="page_num">3</a>
+		<a class="page_num">4</a>
+		<a class="page_next"></a>
+		<a class="page_last"></a>
+		<span class="page_toggle">共4页 20条</span>
+	</div>
+	<br /><br /><br /><br />
+	<div class="page">
+		<a class="page_prev"></a>
+		<a class="page_num page_now">1</a>
+		<a class="page_num">2</a>
+		<a class="page_num">3</a>
+		<span class="page_eclips">...</span>
+		<a class="page_num">20</a>
+		<a class="page_next"></a>
+		<span class="page_span">跳转至</span>
+		<input class="page_to" type="text" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')" />
+		<span class="page_span">页</span>
+		<a class="page_btn">确定</a>
+		<span class="page_toggle">共20页 100条</span>
+	</div>
+	<br /><br /><br /><br />
+	<div class="page">
+		<a class="page_first"></a>
+		<a class="page_prev"></a>
+		<span class="page_span">第1页，共1页</span>
+		<a class="page_next"></a>
+		<a class="page_last"></a>
+		<span class="page_limit">
+			<select class="inputSel" style="font-size: 12px;">
+				<option value="10">10条/页</option>
+				<option value="20">20条/页</option>
+				<option value="50">50条/页</option>
+			</select>
+		</span>
+		<span class="page_skip">
+			<span class="page_span">跳转至</span>
+			<input class="page_to" type="text" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')" />
+			<span class="page_span">页</span>
+			<a class="page_btn">确定</a>
+		</span>
+		<span class="page_toggle">共6条</span>
+	</div>
+	<br /><br /><br /><br />
+</body>
+</html>

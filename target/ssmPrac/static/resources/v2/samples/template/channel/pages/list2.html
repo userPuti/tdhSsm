@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../../../../static/tdh/reset.css">
+	<script src="../../../../static/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.css" />
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxAjax/codebase/dhtmlxcommon.js" ></script>
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.js" ></script>
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgridcell.js" ></script>
+	<link rel="stylesheet" href="../../../../static/tdh/btn/css/btn.css" />
+	<script type="text/javascript" src="../../../../static/tdh/btn/js/tdh.btn.js" ></script>
+	<link rel="stylesheet" href="../../../../static/tdh/form/css/form.css" />
+	<script type="text/javascript" src="../../../../static/tdh/form/js/tdh.form.js" ></script>
+	<script type="text/javascript" src="../../../../static/tdh/form/js/tdh.form.placeholder.js" ></script>
+	<link rel="stylesheet" type="text/css" href="../css/list.css">
+	<script src="../js/listCommon.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/list2.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="top">
+			<div id="tab" class="tab">
+				<ul>
+					<li data-id="djb"><em>待交办</em></li>
+					<li data-id="yjs"><em>已结束</em></li></ul>
+			</div>
+		</div>
+		<div class="content">
+			<div class="listwrapper">
+				<div class="searchbar">
+					<div class="searchbar_row">
+						<em class="searchbar_name">事项分类：</em>
+						<select class="inputSel" style="width: 190px;"><option></option></select>
+					</div>
+					<div class="searchbar_row">
+						<em class="searchbar_name">标题：</em>
+						<input class="inputText" type="text" style="width: 328px;" />
+					</div>
+					<div class="searchbar_row">
+						<label class="mgr8"><input class="inputCheck" type="checkbox" />状态1</label>
+						<label><input class="inputCheck" type="checkbox" />状态2</label>
+					</div>
+					<div class="searchbar_row">
+						<a class="tdh_btn mgr8"><i class="tdh_icon icon_search"></i>查询</a>
+						<a class="tdh_btn tdh_btn_white mgr8"><i class="tdh_icon icon_reset"></i>重置</a>
+						<a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_search_gj"></i>高级查询</a>
+					</div>
+					<div class="searchbar_row searchbar_row_fr">
+						<a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_add"></i>新增</a>
+					</div>
+				</div>
+				<div class="toolbar">
+					<label><input class="inputCheck" type="checkbox" /></label>
+					<a data-droppop="sort" data-dropevent="click" class="tdh_btn tdh_btnMore mgr8">排序<i class="tdh_icon icon_arrowDown"></i></a>
+					<div class="toolbar_group">
+						<a class="tdh_btn">终止</a>
+						<a class="tdh_btn">删除</a>
+					</div>
+					<a class="tdh_btn mgl8">导出Excel</a>
+				</div>
+				<div class="list">
+					<div id="grid" style="width: 100%; height: 100%;"></div>
+				</div>
+				<div id="page" class="pagebar">
+					<span class="pagebar_total"></span>
+					<select class="inputSel"></select>
+					<a data-hover="btn_prev_hover" class="btn_prev"><i></i>上一页</a>
+					<a data-hover="btn_next_hover" class="btn_next"><i></i>下一页</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 排序开始 -->
+	<div data-dropdom="sort" class="droppop" style="width: 130px;">
+		<ul class="droppop_list droppop_list_icon">
+			<li class="sort_up">案号</li>
+			<li class="sort_down">案号</li>
+			<li class="sort_default">默认排序</li>
+		</ul>
+	</div>
+	<!-- 排序结束 -->
+</body>
+</html>

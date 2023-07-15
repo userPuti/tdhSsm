@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../../../static/tdh/reset.css" />
+	<link rel="stylesheet" href="../../../static/tdh/keyword/css/keyword.css" />
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+	<link rel="stylesheet" href="../../../static/plugg/layui/css/modules/layer/default/layer.css">
+	<script type="text/javascript" src="../../../static/plugg/layui/lay/modules/layer.js" ></script>
+	<script type="text/javascript" src="../../../static/tdh/tdh.nicescroll.js" ></script>
+	<script type="text/javascript" src="../../../static/tdh/keyword/js/tdh.keyword.js" ></script>
+</head>
+<body>
+	<div id="keyword"></div>
+	</div>
+	<script>
+		var urlstr=window.location.search;
+		var keywordData;
+		var theRequest = new Object();
+		if (urlstr.indexOf("?") != -1) {
+		    var str = urlstr.substr(1);
+		    strs = str.split("&");
+		    for(var i = 0; i < strs.length; i ++) {
+		    	if(strs[i].split("=")[0]=='data'){
+		    		keywordData=JSON.parse(unescape((strs[i].split("=")[1])));
+		    	}
+		    }
+		}
+		var myKeyword;
+		$(function(){
+			myKeyword=new keyword('keyword');
+			myKeyword.init(keywordData);
+		});
+		function doAddKeyword(value){//新增关键字
+			alert(value)
+		}
+	</script>
+</body>
+</html>

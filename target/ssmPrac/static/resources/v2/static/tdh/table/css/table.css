@@ -1,0 +1,114 @@
+.tdh_grid{
+	overflow: hidden;
+	position: relative;
+}
+.tdh_grid_header{
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+.tdh_grid_body{
+	width: 100%;
+	overflow: auto;
+	position: relative;
+}
+.tdh_grid table{
+	table-layout: fixed;
+	border-collapse: collapse;
+	text-align: center;
+}
+.tdh_grid th,.tdh_grid td{
+	font-size: 14px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.tdh_grid_header table,.tdh_grid_body table{
+	border-bottom: 1px solid #d1d1d1;
+	border-right: 1px solid #d1d1d1;
+}
+.tdh_grid_header th {
+    height: 40px;
+    background-color: #fafafa;
+    border: 1px solid #d9d9d9;
+    border-bottom: 0;
+	font-weight: normal;
+}
+.tdh_grid .tdh_grid_setWidth th{
+	border: 0;
+	height: 0;
+}
+.tdh_grid_body td{
+	height: 36px;
+	border-top: 0;
+	background-color: #fff;
+	border-left: 1px solid #d1d1d1;
+	border-bottom: 1px solid #d1d1d1;
+}
+.tdh_grid_hover td{
+	background-color: #ddecf5;
+}
+.tdh_grid_active td{
+	background-color: #f4f4f4;
+}
+.tdh_grid_link{
+	color: #2b6fdd;
+}
+.tdh_grid .checkbox{
+	margin: 0;
+}
+.tdh_grid_sort{
+	cursor: pointer;
+	background: no-repeat right bottom;
+}
+.tdh_grid_sort_desc{
+	background-image: url(../images/sort1.png);
+}
+.tdh_grid_sort_asc{
+	background-image: url(../images/sort2.png);
+}
+.tdh_grid_fixed{
+	position: absolute;
+	top: 0;
+	overflow: hidden;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
+}
+.tdh_grid_fixed_l{
+	left: 0;
+}
+.tdh_grid_fixed_r{
+	right: 0;
+}
+.tdh_grid_fixed .tdh_grid_header,.tdh_grid_fixed .tdh_grid_body{
+	width: auto;
+	position: absolute;
+	top: 0;
+	overflow: hidden;
+}
+.tdh_grid_fixed_l .tdh_grid_header,.tdh_grid_fixed_l .tdh_grid_body{
+	left: 0;
+}
+.tdh_grid_fixed_r .tdh_grid_header,.tdh_grid_fixed_r .tdh_grid_body{
+	right: 0;
+}
+/*stripe*/
+.tdh_grid_stripe .tdh_grid_body table{
+	border: 0;
+	border-left: 1px solid #d1d1d1;
+	border-right: 1px solid #d1d1d1;
+}
+.tdh_grid_stripe .tdh_grid_body td{
+	border-left: 0;
+}
+.tdh_grid_stripe tr.tdh_grid_ev td{
+	background-color: #fff;
+}
+.tdh_grid_stripe tr.tdh_grid_odd td{
+	background-color: #f4f4f4;
+}
+.tdh_grid_stripe tr.tdh_grid_hover td{
+	background-color: #ddecf5;
+}
+.tdh_grid_stripe tr.tdh_grid_active td{
+	background-color: #ffefae;
+}

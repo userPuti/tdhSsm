@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+</head>
+<body>
+	<script>
+		$(function(){
+			$.ajax({
+				type:'get',
+				url:"data.json",
+				dataType:'json',
+				async:true,
+				headers: { 'gs': 'tdh' },
+				success:function (data, textStatus, jqXHR) {
+					//console.log(data);
+					//console.log(JSON.stringify(data));
+					console.log(jqXHR)
+					console.log(jqXHR.getAllResponseHeaders());//获取所有的响应头消息
+    				console.log(jqXHR.getResponseHeader('server'));//获取服务器信息  
+				},
+				error:function (xhr,text) {
+					//console.log(xhr.status);
+					if(xhr.status=='404'){
+						alert(404);
+					}else if(xhr.status=='500'){
+						alert(500);
+					}
+				}
+			});
+		});
+	</script>
+</body>
+</html>

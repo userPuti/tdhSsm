@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../../../static/tdh/reset.css" />
+	<link rel="stylesheet" href="../../../static/tdh/area/css/area.css" />
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../static/tdh/commonjs/tdh.nicescroll.js" ></script>
+	<script type="text/javascript" src="../../../static/tdh/area/js/tdh.area.js" ></script>
+</head>
+<body>
+	<div id="area"></div>
+	<input id="area_input" type="hidden" />
+	<script>
+		var myArea;
+		$(function(){
+			$.ajax({
+				type:'get',
+				url:'../../../static/tdh/area/js/xzqh.json',
+				dataType:'json',
+				//async:false,
+				success:function(data){
+					myArea=new area('area');
+					myArea.init(data);
+					var val=$('#area_input').val();
+					if(val){
+						myArea.setArea(val);
+					}
+				}
+			});
+		});
+	</script>
+</body>
+</html>

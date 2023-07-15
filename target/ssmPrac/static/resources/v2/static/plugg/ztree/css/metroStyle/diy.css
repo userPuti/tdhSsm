@@ -1,0 +1,107 @@
+.ztree * {
+	font-size: 14px;
+}
+.ztree{
+	padding: 0;
+}
+.ztree li ul{
+	margin-left:-21px;
+}
+.ztree li{
+	position:relative;
+	box-sizing: border-box;
+	padding-left: 21px;
+}
+.ztree li span.button.switch{
+	position: absolute;
+	left:0;
+	_margin-left: -21px;
+}
+.ztree li a span.button.switch{
+	position: static;
+	left: auto;
+	margin-left: 0;
+}
+.ztree li a.curSelectedNode{
+	background-color: #d7e4f1;
+}
+.ztree li span.button.folderIcon_ico_open,.ztree li span.button.folderIcon_ico_docu{
+	margin-right: 2px;
+	background-image: url(img/diy/folder_open.png);
+	background-position: center;
+	vertical-align: top;
+	*vertical-align: middle;
+}
+.ztree li span.button.folderIcon_ico_close {
+	margin-right: 2px;
+	background-image: url(img/diy/folder_closed.png);
+	background-position: center;
+	vertical-align: top;
+	*vertical-align: middle;
+}
+.ztree li span.button.courtIcon_ico_open,
+.ztree li span.button.courtIcon_ico_close,
+.ztree li span.button.courtIcon_ico_docu {
+	margin-right: 2px;
+	background-image: url(img/diy/court.png);
+	background-position: center;
+	vertical-align: top;
+	*vertical-align: middle;
+}
+.ztree li span.button.crowdIcon_ico_open,
+.ztree li span.button.crowdIcon_ico_close,
+.ztree li span.button.crowdIcon_ico_docu{
+	margin-right: 2px;
+	background-image: url(img/diy/crowd.png);
+	background-position: center;
+	vertical-align: top;
+	*vertical-align: middle;
+}
+.ztree li span.button.personIcon_ico_docu {
+	margin-right: 2px;
+	background-image: url(img/diy/person.png);
+	background-position: center;
+	vertical-align: top;
+	*vertical-align: middle;
+}
+.ztree li span.button.leafIcon_ico_docu{
+	margin-right: 2px;
+	background-image: url(img/diy/leaf.png);
+	background-position: center;
+	vertical-align: top;
+	*vertical-align: middle;
+}
+.ztree li span.button.chk{
+	width: 15px;
+	height: 21px;
+}
+.ztree li span.button.chk.checkbox_false_full,
+.ztree li span.button.chk.checkbox_false_full_focus{
+	background-image: url(img/diy/check_false.png);
+	background-position: left center;
+}
+.ztree li span.button.chk.checkbox_false_part,
+.ztree li span.button.chk.checkbox_false_part_focus{
+	background-image: url(img/diy/check_false_part.png);
+	background-position: left center;
+}
+.ztree li span.button.chk.checkbox_false_disable,
+.ztree li span.button.chk.checkbox_false_disable_focus{
+	background-image: url(img/diy/checkbox_false_disable.png);
+	background-position: left center;
+}
+.ztree li span.button.chk.checkbox_true_full,
+.ztree li span.button.chk.checkbox_true_full_focus{
+	background-image: url(img/diy/check_true.png);
+	background-position: left center;
+}
+.ztree li span.button.chk.checkbox_true_part,
+.ztree li span.button.chk.checkbox_true_part_focus{
+	background-image: url(img/diy/check_true_part.png);
+	background-position: left center;
+}
+.ztree li span.button.chk.checkbox_true_disable,
+.ztree li span.button.chk.checkbox_true_disable_focus{
+	background-image: url(img/diy/checkbox_true_disable.png);
+	background-position: left center;
+}

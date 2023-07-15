@@ -1,0 +1,394 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../../../static/tdh/btn/css/btn.css" />
+	<script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../static/tdh/btn/js/tdh.btn.js" ></script>
+	<style>
+		td{ border-bottom: 1px solid #ddd; padding: 10px; white-space: nowrap;}
+	</style>
+</head>
+<body style="overflow-y: auto;">
+	<table style="width: 100%;" cellpadding="0" cellspacing="0">
+		<tbody>
+			<tr>
+				<td width="20%" align="right">需引入的css、js</td>
+				<td colspan="5">
+					<xmp><link rel="stylesheet" href="../../../static/tdh/btn/css/btn.css" /></xmp><br />
+					<xmp><script type="text/javascript" src="../../../static/lib/jquery.min.js" ></script></xmp><br />
+					<xmp><script type="text/javascript" src="../../../static/tdh/btn/js/tdh.btn.js" ></script></xmp>
+				</td>
+			</tr>
+			<tr>
+				<td align="right"></td>
+				<td colspan="5">
+					按钮必有类名：tdh_btn<xmp><a class="tdh_btn"></a></xmp><br />
+					圆角按钮：tdh_radius<xmp><a class="tdh_btn tdh_radius"></a></xmp><br />
+					带图标的按钮在按钮<xmp><a></a></xmp>内部添加元素<xmp><i class="tdh_icon 图标类名"></i></xmp>
+				</td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn">按钮</a></td>
+				<td colspan="5">普通按钮：tdh_btn<xmp><a class="tdh_btn"></a></xmp></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_white">按钮</a></td>
+				<td colspan="5">白色按钮：tdh_btn_white<xmp><a class="tdh_btn tdh_btn_white"></a></xmp></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow">按钮</a></td>
+				<td colspan="5">黄色按钮：tdh_btn_yellow<xmp><a class="tdh_btn tdh_btn_yellow"></a></xmp></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue">按钮</a></td>
+				<td colspan="5">蓝色按钮：tdh_btn_blue<xmp><a class="tdh_btn tdh_btn_blue"></a></xmp></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_disable">按钮</a></td>
+				<td colspan="5">禁用按钮：tdh_btn_disable<xmp><a class="tdh_btn tdh_btn_disable"></a></xmp></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_search"></i>查询</a></td>
+				<td colspan="5">icon_search<xmp><i class="tdh_icon icon_search"></i></xmp></td>
+			</tr>
+			<tr>
+				<td align="right" style="border: 0;">
+					<a id="deal" class="tdh_btn tdh_btnMore tdh_btn_blue"><i class="tdh_icon icon_deal"></i>处理<i class="tdh_icon icon_arrowDown"></i></a>
+					<ul data-role="deal" class="tdh_btn_listBox">
+						<li><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_collect"></i>收藏</a></li>
+						<li><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_del"></i>删除</a></li>
+						<li><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_mail"></i>来往邮件</a></li>
+						<li><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_tick"></i>标记已读</a></li>
+						<li><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_tick"></i>全部已读</a></li>
+					</ul>
+				</td>
+				<td style="border: 0;">菜单按钮tdh_btnMore：必备属性id<br /><xmp><a id="deal" class="tdh_btn tdh_btnMore tdh_btn_blue"><i class="tdh_icon icon_deal"></i>处理<i class="tdh_icon icon_arrowDown"></i></a></xmp></td>
+			</tr>
+			<tr>
+				<td align="right"></td>
+				<td colspan="5">菜单tdh_btn_listBox：必备属性data-role="按钮id值"<br />
+					<xmp><ul data-role="deal" class="tdh_btn_listBox"></xmp><br />
+					<xmp>	<li><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_collect"></i>收藏</a></li></xmp><br />
+					<xmp>	<li><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_del"></i>删除</a></li></xmp><br />
+					<xmp>	<li><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_mail"></i>来往邮件</a></li></xmp><br />
+					<xmp>	<li><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_tick"></i>标记已读</a></li></xmp><br />
+					<xmp>	<li><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_tick"></i>全部已读</a></li></xmp><br />
+					<xmp></ul></xmp>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td align="right" style="border: 0;">
+					<a id="func" class="tdh_btn tdh_btnMore tdh_btn_blue"><i class="tdh_icon icon_func"></i>更多功能<i class="tdh_icon icon_arrowDown"></i></a>
+					<ul data-role="func" class="tdh_btn_listBox">
+						<li><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_search"></i>高级查询</a></li>
+						<li>
+							<a class="tdh_btn tdh_btnHover tdh_btn_blue"><i class="tdh_icon icon_ascend"></i>升序排序<i class="tdh_icon icon_arrowRight"></i></a>
+							<ul>
+								<li><a class="tdh_btn tdh_btn_blue">案号</a></li>
+								<li><a class="tdh_btn tdh_btn_blue">立案日期</a></li>
+								<li><a class="tdh_btn tdh_btn_blue">案件状态</a></li>
+								<li><a class="tdh_btn tdh_btn_blue">结案日期</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="tdh_btn tdh_btnHover tdh_btn_blue"><i class="tdh_icon icon_descend"></i>降序排序<i class="tdh_icon icon_arrowRight"></i></a>
+							<ul>
+								<li><a class="tdh_btn tdh_btn_blue">案号</a></li>
+								<li><a class="tdh_btn tdh_btn_blue">立案日期</a></li>
+								<li><a class="tdh_btn tdh_btn_blue">案件状态</a></li>
+								<li><a class="tdh_btn tdh_btn_blue">结案日期</a></li>
+							</ul>
+						</li>
+					</ul>
+				</td>
+				<td colspan="5" style="border: 0;">菜单按钮tdh_btnMore：必备属性id<br /><xmp><a id="func" class="tdh_btn tdh_btnMore tdh_btn_blue"><i class="tdh_icon icon_func"></i>更多功能<i class="tdh_icon icon_arrowDown"></i></a></xmp></td>
+			</tr>
+			<tr>
+				<td align="right"></td>
+				<td colspan="5">菜单tdh_btn_listBox：必备属性data-role="按钮id值"<br />
+					<xmp><ul data-role="func" class="tdh_btn_listBox"></xmp><br />
+					<xmp>	<li><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_search"></i>高级查询</a></li></xmp><br />
+					<xmp>	<li></xmp><br />
+					<xmp>		<a class="tdh_btn tdh_btnHover tdh_btn_blue"><i class="tdh_icon icon_ascend"></i>升序排序<i class="tdh_icon icon_arrowRight"></i></a></xmp><br />
+					<xmp>		<ul></xmp><br />
+					<xmp>			<li><a class="tdh_btn tdh_btn_blue">案号</a></li></xmp><br />
+					<xmp>			<li><a class="tdh_btn tdh_btn_blue">立案日期</a></li></xmp><br />
+					<xmp>			<li><a class="tdh_btn tdh_btn_blue">案件状态</a></li></xmp><br />
+					<xmp>			<li><a class="tdh_btn tdh_btn_blue">结案日期</a></li></xmp><br />
+					<xmp>		</ul></xmp><br />
+					<xmp>	</li></xmp><br />
+					<xmp>	<li></xmp><br />
+					<xmp>		<a class="tdh_btn tdh_btnHover tdh_btn_blue"><i class="tdh_icon icon_descend"></i>降序排序<i class="tdh_icon icon_arrowRight"></i></a></xmp><br />
+					<xmp>		<ul></xmp><br />
+					<xmp>			<li><a class="tdh_btn tdh_btn_blue">案号</a></li></xmp><br />
+					<xmp>			<li><a class="tdh_btn tdh_btn_blue">立案日期</a></li></xmp><br />
+					<xmp>			<li><a class="tdh_btn tdh_btn_blue">案件状态</a></li></xmp><br />
+					<xmp>			<li><a class="tdh_btn tdh_btn_blue">结案日期</a></li></xmp><br />
+					<xmp>		</ul></xmp><br />
+					<xmp>	</li></xmp><br />
+					<xmp></ul></xmp>
+				</td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_search"></i>查询</a></td>
+				<td>icon_search<xmp><i class="tdh_icon icon_search"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_search"></i>查询</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_search"></i>查询</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_search"></i>查询</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_search"></i>查询</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_add"></i>新增</a></td>
+				<td>icon_add<xmp><i class="tdh_icon icon_add"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_add"></i>新增</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_add"></i>新增</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_add"></i>新增</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_add"></i>新增</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_del"></i>删除</a></td>
+				<td>icon_del<xmp><i class="tdh_icon icon_del"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_del"></i>删除</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_del"></i>删除</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_del"></i>删除</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_del"></i>删除</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_save"></i>保存</a></td>
+				<td>icon_save<xmp><i class="tdh_icon icon_save"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_save"></i>保存</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_save"></i>保存</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_save"></i>保存</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_save"></i>保存</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_cancel"></i>取消</a></td>
+				<td>icon_cancel<xmp><i class="tdh_icon icon_cancel"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_cancel"></i>取消</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_cancel"></i>取消</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_cancel"></i>取消</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_cancel"></i>取消</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_return"></i>退回</a></td>
+				<td>icon_return<xmp><i class="tdh_icon icon_return"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_return"></i>退回</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_return"></i>退回</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_return"></i>退回</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_return"></i>退回</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_back"></i>返回</a></td>
+				<td>icon_back<xmp><i class="tdh_icon icon_back"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_back"></i>返回</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_back"></i>返回</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_back"></i>返回</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_back"></i>返回</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_refresh"></i>刷新</a></td>
+				<td>icon_refresh<xmp><i class="tdh_icon icon_refresh"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_refresh"></i>刷新</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_refresh"></i>刷新</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_refresh"></i>刷新</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_refresh"></i>刷新</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_edit"></i>编辑</a></td>
+				<td>icon_edit<xmp><i class="tdh_icon icon_edit"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_edit"></i>编辑</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_edit"></i>编辑</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_edit"></i>编辑</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_edit"></i>编辑</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_print"></i>打印</a></td>
+				<td>icon_print<xmp><i class="tdh_icon icon_print"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_print"></i>打印</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_print"></i>打印</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_print"></i>打印</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_print"></i>打印</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_upload"></i>上传</a></td>
+				<td>icon_upload<xmp><i class="tdh_icon icon_upload"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_upload"></i>上传</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_upload"></i>上传</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_upload"></i>上传</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_upload"></i>上传</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_download"></i>下载</a></td>
+				<td>icon_download<xmp><i class="tdh_icon icon_download"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_download"></i>下载</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_download"></i>下载</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_download"></i>下载</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_download"></i>下载</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_import"></i>导入</a></td>
+				<td>icon_import<xmp><i class="tdh_icon icon_import"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_import"></i>导入</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_import"></i>导入</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_import"></i>导入</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_import"></i>导入</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_export"></i>导出</a></td>
+				<td>icon_export<xmp><i class="tdh_icon icon_export"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_export"></i>导出</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_export"></i>导出</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_export"></i>导出</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_export"></i>导出</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_introduce"></i>引入</a></td>
+				<td>icon_introduce<xmp><i class="tdh_icon icon_introduce"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_introduce"></i>引入</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_introduce"></i>引入</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_introduce"></i>引入</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_introduce"></i>引入</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_deal"></i>处理</a></td>
+				<td>icon_deal<xmp><i class="tdh_icon icon_deal"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_deal"></i>处理</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_deal"></i>处理</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_deal"></i>处理</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_deal"></i>处理</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_reply"></i>回复</a></td>
+				<td>icon_reply<xmp><i class="tdh_icon icon_reply"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_reply"></i>回复</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_reply"></i>回复</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_reply"></i>回复</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_reply"></i>回复</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_collect"></i>收藏</a></td>
+				<td>icon_collect<xmp><i class="tdh_icon icon_collect"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_collect"></i>收藏</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_collect"></i>收藏</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_collect"></i>收藏</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_collect"></i>收藏</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_collected"></i>收藏</a></td>
+				<td>icon_collected<xmp><i class="tdh_icon icon_collected"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_collected"></i>收藏</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_collected"></i>收藏</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_collected"></i>收藏</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_collected"></i>收藏</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_send"></i>发送</a></td>
+				<td>icon_send<xmp><i class="tdh_icon icon_send"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_send"></i>发送</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_send"></i>发送</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_send"></i>发送</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_send"></i>发送</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_transmit"></i>转发</a></td>
+				<td>icon_transmit<xmp><i class="tdh_icon icon_transmit"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_transmit"></i>转发</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_transmit"></i>转发</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_transmit"></i>转发</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_transmit"></i>转发</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_resend"></i>重发</a></td>
+				<td>icon_resend<xmp><i class="tdh_icon icon_resend"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_resend"></i>重发</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_resend"></i>重发</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_resend"></i>重发</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_resend"></i>重发</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_transfer"></i>移送</a></td>
+				<td>icon_transfer<xmp><i class="tdh_icon icon_transfer"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_transfer"></i>移送</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_transfer"></i>移送</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_transfer"></i>移送</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_transfer"></i>移送</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_mail"></i>来往邮件</a></td>
+				<td>icon_mail<xmp><i class="tdh_icon icon_mail"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_mail"></i>来往邮件</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_mail"></i>来往邮件</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_mail"></i>来往邮件</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_mail"></i>来往邮件</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_signin"></i>签收</a></td>
+				<td>icon_signin<xmp><i class="tdh_icon icon_signin"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_signin"></i>签收</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_signin"></i>签收</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_signin"></i>签收</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_signin"></i>签收</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_change"></i>转其他部门</a></td>
+				<td>icon_change<xmp><i class="tdh_icon icon_change"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_change"></i>转其他部门</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_change"></i>转其他部门</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_change"></i>转其他部门</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_change"></i>转其他部门</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_set"></i>设置</a></td>
+				<td>icon_set<xmp><i class="tdh_icon icon_set"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_set"></i>设置</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_set"></i>设置</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_set"></i>设置</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_set"></i>设置</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_reset"></i>重置</a></td>
+				<td>icon_reset<xmp><i class="tdh_icon icon_reset"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_reset"></i>重置</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_reset"></i>重置</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_reset"></i>重置</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_reset"></i>重置</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_batch"></i>呈批</a></td>
+				<td>icon_batch<xmp><i class="tdh_icon icon_batch"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_batch"></i>呈批</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_batch"></i>呈批</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_batch"></i>呈批</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_batch"></i>呈批</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_tip"></i>提示</a></td>
+				<td>icon_tip<xmp><i class="tdh_icon icon_tip"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_tip"></i>提示</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_tip"></i>提示</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_tip"></i>提示</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_tip"></i>提示</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_document"></i>生成文书</a></td>
+				<td>icon_document<xmp><i class="tdh_icon icon_document"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_document"></i>生成文书</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_document"></i>生成文书</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_document"></i>生成文书</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_document"></i>生成文书</a></td>
+			</tr>
+			<tr>
+				<td align="right"><a class="tdh_btn tdh_btn_blue"><i class="tdh_icon icon_test"></i>检测</a></td>
+				<td>icon_test<xmp><i class="tdh_icon icon_test"></i></xmp></td>
+				<td align="right"><a class="tdh_btn"><i class="tdh_icon icon_test"></i>检测</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_white"><i class="tdh_icon icon_test"></i>检测</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_yellow"><i class="tdh_icon icon_test"></i>检测</a></td>
+				<td align="right"><a class="tdh_btn tdh_btn_disable"><i class="tdh_icon icon_test"></i>检测</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

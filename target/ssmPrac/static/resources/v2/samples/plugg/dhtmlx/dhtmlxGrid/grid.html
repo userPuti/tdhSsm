@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="../../../../static/lib/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../../../static/plugg/layui/lay/modules/layer.js" ></script>
+	<link rel="stylesheet" href="../../../../static/tdh/paging/css/paging.css" />
+	<link rel="stylesheet" href="../../../../static/tdh/form/css/form.css" />
+	<script type="text/javascript" src="../../../../static/tdh/form/js/tdh.form.js" ></script>
+	<link rel="stylesheet" href="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.css" />
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxAjax/codebase/dhtmlxcommon.js" ></script>
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.js" ></script>
+	<script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgridcell.js" ></script>
+	<!-- <script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/ext/dhtmlxgrid_splt.js" ></script> -->
+	<style>
+		*{ margin: 0 ; padding: 0;}
+		body{ overflow: hidden; overflow-y: auto;}
+	</style>
+</head>
+<body>
+	<!--注释开始-->
+	<div style="background: #f0f0f0; border-top: 2px dashed #ddd; margin: 20px 0;">
+		<h3>-->用例</h3>
+		<xmp><script type="text/javascript" src="../../../../static/lib/jquery.min.js" ></script></xmp><br />
+		<xmp><script type="text/javascript" src="../../../../static/plugg/layui/lay/modules/layer.js" ></script></xmp><br />
+		<xmp><link rel="stylesheet" href="../../../../static/tdh/paging/css/paging.css" /></xmp><br /><br />
+		<xmp><link rel="stylesheet" href="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.css" /></xmp><br />
+		<xmp><script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxAjax/codebase/dhtmlxcommon.js" ></script></xmp><br />
+		<xmp><script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.js" ></script></xmp><br />
+		<xmp><script type="text/javascript" src="../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/dhtmlxgridcell.js" ></script></xmp><br />
+		<br />
+		<xmp><div id="grid" style="width:100%; height:200px;"></div></xmp><br />
+		<xmp><script></xmp><br />
+	    <xmp>	var mygrid = new dhtmlXGridObject('grid');</xmp><br />
+	    <xmp>	mygrid.setImagePath("../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/imgs/");</xmp><br />
+	    <xmp>	mygrid.setHeader("序号,案号,案件名称,承办部门,承办人");</xmp><br />
+	    <xmp>	mygrid.setInitWidths("100,200,*,200,200");</xmp><br />
+	    <xmp>	mygrid.setColTypes("ro,ro,ro,ro,ro");</xmp><br />
+	    <xmp>	mygrid.setColAlign("center,center,center,center,center");</xmp><br />
+		<xmp>	mygrid.setSkin("tdh_default");</xmp><br />
+		<xmp>	mygrid.init();</xmp><br />
+		<xmp>	mygrid.loadXML("grid.xml");</xmp><br />
+		<xmp></script></xmp>
+	</div>
+	<div style="background: #f0f0f0; border-top: 2px dashed #ddd; margin: 20px 0;">
+		<h3>-->风格体现</h3>
+		<p><span style="margin: 0 10px;">tdh_default</span>、<span style="margin: 0 10px;">tdh_sub</span>、<span style="margin: 0 10px;">tdh_simple</span>、<span style="margin: 0 10px;">tdh_colour</span></p>
+	</div>
+	<!--注释结束-->
+	<table style="width:100%; height:200px;border-collapse: collapse;">
+		<tr>
+			<td>
+				<div id="grid_default" style="width:100%; height:100%;"></div>
+			</td>
+		</tr>
+	</table>
+	<!--注释开始-->
+	<div style="background: #f0f0f0; border-top: 2px dashed #ddd; margin: 20px 0;">
+		<xmp>	mygrid.setSkin("tdh_default");</xmp>
+	</div>
+	<!--注释结束-->
+	<div id="grid_sub" style="width:100%; height:200px;"></div>
+	<!--注释开始-->
+	<div style="background: #f0f0f0; border-top: 2px dashed #ddd; margin: 20px 0;">
+		<xmp>	mygrid.setSkin("tdh_sub");</xmp>
+	</div>
+	<!--注释结束-->
+	<div id="grid_simple" style="width:100%; height:200px;"></div>
+	<!--注释开始-->
+	<div style="background: #f0f0f0; border-top: 2px dashed #ddd; margin: 20px 0;">
+		<xmp>	mygrid.setSkin("tdh_simple");</xmp>
+	</div>
+	<!--注释结束-->
+	<table style="width:100%; height:200px;border-collapse: collapse;">
+		<tr>
+			<td>
+				<div id="grid_colour" style="width:100%; height:100%;"></div>
+			</td>
+		</tr>
+	</table>
+	<!--<div id="grid_colour" style="width:100%; height:200px;"></div>-->
+	<!--注释开始-->
+	<div style="background: #f0f0f0; border-top: 2px dashed #ddd; margin: 20px 0;">
+		<xmp>	mygrid.setSkin("tdh_colour");</xmp><br />
+		<xmp>	mygrid.pagingLayout("count,first,prev,page,next,last,limit,refresh,skip");//设置分页排版</xmp><br />
+		<xmp>	mygrid.pagingLimits("10,20,50");//设置每页条数的选择项</xmp><br />
+		<xmp>	mygrid.enablePagingon(true,10);//true显示分页、10为默认每页条数</xmp><br />
+		<xmp>	mygrid.setPageCurrent(2);//设置当前页</xmp>
+	</div>
+	<div style="background: #f0f0f0; border-top: 2px dashed #ddd; margin: 20px 0;">
+		<p>		注：</p>
+		<xmp>	<userdata name="totalnumber">21</userdata>	//设置总条数</xmp><br />
+		<xmp>	start(每页第一条数据按总数是第几条数据，默认从1开始)、limit(每页显示条数)</xmp>
+	</div>
+	<script>
+		var mygrid = new dhtmlXGridObject('grid_default');
+        mygrid.setImagePath("../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/imgs/");
+        mygrid.setHeader("序号,案号,案件名称,承办部门,承办人,序号,案号,案件名称,承办部门,承办人");
+        mygrid.setInitWidths("100,200,1900,200,200,100,200,1900,200,200");
+        mygrid.setColTypes("ro,ro,ro,ro,ro,ro,ro,ro,ro,ro");
+        mygrid.setColAlign("center,center,center,center,center,center,center,center,center,center");
+		mygrid.setSkin("tdh_default");
+		mygrid.setColSorting("str,str,str,str,str,str,str,str,str,str");
+		// mygrid.splitAt(2);
+		mygrid.init();
+		// mygrid.loadXML("grid.xml");
+		
+		var mygrid2 = new dhtmlXGridObject('grid_sub');
+        mygrid2.setImagePath("../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/imgs/");
+        mygrid2.setHeader("序号,案号,案件名称,承办部门,承办人");
+        mygrid2.setInitWidths("100,200,*,200,200");
+        mygrid2.setColTypes("ro,ro,ro,ro,ro");
+        mygrid2.setColAlign("center,center,center,center,center");
+		mygrid2.setSkin("tdh_sub");
+		mygrid2.init();
+		mygrid2.loadXML("grid.xml");
+		
+		var mygrid3 = new dhtmlXGridObject('grid_simple');
+        mygrid3.setImagePath("../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/imgs/");
+        mygrid3.setHeader("序号,案号,案件名称,承办部门,承办人");
+        mygrid3.setInitWidths("100,200,*,200,200");
+        mygrid3.setColTypes("ro,ro,ro,ro,ro");
+        mygrid3.setColAlign("center,center,center,center,center");
+		mygrid3.setSkin("tdh_simple");
+		mygrid3.init();
+		mygrid3.loadXML("grid.xml");
+		
+		var mygrid4 = new dhtmlXGridObject('grid_colour');
+        mygrid4.setImagePath("../../../../static/plugg/dhtmlx/dhtmlxGrid/codebase/imgs/");
+        mygrid4.setHeader("序号,案号,案件名称,承办部门,承办人");
+        mygrid4.setInitWidths("100,200,*,200,200");
+        mygrid4.setColTypes("ro,ro,ro,ro,ro");
+        mygrid4.setColAlign("center,center,center,center,center");
+		mygrid4.setSkin("tdh_colour");
+		mygrid4.pagingLayout("count,first,prev,page,next,last,limit,refresh,skip");//设置分页排版
+		mygrid4.pagingLimits("10,20,50");//设置每页条数的选择项
+		mygrid4.enablePagingon(true,10);//true显示分页、10为默认每页条数
+		mygrid4.setPageCurrent(2);//设置当前页
+		mygrid4.init();
+		mygrid4.loadXML("grid.xml");
+	</script>
+</body>
+</html>

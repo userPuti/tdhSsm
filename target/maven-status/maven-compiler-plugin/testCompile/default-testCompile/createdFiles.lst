@@ -1,0 +1,4 @@
+com\tdh\mapper\BzdmMapperTest.class
+com\tdh\log4j\TestLog4j.class
+com\tdh\mapper\UserMapperTest.class
+com\tdh\service\impl\ImplUserServiceTest.class

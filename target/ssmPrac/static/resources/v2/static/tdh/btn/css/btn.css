@@ -1,0 +1,467 @@
+*{ margin: 0; padding: 0;}
+ul,ol,li{ list-style: none;}
+a{ text-decoration: none; cursor: pointer;}
+.tdh_btn {
+	display: inline-block;
+	width: auto;
+	padding: 8px 15px;
+	_padding: 6px 15px;
+	border: 1px solid #fff;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 14px;
+	color: #2b6fdd;
+}
+.tdh_btn_white{
+	background-color: #fff;
+	border-color: #e5e5e5;
+	color: #222;
+}
+.tdh_btn_yellow {
+	background-color: #ff8605;
+	border-color: #ff8605;
+	color: #fff;
+}
+.tdh_btn_blue {
+	background-color: #2b6fdd;
+	border-color: #2b6fdd;
+	color: #fff;
+}
+.tdh_btn_disable{
+	color: #a4a4a4 !important;
+	cursor: not-allowed;
+}
+.tdh_btn_hover{
+	border-color: #2b6fdd;
+}
+.tdh_btn_white_hover{
+	color: #2b6fdd;
+	border-color: #2b6fdd;
+}
+.tdh_btn_yellow_hover{
+	background-color: #de7106;
+	border-color: #de7106;
+}
+.tdh_btn_blue_hover{
+	background-color: #248ce5;
+	border-color: #248ce5;
+}
+.tdh_icon {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	background: no-repeat center;
+	margin-right: 7px;
+	vertical-align: top;
+}
+/*蓝色图标*/
+.icon_search{
+	background-image: url(../images/blue/search.png);
+}
+.icon_add{
+	background-image: url(../images/blue/add.png);
+}
+.icon_del{
+	background-image: url(../images/blue/del.png);
+}
+.icon_save{
+	background-image: url(../images/blue/save.png);
+}
+.icon_cancel{
+	background-image: url(../images/blue/cancel.png);
+}
+.icon_return{
+	background-image: url(../images/blue/return.png);
+}
+.icon_back{
+	background-image: url(../images/blue/back.png);
+}
+.icon_refresh{
+	background-image: url(../images/blue/fresh.png);
+}
+.icon_edit{
+	background-image: url(../images/blue/edit.png);
+}
+.icon_print{
+	background-image: url(../images/blue/print.png);
+}
+.icon_upload{
+	background-image: url(../images/blue/upload.png);
+}
+.icon_download{
+	background-image: url(../images/blue/download.png);
+}
+.icon_import{
+	background-image: url(../images/blue/import.png);
+}
+.icon_export{
+	background-image: url(../images/blue/export.png);
+}
+.icon_introduce{
+	background-image: url(../images/blue/introduce.png);
+}
+.icon_deal{
+	background-image: url(../images/blue/deal.png);
+}
+.icon_reply{
+	background-image: url(../images/blue/reply.png);
+}
+.icon_collect{
+	background-image: url(../images/blue/collect.png);
+}
+.icon_collected{
+	background-image: url(../images/blue/collected.png);
+}
+.icon_send{
+	background-image: url(../images/blue/send.png);
+}
+.icon_transmit{
+	background-image: url(../images/blue/transmit.png);
+}
+.icon_resend{
+	background-image: url(../images/blue/resend.png);
+}
+.icon_transfer{
+	background-image: url(../images/blue/transfer.png);
+}
+.icon_mail{
+	background-image: url(../images/blue/mail.png);
+}
+.icon_signin{
+	background-image: url(../images/blue/signin.png);
+}
+.icon_change{
+	background-image: url(../images/blue/change.png);
+}
+.icon_set{
+	background-image: url(../images/blue/set.png);
+}
+.icon_reset{
+	background-image: url(../images/blue/reset.png);
+}
+.icon_batch{
+	background-image: url(../images/blue/batch.png);
+}
+.icon_tip{
+	background-image: url(../images/blue/tip.png);
+}
+.icon_document{
+	background-image: url(../images/blue/document.png);
+}
+.icon_show{
+	background-image: url(../images/blue/show.png);
+}
+.icon_hide{
+	background-image: url(../images/blue/hide.png);
+}
+.icon_test{
+	background-image: url(../images/blue/test.png);
+}
+/*白色图标*/
+.tdh_btn_blue .icon_search,.tdh_btn_yellow .icon_search {
+	background-image: url(../images/white/search.png);
+}
+.tdh_btn_blue .icon_add,.tdh_btn_yellow .icon_add {
+	background-image: url(../images/white/add.png);
+}
+.tdh_btn_blue .icon_del,.tdh_btn_yellow .icon_del{
+	background-image: url(../images/white/del.png);
+}
+.tdh_btn_blue .icon_save,.tdh_btn_yellow .icon_save{
+	background-image: url(../images/white/save.png);
+}
+.tdh_btn_blue .icon_cancel,.tdh_btn_yellow .icon_cancel {
+	background-image: url(../images/white/cancel.png);
+}
+.tdh_btn_blue .icon_return,.tdh_btn_yellow .icon_return{
+	background-image: url(../images/white/return.png);
+}
+.tdh_btn_blue .icon_back,.tdh_btn_yellow .icon_back{
+	background-image: url(../images/white/back.png);
+}
+.tdh_btn_blue .icon_refresh,.tdh_btn_yellow .icon_refresh{
+	background-image: url(../images/white/fresh.png);
+}
+.tdh_btn_blue .icon_edit,.tdh_btn_yellow .icon_edit{
+	background-image: url(../images/white/edit.png);
+}
+.tdh_btn_blue .icon_print,.tdh_btn_yellow .icon_print{
+	background-image: url(../images/white/print.png);
+}
+.tdh_btn_blue .icon_upload,.tdh_btn_yellow .icon_upload{
+	background-image: url(../images/white/upload.png);
+}
+.tdh_btn_blue .icon_download,.tdh_btn_yellow .icon_download{
+	background-image: url(../images/white/download.png);
+}
+.tdh_btn_blue .icon_import,.tdh_btn_yellow .icon_import {
+	background-image: url(../images/white/import.png);
+}
+.tdh_btn_blue .icon_export,.tdh_btn_yellow .icon_export {
+	background-image: url(../images/white/export.png);
+}
+.tdh_btn_blue .icon_introduce,.tdh_btn_yellow .icon_introduce {
+	background-image: url(../images/white/introduce.png);
+}
+.tdh_btn_blue .icon_deal,.tdh_btn_yellow .icon_deal{
+	background-image: url(../images/white/deal.png);
+}
+.tdh_btn_blue .icon_reply,.tdh_btn_yellow .icon_reply{
+	background-image: url(../images/white/reply.png);
+}
+.tdh_btn_blue .icon_collect,.tdh_btn_yellow .icon_collect{
+	background-image: url(../images/white/collect.png);
+}
+.tdh_btn_blue .icon_collected,.tdh_btn_yellow .icon_collected{
+	background-image: url(../images/white/collected.png);
+}
+.tdh_btn_blue .icon_send,.tdh_btn_yellow .icon_send{
+	background-image: url(../images/white/send.png);
+}
+.tdh_btn_blue .icon_transmit,.tdh_btn_yellow .icon_transmit{
+	background-image: url(../images/white/transmit.png);
+}
+.tdh_btn_blue .icon_resend,.tdh_btn_yellow .icon_resend{
+	background-image: url(../images/white/resend.png);
+}
+.tdh_btn_blue .icon_transfer,.tdh_btn_yellow .icon_transfer{
+	background-image: url(../images/white/transfer.png);
+}
+.tdh_btn_blue .icon_mail,.tdh_btn_yellow .icon_mail{
+	background-image: url(../images/white/mail.png);
+}
+.tdh_btn_blue .icon_signin,.tdh_btn_yellow .icon_signin{
+	background-image: url(../images/white/signin.png);
+}
+.tdh_btn_blue .icon_change,.tdh_btn_yellow .icon_change {
+	background-image: url(../images/white/change.png);
+}
+.tdh_btn_blue .icon_set,.tdh_btn_yellow .icon_set {
+	background-image: url(../images/white/set.png);
+}
+.tdh_btn_blue .icon_reset,.tdh_btn_yellow .icon_reset {
+	background-image: url(../images/white/reset.png);
+}
+.tdh_btn_blue .icon_batch,.tdh_btn_yellow .icon_batch {
+	background-image: url(../images/white/batch.png);
+}
+.tdh_btn_blue .icon_tip,.tdh_btn_yellow .icon_tip {
+	background-image: url(../images/white/tip.png);
+}
+.tdh_btn_blue .icon_tick,.tdh_btn_yellow .icon_tick{
+	background-image: url(../images/white/tick.png);
+}
+.tdh_btn_blue .icon_func,.tdh_btn_yellow .icon_func{
+	background-image: url(../images/white/func.png);
+}
+.tdh_btn_blue .icon_ascend,.tdh_btn_yellow .icon_ascend{
+	background-image: url(../images/white/ascend.png);
+}
+.tdh_btn_blue .icon_descend,.tdh_btn_yellow .icon_descend{
+	background-image: url(../images/white/descend.png);
+}
+.tdh_btn_blue .icon_document,.tdh_btn_yellow .icon_document{
+	background-image: url(../images/white/document.png);
+}
+.tdh_btn_blue .icon_test,.tdh_btn_yellow .icon_test{
+	background-image: url(../images/white/test.png);
+}
+.tdh_btn_blue .icon_arrowDown,.tdh_btn_yellow .icon_arrowDown{
+	background-image: url(../images/white/arrowDown.png);
+	margin: 0;
+	margin-left: 7px;
+}
+.tdh_btn_blue .icon_arrowRight,.tdh_btn_blue .icon_arrowRight{
+	background-image: url(../images/white/arrowRight.png);
+	margin: 0;
+	margin-left: 7px;
+}
+
+/*新增白色图标，批量，中止，删除*/
+.tdh_btn_blue .comm_icon_functions,.tdh_btn_yellow .comm_icon_functions {
+	background-image: url(../images/white/functions2.png);
+}
+.tdh_btn_blue .comm_icon_back,.tdh_btn_yellow .comm_icon_back {
+	background-image: url(../images/white/back2.png);
+}
+.tdh_btn_blue .comm_icon_clear,.tdh_btn_yellow .comm_icon_clear {
+	background-image: url(../images/white/clear2.png);
+}
+/*新增白色图标，批量，中止，删除*/
+
+/*灰色图标*/
+.tdh_btn_disable .icon_search{
+	background-image: url(../images/gray/search.png);
+}
+.tdh_btn_disable .icon_add{
+	background-image: url(../images/gray/add.png);
+}
+.tdh_btn_disable .icon_del{
+	background-image: url(../images/gray/del.png);
+}
+.tdh_btn_disable .icon_save{
+	background-image: url(../images/gray/save.png);
+}
+.tdh_btn_disable .icon_cancel{
+	background-image: url(../images/gray/cancel.png);
+}
+.tdh_btn_disable .icon_return{
+	background-image: url(../images/gray/return.png);
+}
+.tdh_btn_disable .icon_back{
+	background-image: url(../images/gray/back.png);
+}
+.tdh_btn_disable .icon_refresh{
+	background-image: url(../images/gray/fresh.png);
+}
+.tdh_btn_disable .icon_edit{
+	background-image: url(../images/gray/edit.png);
+}
+.tdh_btn_disable .icon_print{
+	background-image: url(../images/gray/print.png);
+}
+.tdh_btn_disable .icon_upload{
+	background-image: url(../images/gray/upload.png);
+}
+.tdh_btn_disable .icon_download{
+	background-image: url(../images/gray/download.png);
+}
+.tdh_btn_disable .icon_import{
+	background-image: url(../images/gray/import.png);
+}
+.tdh_btn_disable .icon_export{
+	background-image: url(../images/gray/export.png);
+}
+.tdh_btn_disable .icon_introduce{
+	background-image: url(../images/gray/introduce.png);
+}
+.tdh_btn_disable .icon_deal{
+	background-image: url(../images/gray/deal.png);
+}
+.tdh_btn_disable .icon_reply{
+	background-image: url(../images/gray/reply.png);
+}
+.tdh_btn_disable .icon_collect{
+	background-image: url(../images/gray/collect.png);
+}
+.tdh_btn_disable .icon_collected{
+	background-image: url(../images/gray/collected.png);
+}
+.tdh_btn_disable .icon_send{
+	background-image: url(../images/gray/send.png);
+}
+.tdh_btn_disable .icon_transmit{
+	background-image: url(../images/gray/transmit.png);
+}
+.tdh_btn_disable .icon_resend{
+	background-image: url(../images/gray/resend.png);
+}
+.tdh_btn_disable .icon_transfer{
+	background-image: url(../images/gray/transfer.png);
+}
+.tdh_btn_disable .icon_mail{
+	background-image: url(../images/gray/mail.png);
+}
+.tdh_btn_disable .icon_signin{
+	background-image: url(../images/gray/signin.png);
+}
+.tdh_btn_disable .icon_change{
+	background-image: url(../images/gray/change.png);
+}
+.tdh_btn_disable .icon_set{
+	background-image: url(../images/gray/set.png);
+}
+.tdh_btn_disable .icon_reset{
+	background-image: url(../images/gray/reset.png);
+}
+.tdh_btn_disable .icon_batch{
+	background-image: url(../images/gray/batch.png);
+}
+.tdh_btn_disable .icon_tip{
+	background-image: url(../images/gray/tip.png);
+}
+.tdh_btn_disable .icon_document{
+	background-image: url(../images/gray/document.png);
+}
+.tdh_btn_disable .icon_test{
+	background-image: url(../images/gray/test.png);
+}
+/***********************/
+.tdh_btnMore{
+	position: relative;
+	padding-right: 5px;
+}
+.tdh_btn_listBox{
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 100%;
+	width: 120px;
+	border:1px solid #236bc4;
+	box-sizing: border-box;
+}
+.tdh_btn_listBox li{
+	width: 100%;
+	font-size: 0;
+	line-height: 0;
+	position: relative;
+}
+.tdh_btn_listbox .tdh_btn{
+	font-size: 12px;
+	width: 100%;
+	text-align: left;
+	border: 0;
+	box-sizing: border-box;
+}
+.tdh_btn_listBox ul{
+	display: none;
+	position: absolute;
+	top: 0;
+	right: -120px;
+	width: 120px;
+	height: auto;
+	border:1px solid #2b6fdd;
+	box-sizing: border-box;
+}
+.tdh_btnHover{
+	position: relative;
+	padding-right: 5px;
+}
+.tdh_btnHover_active{
+	background-color: #248ce5;
+}
+/*******************/
+.tdh_btn_list {
+    height: 45px;
+    font-size: 0px;
+    border-bottom: 1px solid #d2d2d2;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.tdh_btn_list li {
+    padding: 0 5px 0 4px;
+    float: left;
+    background: url(../images/border.png) no-repeat center right;
+    margin-top: 6px;
+}
+.tdh_btn_list li:last-child {
+    background: none;
+}
+
+/*******************/
+.tdh_btn_group{
+	height: 45px;
+    font-size: 0px;
+    border-bottom: 1px solid #d2d2d2;
+    box-sizing: border-box;
+    overflow: hidden;
+	text-align: center;
+}
+.tdh_btn_group .tdh_btn {
+    color: #666 !important;
+    border-color: #e1e1e1;
+    margin: 6px 5px 0;
+}
+.tdh_btn_group .icon_del{
+	background-image: url(../images/yellow/del.png);
+}
